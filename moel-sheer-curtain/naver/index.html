@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=860">
-<title>MILLOW 상세페이지 — 네이버 2차 시안</title>
+<title>MOEL 상세페이지 — 네이버 2차 시안</title>
 <style>
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 
@@ -278,8 +278,8 @@ body.final .todo, body.final .ai-badge { display: none; }
 
 const BRAND = {
   name: '메가창',
-  collection: 'MILLOW',
-  collectionKo: '밀로우',
+  collection: 'MOEL',
+  collectionKo: '모엘',
 };
 
 const PHOTO = '../images/';
@@ -383,7 +383,7 @@ const RAILS = [
   </div>
   <div class="copy">
     <div class="titlewrap" id="titleArea" data-gif="title">
-            <svg class="wordmark-svg" viewBox="0 0 700 132" width="700" height="132" aria-label="MILLOW">
+            <svg class="wordmark-svg" viewBox="0 0 700 132" width="700" height="132" aria-label="MOEL">
         <defs>
           <clipPath id="wmClip"><text x="357" y="114" text-anchor="middle" class="wm-text" data-collection></text></clipPath>
           <filter id="wmWave" x="-10%" y="-30%" width="120%" height="160%">
@@ -409,7 +409,7 @@ const RAILS = [
         </g>
       </svg>
     </div>
-    <div class="kr">결이 다른 밀로우 커튼 컬렉션</div>
+    <div class="kr">결이 다른 <span data-collection-ko></span> 커튼 컬렉션</div>
     <p class="tag">빛은 <b>부드럽게</b>,<br>공간은 <b>포근하게</b></p>
   </div>
 </section>
@@ -697,6 +697,7 @@ const RAILS = [
   }
   document.querySelectorAll('[data-brand]').forEach(e => e.textContent = BRAND.name);
   document.querySelectorAll('[data-collection]').forEach(e => e.textContent = BRAND.collection);
+  document.querySelectorAll('[data-collection-ko]').forEach(e => e.textContent = BRAND.collectionKo);
 
   const sw = (c, size) => `<span class="sw" style="background:${c.hex}${size ? `;width:${size}px;height:${size}px` : ''}"></span>`;
   const total = FABRICS.length;
