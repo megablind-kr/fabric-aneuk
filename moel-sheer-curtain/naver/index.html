@@ -151,18 +151,28 @@ b, strong { font-weight: 700; }
 .notebox .chk circle { fill: var(--ink); }
 .notebox .chk path { fill: none; stroke: #fff; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
 
-.lineup { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 60px 24px; margin-top: 90px; }
+[data-sec="05_컬렉션소개"] .body { line-height: 1.45; }
+.lineup { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 90px; }
+.lineup .cell { position: relative; }
+.lineup .cell:not(.total)::before { content: ''; position: absolute; inset: 0; pointer-events: none;     background: linear-gradient(to right, rgba(74,68,61,.14), rgba(74,68,61,0) 55%); }
 .lineup .cell img { aspect-ratio: 3 / 4; object-fit: cover; }
-.lineup .cell .no { font-size: 18px; font-weight: 600; letter-spacing: .2em; color: var(--accent); margin-top: 24px; }
-.lineup .cell h4 { font-size: 30px; font-weight: 700; margin-top: 4px; }
+.lineup .cell .cap { position: absolute; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 16px;
+  padding: 26px; color: #fff; }
+.lineup .cell .ttl { position: absolute; top: 26px; left: 26px; right: 26px; text-align: right; }
+.lineup .cell .ttl p { font-size: 17px; color: #6b645c; line-height: 1.45; margin-top: 6px; word-break: keep-all; }
+.lineup .cell h4 { color: #4a443d; font-size: 27px; font-weight: 700; letter-spacing: -.01em; white-space: nowrap; }
+.lineup .cell .sws { display: flex; justify-content: flex-end; gap: 10px; align-self: stretch; }   .lineup .cell .swatch { position: relative; }
+.lineup .cell .swatch small { position: absolute; left: 0; right: 0; bottom: 0; padding: 4px 3px 5px; background: rgba(255,255,255,.82);
+  color: var(--ink); font-size: 11px; font-weight: 600; letter-spacing: -.04em; line-height: 1.25; text-align: center; white-space: nowrap; }
+.lineup .cell .swatch { flex: 0 0 calc((100% - 20px) / 3); height: 82px; background-size: 360% auto; background-position: 78% 38%;      border: 2px solid rgba(255,255,255,.9); border-radius: 8px 8px 0 0; box-shadow: 0 2px 4px rgba(0,0,0,.14), 0 10px 24px rgba(0,0,0,.26); }
 .lineup .cell p { font-size: 21px; color: var(--sub); line-height: 1.5; margin-top: 4px; }
-.swatches { display: flex; gap: 6px; margin-top: 16px; }
 .sw { width: 30px; height: 30px; border: 1px solid rgba(0,0,0,.12); }
-.lineup .cell.total { background: var(--dark); color: #f4f1ec; aspect-ratio: 3 / 4; align-self: start; display: flex; flex-direction: column; justify-content: center; padding: 40px; }
-.lineup .cell.total .big { font-size: 130px; font-weight: 200; line-height: 1; }
+.lineup .cell.total { background: var(--dark); color: #f4f1ec; aspect-ratio: 3 / 4; align-self: start; display: flex; flex-direction: column; justify-content: center; padding: 36px 40px; }
+.lineup .cell.total .big { font-size: 120px; font-weight: 700; line-height: 1; letter-spacing: -.03em; }
 .lineup .cell.total .k { font-size: 20px; font-weight: 600; letter-spacing: .3em; margin-top: 10px; }
-.lineup .cell.total p { color: rgba(244,241,236,.7); margin-top: 24px; }
-.lineup .cell.total .swatches { flex-wrap: wrap; margin-top: 30px; }
+.lineup .cell.total p { color: rgba(244,241,236,.7); margin-top: 24px; font-size: 18px; letter-spacing: -.02em; white-space: nowrap; }
+.lineup .cell.total .tone { height: 30px; margin-top: 26px; border-radius: 2px; }
+.lineup .cell.total .tone-cap { display: flex; justify-content: space-between; margin-top: 10px; font-size: 12px; font-weight: 600; letter-spacing: .2em; color: rgba(244,241,236,.55); }
 
 .checks { margin-top: 70px; }
 .check { display: grid; grid-template-columns: 90px 1fr; padding: 40px 0; border-top: 1px solid rgba(255,255,255,.14); }
@@ -699,22 +709,25 @@ const RAILS = [
   document.querySelectorAll('[data-collection]').forEach(e => e.textContent = BRAND.collection);
   document.querySelectorAll('[data-collection-ko]').forEach(e => e.textContent = BRAND.collectionKo);
 
-  const sw = (c, size) => `<span class="sw" style="background:${c.hex}${size ? `;width:${size}px;height:${size}px` : ''}"></span>`;
   const total = FABRICS.length;
+  const swatch = (c, label) => `<div class="swatch" style="background-image:url(${PHOTO}${c.code}_vase.jpg);background-color:${c.hex}"><small>${label}</small></div>`;
+  const lum = h => { const n = parseInt(h.slice(1), 16); return .2126 * (n >> 16) + .7152 * (n >> 8 & 255) + .0722 * (n & 255); };
+  const tones = FABRICS.flatMap(f => f.colors).map(c => c.hex).sort((a, b) => lum(b) - lum(a));
 
   document.getElementById('lineup').innerHTML = FABRICS.map(f => `
     <div class="cell">
       <img src="${PHOTO}${f.colors[0].code}_vase.jpg" alt="">
-      <div class="no">NO. ${f.no}</div>
-      <h4>${f.name}</h4>
-      <p>${f.tagline}</p>
-      <div class="swatches">${f.colors.map(c => sw(c)).join('')}</div>
+      <div class="ttl"><h4>${f.no}. ${f.name}</h4><p>${f.tagline}</p></div>
+      <div class="cap">
+        <div class="sws">${f.colors.map(c => swatch(c, c.name)).join('')}</div>
+      </div>
     </div>`).join('') + `
     <div class="cell total">
-      <div class="big">${FABRICS.flatMap(f => f.colors).length}</div>
+      <div class="big">${tones.length}</div>
       <div class="k">COLORS</div>
       <p>아이보리부터 화이트, 베이지까지<br>공간에 맞는 톤을 골라 보세요.</p>
-      <div class="swatches">${FABRICS.flatMap(f => f.colors).map(c => sw(c, 26)).join('')}</div>
+      <div class="tone" style="background:linear-gradient(to right, ${tones.join(', ')}, #b3a089)"></div>
+      <div class="tone-cap"><span>WHITE</span><span>BEIGE</span></div>
     </div>`;
 
   document.getElementById('fabrics').innerHTML = FABRICS.map((f, i) => `
