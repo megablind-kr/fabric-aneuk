@@ -99,50 +99,59 @@ b, strong { font-weight: 700; }
 .order h4 { font-size: 32px; font-weight: 700; }
 .order p { font-size: 23px; color: var(--sub); line-height: 1.55; margin-top: 8px; }
 .order .ex { display: inline-block; margin-top: 16px; font-size: 21px; font-weight: 600; color: var(--accent); }
-.order-split { display: grid; grid-template-columns: 330px 1fr; gap: 44px; align-items: start; margin-top: 80px; }
-.phone-col { zoom: .77; }
-.order-split .order { margin-top: 0; }
-.order-split .order .row { display: block; padding: 0 0 54px; border: none; }
-.order-split .order .row:last-child { padding-bottom: 0; }
-.steps-scroll { display: grid; grid-template-columns: 30px 1fr; gap: 34px; border-top: none !important; padding-top: 6px; }
-.steps-scroll .track { position: relative; background: var(--ink); border-radius: 15px; min-height: 100%; }
-.steps-scroll .track::before { content: ''; position: absolute; left: 50%; top: 22px; bottom: 30%; border-left: 2px dotted rgba(244,241,236,.55); margin-left: -1px; }
-.steps-scroll .track .dot { position: absolute; left: 50%; top: 14px; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: #f4f1ec; }
-.steps-scroll .track .thumb { position: absolute; left: 50%; bottom: 14px; width: 12px; height: 28%; margin-left: -6px; border-radius: 6px; background: #f4f1ec; }
-.order-split .order h4 .sn { color: var(--ink); font-weight: 800; }
-.order-split .order h4 { font-size: 23px; }
-.order-split .order p { font-size: 18px; margin-top: 4px; }
-.order-split .order .ex { font-size: 16px; margin-top: 10px; }
-
-.phone-wrap { text-align: center; }
-.phone { position: relative; width: 430px; margin: 0 auto; background: #1f1d1a; border-radius: 56px 56px 0 0; padding: 18px 18px 0; box-shadow: 0 40px 90px rgba(31,29,26,.28), 0 12px 30px rgba(31,29,26,.16); }
-.phone .notch { position: absolute; top: 30px; left: 50%; width: 110px; height: 28px; margin-left: -55px; background: #1f1d1a; border-radius: 20px; z-index: 2; }
-.phone .screen { background: #fff; border-radius: 40px 40px 0 0; padding: 76px 26px 28px; min-height: 900px; text-align: left; }
-.phone .ptitle { font-size: 22px; font-weight: 700; padding-bottom: 18px; border-bottom: 1px solid var(--line); margin-bottom: 20px; }
-.phone .field { position: relative; margin-bottom: 18px; }
-.phone .field label { display: block; font-size: 16px; color: var(--sub); margin-bottom: 6px; }
-.phone .inp, .phone .sel { border: 1px solid #cfc8bd; padding: 14px 16px; font-size: 18px; font-weight: 500; color: var(--ink); }
-.phone .sel { position: relative; padding-right: 40px; }
-.phone .sel::after { content: ''; position: absolute; right: 16px; top: 50%; width: 9px; height: 9px; margin-top: -7px; border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: rotate(45deg); }
-.phone .inp { border-color: var(--ink); }
-.phone .picked { position: relative; background: var(--stone); padding: 18px 16px; margin-top: 6px; }
-.phone .picked p { font-size: 15px; line-height: 1.5; color: var(--ink); padding-right: 10px; }
-.phone .qty { display: inline-flex; align-items: center; margin-top: 14px; border: 2px solid var(--accent); background: #fff; }
-.phone .qty span { width: 40px; text-align: center; font-size: 20px; color: var(--sub); line-height: 40px; }
-.phone .qty b { width: 70px; text-align: center; font-size: 20px; border-left: 1px solid var(--line); border-right: 1px solid var(--line); line-height: 40px; }
-.phone .price { float: right; margin-top: 22px; font-size: 18px; font-weight: 700; }
-.phone .price .todo { font-size: 12px; }
-.phone .total { display: flex; justify-content: space-between; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 17px; color: var(--sub); }
-.phone .total b { color: var(--ink); }
-.phone .buy { margin-top: 18px; background: var(--ink); color: #fff; text-align: center; font-size: 19px; font-weight: 700; padding: 16px; }
-.phone .tag { position: absolute; left: -12px; top: 0; width: 34px; height: 34px; z-index: 1; border-radius: 50%; background: var(--accent); color: #fff;
-  font-size: 16px; font-weight: 700; display: grid; place-items: center; font-variant-numeric: lining-nums; }
-.phone .field .tag { top: 14px; }
-.phone .picked .tag { top: -14px; left: -12px; }
-.phone-clip { position: relative; height: 840px; overflow: hidden; padding: 90px 110px 0; margin: -90px -110px 0; }
-.phone-clip::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 170px;
-  background: linear-gradient(to bottom, rgba(239,235,229,0), var(--stone) 85%); pointer-events: none; }
-.phone-cap { font-size: 17px; color: var(--sub); margin-top: 6px; }
+[data-sec="04_주문방법"] { padding-top: 100px; padding-bottom: 90px; }
+[data-sec="04_주문방법"] .ordwin { margin-top: 60px; }
+.ordwin { position: relative; margin-top: 80px; }
+.ordwin::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 380px; background: #fff; border-radius: 14px; box-shadow: 0 30px 70px rgba(31,29,26,.14), 0 8px 20px rgba(31,29,26,.07); }
+.ordwin .st { display: grid; grid-template-columns: 380px minmax(0, 1fr); column-gap: 36px; }
+.ordwin .f { position: relative; padding: 22px 30px; }
+.ordwin .head .f { padding-top: 34px; padding-bottom: 0; }
+.ordwin .last .f { padding-bottom: 34px; }
+.ordwin .ptitle { font-size: 20px; font-weight: 700; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+.ordwin .ptitle.sub { font-size: 17px; padding: 14px 0 12px; margin-bottom: 14px; border-top: 1px solid var(--line); }
+.ordwin label { display: block; font-size: 14px; font-weight: 600; color: var(--sub); margin-bottom: 6px; }
+.ordwin label.mt { margin-top: 14px; }
+.ordwin .inp, .ordwin .sel { border: 1px solid #cfc8bd; padding: 12px 14px; font-size: 15px; font-weight: 600; color: var(--ink); white-space: nowrap; }
+.ordwin .inp { border-color: var(--ink); font-size: 17px; }
+.ordwin .sel { position: relative; padding-right: 36px; }
+.ordwin .sel::after { content: ''; position: absolute; right: 15px; top: 50%; width: 8px; height: 8px; margin-top: -6px; border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: rotate(45deg); }
+.ordwin .sel.open { border-color: var(--ink); }
+.ordwin .sel.open::after { margin-top: -1px; transform: rotate(-135deg); }
+.ordwin .drop { list-style: none; border: 1px solid var(--ink); border-top: none; }
+.ordwin .drop li { padding: 9px 14px; font-size: 14px; color: var(--sub); white-space: nowrap; }
+.ordwin .drop li + li { border-top: 1px solid #f0ece6; }
+.ordwin .drop li.on { background: var(--stone); color: var(--ink); font-weight: 700; }
+.ordwin .picked { background: var(--stone); padding: 14px 14px 16px; margin-top: 12px; }
+.ordwin .picked p { font-size: 13px; line-height: 1.5; color: var(--ink); }
+.ordwin .qty { display: inline-flex; margin-top: 10px; border: 2px solid var(--accent); background: #fff; }
+.ordwin .qty span { width: 36px; text-align: center; font-size: 17px; line-height: 36px; color: var(--sub); }
+.ordwin .qty b { width: 64px; text-align: center; font-size: 17px; line-height: 36px; border-left: 1px solid var(--line); border-right: 1px solid var(--line); }
+.ordwin .d { padding: 22px 0 40px; border-top: 1px solid #d8d1c7; }
+.ordwin .head .d { border-top: none; padding: 0; }
+.ordwin h4 { font-size: 22px; font-weight: 700; letter-spacing: -.02em; }
+.ordwin h4 { display: flex; align-items: center; gap: 10px; }
+.ordwin h4 .sn { flex: 0 0 30px; width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 15px; font-weight: 700; line-height: 30px; text-align: center; letter-spacing: 0; }
+.ordwin h4 .opt { margin-left: -4px; font-size: 16px; font-weight: 500; color: var(--sub); }
+.ordwin .d p { font-size: 17px; color: var(--sub); line-height: 1.55; margin-top: 6px; }
+.ordwin .ex { display: block; margin-top: 10px; font-size: 15px; font-weight: 600; color: var(--accent); }
+.ordwin .opts { list-style: none; margin-top: 10px; font-size: 15px; line-height: 1.6; color: var(--sub); }
+.ordwin .opts li { padding-left: 12px; text-indent: -12px; margin-top: 4px; }
+.ordwin .opts li::before { content: '· '; color: var(--accent); }
+.ordwin .terms { margin-top: 18px; padding-top: 16px; border-top: 1px dashed #d8d1c7; }
+.ordwin .terms dt { font-size: 15px; font-weight: 700; color: var(--ink); margin-top: 12px; }
+.ordwin .terms dt:first-child { margin-top: 0; }
+.ordwin .terms dd { font-size: 15px; line-height: 1.55; color: var(--sub); margin-top: 3px; word-break: keep-all; }
+.ordwin .ex.sm { margin-top: 4px; }
+.ordwin .ratio { list-style: none; margin-top: 10px; border-top: 1px solid #d8d1c7; }
+.ordwin .ratio li { display: grid; grid-template-columns: 52px 1fr; gap: 8px; padding: 9px 0; border-bottom: 1px solid #d8d1c7; font-size: 14px; line-height: 1.5; word-break: keep-all; }
+.ordwin .ratio b { color: var(--accent); font-size: 15px; }
+.ordwin .ratio span { color: var(--sub); }
+.ordwin .ratio + .terms { border-top: none; padding-top: 0; }
+.ordwin .d .em { color: var(--ink); font-weight: 700; box-shadow: inset 0 -.45em 0 rgba(160,140,114,.28); }
+.ordwin .d p.one { white-space: nowrap; letter-spacing: -.04em; font-size: 16px; }
+.ordwin .d p.lim { margin-top: 8px; font-size: 13px; color: var(--sub); }
+.ordwin .d p.lim b { font-weight: 700; }
+.win-cap { font-size: 14px; color: var(--sub); margin-top: 16px; }
 .order .n { font-variant-numeric: lining-nums; }
 
 .notebox { margin-top: 50px; background: var(--stone); padding: 34px 40px; font-size: 23px; line-height: 1.6; }
@@ -461,54 +470,89 @@ const RAILS = [
 
 <section data-sec="04_주문방법" class="sec stone">
   <div class="label">How to Order</div>
-  <h2 class="h2">주문은 <span class="light">4단계로</span><br>간단하게.</h2>
-  <div class="order-split">
-    <div class="phone-col">
-    <div class="phone-wrap">
-    <div class="phone-clip">
-    <div class="phone">
-      <div class="notch"></div>
-      <div class="screen">
-        <div class="ptitle">옵션 선택</div>
-        <div class="field"><label>세로 길이 (cm) 입력</label><div class="inp">237</div></div>
-        <div class="field"><label>원단 · 컬러</label><div class="sel">01 린넨 베이직 / 내추럴 아이보리</div></div>
-        <div class="field"><label>주름</label><div class="sel">1.5배 (자연스러운 주름)</div></div>
+  <h2 class="h2">사이즈만 알면 <span class="light">주문은 끝.</span></h2>
+    <div class="ordwin">
+    <div class="st head">
+      <div class="f"><div class="ptitle">옵션 선택</div></div><div class="d"></div>
+    </div>
+    <div class="st">
+      <div class="f">
+        <label>가로 (cm) 입력</label><div class="inp">400</div>
+        <label class="mt">세로 (cm) 입력</label><div class="inp">240</div>
+      </div>
+      <div class="d">
+        <h4><span class="sn">1</span>가로 · 세로 길이 입력</h4>
+        <p>가로는 실측 사이즈 그대로,<br>세로는 실측에서 <b class="em">레일 높이를 뺀 길이</b>로 입력</p>
+        <span class="ex">예시) 가로 실측 400cm → 400 입력</span>
+        <span class="ex sm">세로 243cm − 레일 3cm → 240 입력</span>
+        <p class="lim">* 세로는 <b>최대 260cm</b>까지 주문 가능</p>
+      </div>
+    </div>
+    <div class="st">
+      <div class="f">
+        <label>원단 종류</label><div class="sel">01 린넨 베이직 / 내추럴 아이보리</div>
+        <label class="mt">주름 형태</label><div class="sel open">1.5배 평주름 + 형상기억</div>
+        <ul class="drop">
+          <li>1배 평주름</li>
+          <li>1.5배 평주름</li>
+          <li class="on">1.5배 평주름 + 형상기억</li>
+          <li>2배 평주름</li>
+          <li>2배 평주름 + 형상기억</li>
+          <li>2배 나비주름</li>
+          <li>2배 나비주름 + 형상기억</li>
+        </ul>
+      </div>
+      <div class="d">
+        <h4><span class="sn">2</span>원단 · 주름 형태 선택</h4>
+        <p class="one">7가지 원단 중 하나를 고른 뒤 주름 형태를 선택</p>
+        <dl class="terms">
+          <dt>1배 · 1.5배 · 2배</dt>
+        </dl>
+        <ul class="ratio">
+          <li><b>1배</b><span>주름 없이 평평한 가림막 형태</span></li>
+          <li><b>1.5배</b><span>자연스러운 주름, 가장 많이 선택</span></li>
+          <li><b>2배</b><span>풍성한 볼륨감, 호텔 같은 분위기</span></li>
+        </ul>
+        <dl class="terms">
+          <dt>평주름</dt><dd>일정한 간격으로 반듯하게 잡은 기본 형태</dd>
+          <dt>나비주름</dt><dd>상단 주름을 두 겹씩 모아 잡은 풍성한 형태</dd>
+          <dt>형상기억</dt><dd>열처리로 세탁 후에도 주름을 유지하는 가공</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="st">
+      <div class="f">
+        <label>수량</label><div class="sel">가로사이즈만큼 추가</div>
         <div class="picked">
-          
-          <p>세로 237cm / 01 린넨 베이직 / 내추럴 아이보리 / 1.5배</p>
-          <div class="qty"><span>−</span><b>300</b><span>+</span></div>
-          <div class="price">___원</div>
+          <p>가로 400cm / 세로 240cm / 01 린넨 베이직 / 내추럴 아이보리 / 1.5배 평주름 + 형상기억</p>
+          <div class="qty"><span>−</span><b>400</b><span>+</span></div>
         </div>
       </div>
-    </div>
-    </div>
-    <p class="phone-cap">* 실제 화면과 다를 수 있습니다.</p>
-  </div>
-    </div>
-  <div class="order steps-scroll">
-    <div class="track"><i class="dot"></i><i class="thumb"></i></div>
-    <div class="rows">
-      <div class="row">
-        <h4><span class="sn">STEP 1 :</span> 세로 길이 입력</h4>
-        <p>레일에 맞게 뺀 완성 기장 입력</p>
-        <span class="ex">예시) 실측 240cm → 237 입력</span>
+      <div class="d">
+        <h4><span class="sn">3</span>가로 사이즈만큼 수량 추가</h4>
+        <p>'가로사이즈만큼 추가' 선택 후<br>가로 cm만큼 수량을 입력</p>
+        <span class="ex">예시) 가로 400cm → 400개 주문</span>
       </div>
-      <div class="row">
-        <h4><span class="sn">STEP 2 :</span> 원단 · 컬러 선택</h4>
-        <p>7가지 원단, 11가지 컬러 중 선택</p>
+    </div>
+    <div class="st last">
+      <div class="f">
+        <div class="ptitle sub">추가상품</div>
+        <label>양개 / 편개</label><div class="sel">양개 (기본)</div>
+        <label class="mt">레일</label><div class="sel">8자</div>
+        <label class="mt">자석타이백</label><div class="sel">선택 안 함</div>
       </div>
-      <div class="row">
-        <h4><span class="sn">STEP 3 :</span> 주름 선택</h4>
-        <p>1.5배 자연스러운 / 2배 풍성한 주름</p>
-      </div>
-      <div class="row">
-        <h4><span class="sn">STEP 4 :</span> 가로 길이 = 수량</h4>
-        <p>가로 실측 cm만큼 수량을 입력<br>주름 원단은 자동으로 계산돼요</p>
-        <span class="ex">예시) 가로 300cm → 수량 300개</span>
+      <div class="d">
+        <h4><span class="sn">4</span>추가상품 선택 <span class="opt">(선택)</span></h4>
+        <p>필요한 경우에만 함께 담기</p>
+        <dl class="terms">
+          <dt>양개 / 편개</dt><dd>미선택 시 양개, 편개는 최대 420cm</dd>
+          <dt>레일</dt><dd>4 · 6 · 8 · 10 · 12 · 14 · 16자</dd>
+          <dt>자석타이백</dt><dd>커튼을 단정하게 묶어 두는 타이백</dd>
+        </dl>
       </div>
     </div>
   </div>
-  </div>
+  <p class="win-cap">* 실제 주문 화면과 다를 수 있습니다.</p>
   <div class="notebox"><svg class="chk" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12"/><path d="M6.8 12.4l3.4 3.4 7-7.2"/></svg><span>창마다 사이즈가 다르다면 <b>하나씩 따로 장바구니에 담아</b> 주문해 주세요.</span></div>
 </section>
 
