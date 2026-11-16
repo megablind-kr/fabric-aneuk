@@ -151,7 +151,7 @@ b, strong { font-weight: 700; }
 .ordwin .ratio b { color: var(--accent); font-size: 15px; }
 .ordwin .ratio span { color: var(--sub); }
 .ordwin .ratio + .terms { border-top: none; padding-top: 0; }
-.ordwin .d .em { color: var(--ink); font-weight: 700; box-shadow: inset 0 -.45em 0 rgba(160,140,114,.28); }
+.ordwin .d .em { color: var(--warn); font-weight: 700; }
 .ordwin .d p.one { white-space: nowrap; letter-spacing: -.04em; font-size: 16px; }
 .ordwin .d p.lim { margin-top: 8px; font-size: 13px; color: var(--sub); }
 .ordwin .d p.lim b { font-weight: 700; }
@@ -591,8 +591,8 @@ const LIMIT = { maxHeight: 260, maxSingle: 240 };
       </div>
       <div class="d">
         <h4><span class="sn">1</span>가로 · 세로 사이즈 입력</h4>
-        <p>가로는 실측한 사이즈 그대로,<br>세로는 실측에서 <b class="em">부자재 높이를 뺀 길이</b></p>
-        <p class="lim">* 부자재 종류별 높이와 실측 방법은 페이지 하단을 참고해 주세요.</p>
+        <p>가로는 실측한 사이즈 그대로,<br>세로는 실측에서 <b class="em">레일 높이를 뺀 길이</b></p>
+        <p class="lim">* 부자재(레일, 커튼봉+링) 종류별 높이와 실측 방법은 페이지 하단을 참고해 주세요.</p>
       </div>
     </div>
     <div class="st">
