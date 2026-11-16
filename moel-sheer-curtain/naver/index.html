@@ -108,6 +108,9 @@ b, strong { font-weight: 700; }
 .ordwin .head .f { padding-top: 34px; padding-bottom: 0; }
 .ordwin .last .f { padding-bottom: 34px; }
 .ordwin .ptitle { font-size: 20px; font-weight: 700; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+.ordwin.add { margin-top: 28px; }
+[data-sec="04_주문방법"] .ordwin.add { margin-top: 28px; }
+.ordwin .ptitle .opt { font-size: 15px; font-weight: 500; color: var(--sub); }
 .ordwin .ptitle.sub { font-size: 17px; padding: 14px 0 12px; margin-bottom: 14px; border-top: 1px solid var(--line); }
 .ordwin label { display: block; font-size: 14px; font-weight: 600; color: var(--sub); margin-bottom: 6px; }
 .ordwin label.mt { margin-top: 14px; }
@@ -120,6 +123,7 @@ b, strong { font-weight: 700; }
 .ordwin .drop { list-style: none; border: 1px solid var(--ink); border-top: none; }
 .ordwin .drop li { padding: 9px 14px; font-size: 14px; color: var(--sub); white-space: nowrap; }
 .ordwin .drop li + li { border-top: 1px solid #f0ece6; }
+.ordwin .drop li.more { text-align: center; letter-spacing: .2em; color: #b5ada2; padding: 4px 14px 8px; font-weight: 700; }
 .ordwin .drop li.on { background: var(--stone); color: var(--ink); font-weight: 700; }
 .ordwin .picked { background: var(--stone); padding: 14px 14px 16px; margin-top: 12px; }
 .ordwin .picked p { font-size: 13px; line-height: 1.5; color: var(--ink); }
@@ -151,6 +155,9 @@ b, strong { font-weight: 700; }
 .ordwin .d p.one { white-space: nowrap; letter-spacing: -.04em; font-size: 16px; }
 .ordwin .d p.lim { margin-top: 8px; font-size: 13px; color: var(--sub); }
 .ordwin .d p.lim b { font-weight: 700; }
+.ordwin .drop li .pick { font-style: normal; margin-left: 8px; padding: 2px 7px; border-radius: 3px; background: var(--ink); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0; vertical-align: 1px; }
+.ordwin .drop li .pick.best { background: var(--accent); }
+[data-sec="04_주문방법"] .notebox { background: #fff; margin-top: 16px; }
 .win-cap { font-size: 14px; color: var(--sub); margin-top: 16px; }
 .order .n { font-variant-numeric: lining-nums; }
 
@@ -159,6 +166,21 @@ b, strong { font-weight: 700; }
 .notebox .chk { flex: 0 0 28px; width: 28px; height: 28px; }
 .notebox .chk circle { fill: var(--ink); }
 .notebox .chk path { fill: none; stroke: #fff; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+
+.gbanner-wrap { background: var(--stone); padding: 0 80px 100px; }
+.gbanner { display: grid; grid-template-columns: 1fr 230px; align-items: center; gap: 20px; background: var(--dark); color: #f4f1ec; padding: 48px 44px; border-radius: 16px; text-decoration: none; box-shadow: 0 24px 50px rgba(31,29,26,.22); }
+.gbanner .k { font-size: 15px; font-weight: 700; letter-spacing: .24em; color: var(--accent); }
+.gbanner h3 { font-size: 34px; font-weight: 300; line-height: 1.35; letter-spacing: -.04em; margin-top: 12px; }
+.gbanner h3 b { font-weight: 800; }
+.gbanner p { font-size: 19px; color: rgba(244,241,236,.68); line-height: 1.55; margin-top: 14px; }
+.gbanner .gowrap { position: relative; display: inline-block; margin-top: 26px; }
+.gbanner .ring { position: absolute; inset: 0; border: 2px solid #f4f1ec; border-radius: 40px; opacity: 0; pointer-events: none; }
+.gbanner .go .shine { position: absolute; top: 0; bottom: 0; left: -45%; width: 40%; background: linear-gradient(105deg, rgba(196,170,132,0), rgba(196,170,132,.45), rgba(196,170,132,0)); pointer-events: none; }
+.gbanner .go .lbl, .gbanner .go i { position: relative; }
+.gbanner .go { position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 12px; padding: 13px 22px; background: #f4f1ec; color: var(--ink); border-radius: 40px; font-size: 18px; font-weight: 700; }
+.gbanner .go i { width: 9px; height: 9px; border-right: 2px solid var(--ink); border-top: 2px solid var(--ink); transform: rotate(45deg); }
+.gbanner .art { width: 230px; height: 230px; }
+[data-sec="04_주문방법"] { padding-bottom: 60px; }
 
 [data-sec="05_컬렉션소개"] .body { line-height: 1.45; }
 .lineup { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 90px; }
@@ -176,12 +198,13 @@ b, strong { font-weight: 700; }
 .lineup .cell .swatch { flex: 0 0 calc((100% - 20px) / 3); height: 82px; background-size: 360% auto; background-position: 78% 38%;      border: 2px solid rgba(255,255,255,.9); border-radius: 8px 8px 0 0; box-shadow: 0 2px 4px rgba(0,0,0,.14), 0 10px 24px rgba(0,0,0,.26); }
 .lineup .cell p { font-size: 21px; color: var(--sub); line-height: 1.5; margin-top: 4px; }
 .sw { width: 30px; height: 30px; border: 1px solid rgba(0,0,0,.12); }
-.lineup .cell.total { background: var(--dark); color: #f4f1ec; aspect-ratio: 3 / 4; align-self: start; display: flex; flex-direction: column; justify-content: center; padding: 36px 40px; }
-.lineup .cell.total .big { font-size: 120px; font-weight: 700; line-height: 1; letter-spacing: -.03em; }
-.lineup .cell.total .k { font-size: 20px; font-weight: 600; letter-spacing: .3em; margin-top: 10px; }
-.lineup .cell.total p { color: rgba(244,241,236,.7); margin-top: 24px; font-size: 18px; letter-spacing: -.02em; white-space: nowrap; }
-.lineup .cell.total .tone { height: 30px; margin-top: 26px; border-radius: 2px; }
-.lineup .cell.total .tone-cap { display: flex; justify-content: space-between; margin-top: 10px; font-size: 12px; font-weight: 600; letter-spacing: .2em; color: rgba(244,241,236,.55); }
+
+
+.sec.cnsec { background: #ececec; padding: 60px 50px; }
+.cncard { background: #fff; border-radius: 80px; padding: 72px 90px 70px; text-align: center; }
+.cncard .gray { display: flex; height: 44px; }
+.cncard .gray i { flex: 1; }
+.cncard p { margin-top: 44px; font-size: 22px; color: #444; line-height: 1.75; }
 
 .checks { margin-top: 70px; }
 .check { display: grid; grid-template-columns: 90px 1fr; padding: 40px 0; border-top: 1px solid rgba(255,255,255,.14); }
@@ -189,6 +212,8 @@ b, strong { font-weight: 700; }
 .check h4 { font-size: 34px; font-weight: 700; line-height: 1.4; }
 .check p { font-size: 23px; color: rgba(244,241,236,.7); margin-top: 10px; line-height: 1.6; }
 .check .ph { margin-top: 26px; }
+.check p.optnote { margin-top: 16px; padding: 14px 18px; background: rgba(255,255,255,.06); border-left: 3px solid var(--accent); font-size: 20px; color: #f4f1ec; }
+.check p.optnote b { color: #e3d3b8; }
 .vs { width: 100%; border-collapse: collapse; margin-top: 26px; font-size: 21px; }
 .vs th, .vs td { padding: 18px 12px; border-bottom: 1px solid rgba(255,255,255,.14); text-align: left; }
 .vs th { font-weight: 500; color: rgba(244,241,236,.55); }
@@ -199,26 +224,18 @@ b, strong { font-weight: 700; }
 .fab .top .count { font-size: 22px; font-weight: 500; color: var(--sub); letter-spacing: .1em; }
 .fab .top .count b { color: var(--ink); }
 .fab .en { font-size: 20px; font-weight: 600; letter-spacing: .32em; text-transform: uppercase; color: var(--accent); }
+.fab h2 .no { font-weight: 300; color: var(--accent); margin-right: 22px; }
 .fab h2 { font-size: 66px; font-weight: 800; letter-spacing: -0.05em; line-height: 1.2; margin-top: 10px; }
 .fab .tagline { padding: 0 80px; font-size: 32px; font-weight: 300; line-height: 1.5; }
 .fab .closeup { margin-top: 60px; }
 .fab .closeup img { aspect-ratio: 860 / 700; object-fit: cover; }
-.fab .info { display: grid; grid-template-columns: 1fr 1fr; gap: 0 50px; padding: 70px 80px 0; }
-.fab .spec div { padding: 22px 0; border-bottom: 1px solid var(--line); }
-.fab .spec div:first-child { border-top: 1px solid var(--ink); }
+.fab .info { padding: 70px 80px 0; }
+.fab .spec { display: grid; grid-template-columns: 1fr 1fr; gap: 0 50px; border-top: 1px solid var(--ink); }   .fab .spec > div { padding: 24px 0; border-bottom: 1px solid var(--line); }
+.fab .spec dd.cl { display: flex; gap: 16px; margin-top: 12px; }
+.fab .spec dd.cl span { display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 14px; line-height: 1.2; letter-spacing: -.02em; white-space: nowrap; }
+.fab .spec dd.cl i { flex: none; width: 40px; height: 40px; border-radius: 50%; background-size: 360% auto; background-position: 78% 38%; box-shadow: 0 0 0 1px rgba(31,29,26,.12); }
 .fab .spec dt { font-size: 18px; font-weight: 600; letter-spacing: .15em; color: var(--accent); }
 .fab .spec dd { font-size: 23px; color: var(--ink); line-height: 1.5; margin-top: 4px; }
-.fab .colors .k { font-size: 18px; font-weight: 600; letter-spacing: .15em; color: var(--accent); padding: 22px 0 18px; border-top: 1px solid var(--ink); }
-.fab .colors .c { display: flex; align-items: center; gap: 18px; padding: 12px 0; font-size: 23px; }
-.fab .colors .c .sw { width: 56px; height: 56px; }
-.fab .colors .c small { display: block; font-size: 17px; color: var(--sub); letter-spacing: .05em; }
-.fab .chips2 { display: flex; gap: 12px; }
-.fab .chip2 { width: 100px; background: #fff; box-shadow: 0 1px 0 var(--line), 0 6px 18px rgba(31,29,26,.08); }
-.fab .chip2 .tex { height: 116px; background-size: 360% auto; background-position: 78% 38%; }
-.fab .chip2 .cap { padding: 12px 10px 14px; }
-.fab .chip2 .cap b { display: block; font-size: 15px; font-weight: 700; line-height: 1.3; letter-spacing: -0.02em; }
-.fab .chip2 .cap small { display: block; font-size: 13px; color: var(--sub); margin-top: 4px; letter-spacing: .08em; }
-.fab.alt .chip2 { box-shadow: 0 6px 18px rgba(31,29,26,.1); }
 .fab .colorsphoto { padding: 70px 80px 0; }
 .fab .colorsphoto .cap { display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; font-size: 20px; color: var(--sub); margin-top: 14px; }
 .fab .fnote { margin: 50px 80px 0; padding: 26px 0 0; border-top: 1px solid var(--warn); color: var(--warn); font-size: 22px; font-weight: 500; }
@@ -239,6 +256,21 @@ b, strong { font-weight: 700; }
 .pleat2 h4 { font-size: 36px; font-weight: 800; margin-top: 18px; }
 .pleat2 p { font-size: 22px; color: var(--sub); line-height: 1.55; }
 
+.gsub { font-size: 30px; font-weight: 800; margin-top: 90px; padding-bottom: 20px; border-bottom: 1px solid var(--ink); }
+.badge { display: inline-block; font-style: normal; vertical-align: middle; margin-left: 6px; padding: 3px 9px; border-radius: 3px; background: var(--accent); color: #fff; font-size: 14px; font-weight: 700; letter-spacing: .04em; line-height: 1.3; }
+.badge.md { background: var(--ink); }
+.pleat3 { display: grid; grid-template-columns: repeat(3, 1fr); }
+.pleat3 > div { padding: 36px 20px 0; }
+.pleat3 > div:first-child { padding-left: 0; }
+.pleat3 > div:last-child { padding-right: 0; }
+.pleat3 > div + div { border-left: 1px solid #d8d1c7; }
+.pleat3 .pleat-art { height: 220px; }
+.pleat3 .pleat-art svg { display: block; width: 100%; height: 100%; }
+.pleat3 h4, .pleat4 h4 { font-size: 27px; font-weight: 800; margin-top: 16px; white-space: nowrap; }
+.pleat3 p, .pleat4 p { font-size: 19px; color: var(--sub); line-height: 1.5; margin-top: 4px; }
+.pleat4 { display: grid; grid-template-columns: 1fr 1fr; gap: 44px 24px; margin-top: 36px; }
+.pleat4 .ph { height: 260px; font-size: 18px; }
+
 .mstep { margin-top: 90px; }
 .mstep .head { display: flex; align-items: baseline; gap: 22px; padding-bottom: 26px; border-bottom: 1px solid var(--ink); }
 .mstep .head .s { font-size: 20px; font-weight: 700; letter-spacing: .25em; color: var(--accent); }
@@ -253,6 +285,72 @@ b, strong { font-weight: 700; }
 .rails2 td { padding: 24px 6px; border-bottom: 1px solid var(--line); }
 .rails2 td.m { font-weight: 800; font-size: 28px; }
 .rails2 td small { display: block; font-size: 18px; color: var(--sub); }
+.mcase { margin-top: 80px; }
+.mcase .head, .calc .head { display: flex; align-items: baseline; gap: 22px; padding-bottom: 22px; border-bottom: 1px solid var(--ink); }
+.mcase .head .s, .calc .head .s { font-size: 18px; font-weight: 700; letter-spacing: .25em; color: var(--accent); }
+.mcase .head h3, .calc .head h3 { font-size: 34px; font-weight: 800; }
+.mfig { margin-top: 30px; }
+.mfig svg { display: block; width: 100%; }
+.mfig .v { font-size: 16px; }
+.mfig .s { font-size: 14px; fill: var(--sub); }
+.mrule div { display: grid; grid-template-columns: 150px 1fr; padding: 20px 0; border-bottom: 1px solid var(--line); font-size: 22px; }
+.mrule dt { font-weight: 700; }
+.mrule dd { color: var(--sub); }
+.mrule dd small { font-size: 18px; }
+.mrule dd b { color: var(--accent); }
+.calc { margin-top: 80px; }
+.clist { margin-top: 26px; padding-left: 28px; font-size: 23px; line-height: 1.7; }
+.qtydemo { display: flex; align-items: center; justify-content: center; gap: 22px; margin-top: 30px; padding: 34px; background: #fff; }
+.qtydemo .lb { font-size: 22px; font-weight: 700; }
+.qtydemo .arr { width: 40px; height: 2px; background: var(--accent); position: relative; }
+.qtydemo .arr::after { content: ''; position: absolute; right: 0; top: -5px; width: 10px; height: 10px; border-right: 2px solid var(--accent); border-top: 2px solid var(--accent); transform: rotate(45deg); }
+.qtydemo .qty { display: inline-flex; border: 2px solid var(--accent); }
+.qtydemo .qty span { width: 50px; text-align: center; font-size: 24px; line-height: 52px; color: var(--sub); }
+.qtydemo .qty b { width: 90px; text-align: center; font-size: 24px; line-height: 52px; border-left: 1px solid var(--line); border-right: 1px solid var(--line); }
+.calc .formula2 { font-size: 25px; }
+.parts { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 30px; }
+.part { background: #fff; padding: 26px; }
+.part .ph { height: 200px; font-size: 18px; }
+.part h4 { font-size: 25px; font-weight: 800; margin-top: 18px; }
+.part .eq { margin-top: 10px; font-size: 18px; line-height: 1.5; }
+.part .eq b { color: var(--accent); font-weight: 800; }
+.part .eq { white-space: nowrap; }
+.part .eq small { display: block; font-size: 15px; color: var(--sub); }
+.part .exm { margin-top: 8px; font-size: 17px; color: var(--sub); }
+.part .exm b { color: var(--ink); }
+.part .pnote { margin-top: 6px; font-size: 16px; color: var(--warn); font-weight: 600; }
+.kit, .addon, .install { display: grid; gap: 24px; margin-top: 60px; }
+.kit { grid-template-columns: 1fr 1fr; }
+.addon, .install { grid-template-columns: repeat(3, 1fr); }
+.kit .ph { height: 300px; font-size: 18px; }
+.addon .ph, .install .ph { height: 200px; font-size: 16px; padding: 16px; }
+.kit h4, .addon h4, .install h4 { font-size: 24px; font-weight: 800; margin-top: 16px; }
+.kit p, .addon p, .install p { font-size: 18px; color: var(--sub); line-height: 1.5; margin-top: 4px; }
+.addon p small { font-size: 15px; }
+.addon > div { background: #fff; padding: 20px; }
+[data-sec="14_추가상품"] .notebox { background: #fff; margin-top: 24px; font-size: 19px; }
+.install .n { font-size: 18px; font-weight: 700; letter-spacing: .1em; color: var(--accent); margin-bottom: 10px; }
+.flow { display: grid; grid-template-columns: repeat(6, 1fr); margin-top: 70px; }
+.flow > div { position: relative; text-align: center; }
+.flow > div + div::before { content: ''; position: absolute; left: -9px; top: 38px; width: 9px; height: 9px; border-right: 2px solid var(--accent); border-top: 2px solid var(--accent); transform: rotate(45deg); }
+.flow svg { width: 84px; height: 84px; padding: 14px; background: #fff; border-radius: 50%; stroke: var(--ink); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.flow b { display: block; font-size: 17px; font-weight: 700; margin-top: 14px; white-space: nowrap; }
+.dots.sm { margin-top: 18px; }
+.dots.sm li { font-size: 20px; margin-bottom: 8px; }
+.dots.sm li::before { top: 14px; width: 6px; height: 6px; }
+[data-sec="06_빛비침비교"] { padding-bottom: 50px; }
+.lflow { margin: 64px -40px 0; }
+.lhead { display: flex; align-items: center; justify-content: space-between; gap: 14px; font-size: 21px; font-weight: 700; color: #b5aca1; }
+.lhead b { color: var(--ink); }
+.lhead i { flex: 1; height: 12px; background: linear-gradient(to right, rgba(156,141,124,0), #9c8d7c); position: relative; margin-right: 12px; }
+.lhead i::after { content: ""; position: absolute; right: -14px; top: -8px; border-left: 16px solid #9c8d7c; border-top: 14px solid transparent; border-bottom: 14px solid transparent; }
+.ltrack { display: block; width: 100%; height: auto; margin-top: 34px; }
+.lcards { display: flex; gap: 12px; }
+.lc { flex: 1; border: 2px solid; border-radius: 18px; overflow: hidden; background: #fff; display: flex; flex-direction: column; }
+.lflow + .mnote { margin-top: 32px; }
+.lc .ph2 { height: 150px; background: #f6f3ee center / cover; }
+.lc .nmb { flex: 1; padding: 14px 4px 16px; text-align: center; font-size: 16px; font-weight: 700; line-height: 1.3; letter-spacing: -.04em; white-space: nowrap; }
+.lc .nmb small { display: block; font-size: 13px; font-weight: 700; letter-spacing: .08em; opacity: .7; margin-bottom: 4px; }
 .mnote { font-size: 21px; color: var(--sub); margin-top: 24px; line-height: 1.6; }
 
 .spec-table { width: 100%; border-collapse: collapse; margin-top: 70px; font-size: 23px; }
@@ -283,8 +381,7 @@ b, strong { font-weight: 700; }
 .ph { border: 1px dashed #b9ae9c; background: repeating-linear-gradient(45deg, #f4f0ea, #f4f0ea 14px, #ece6dd 14px, #ece6dd 28px);
   color: #8b7c66; display: grid; place-items: center; text-align: center; font-size: 22px; padding: 30px; }
 .dark .ph { background: repeating-linear-gradient(45deg, #36322e, #36322e 14px, #3d3934 14px, #3d3934 28px); border-color: #6b6258; color: #b5a993; }
-.ai-badge { position: absolute; right: 16px; top: 16px; background: rgba(0,0,0,.5); color: #fff; font-size: 15px; padding: 3px 10px; letter-spacing: 0; }
-body.final .todo, body.final .ai-badge { display: none; }
+body.final .todo { display: none; }
 
 .h2.roomy { line-height: 1.5; }
 .dot-em .d { position: relative; display: inline-block; }
@@ -303,9 +400,11 @@ const BRAND = {
 
 const PHOTO = '../images/';
 
+const GUIDE_URL = '../guide/';
+
 const FABRICS = [
   {
-    no: '01', name: '린넨 베이직', en: 'Linen Basic',
+    no: '01', name: '린넨 베이직', mix: '린넨 20% / 폴리에스터 80%', thin: 2, en: 'Linen Basic',
     tagline: '가장 기본이라 가장 오래 사랑받는',
     texture: '가로·세로 실이 은은하게 보이는 클래식 린넨룩 평직',
     mood: '빛이 부드럽게 퍼지는 가장 내추럴한 기본',
@@ -314,16 +413,7 @@ const FABRICS = [
     room: '10806-1_room', rooms: ['10806-1_room', '10806-1_room2'], close: '10806-1_close',
   },
   {
-    no: '02', name: '소프트 슬럽', en: 'Soft Slub',
-    tagline: '고요하게 스며드는 오트밀 톤',
-    texture: '고운 바탕에 베이지 슬럽사가 점점이 박힌 텍스처',
-    mood: '매끈하고 차분한 표면, 은은한 포인트',
-    space: '침실 · 미니멀 인테리어',
-    colors: [{ code: '003-1-1', name: '오트밀 아이보리', hex: '#ece5d6' }],
-    room: '003-1-1_room', rooms: ['003-1-1_room'], close: '003-1-1_close',
-  },
-  {
-    no: '03', name: '웨이브 크링클', en: 'Wave Crinkle',
+    no: '02', name: '웨이브 크링클', mix: '폴리에스터 100%', thin: 5, en: 'Wave Crinkle',
     tagline: '잔물결이 만드는 은은한 볼륨',
     texture: '가로 방향 잔물결 주름 가공으로 입체감 있는 표면',
     mood: '평직보다 볼륨감 있고 구김이 덜 티 나는 고급스러움',
@@ -336,7 +426,7 @@ const FABRICS = [
     room: '003-2-1_room', rooms: ['003-2-1_room', '003-2-2_room', '003-2-3_room'], close: '003-2-2_close', colorsPhoto: '003-2_colors',
   },
   {
-    no: '04', name: '버블 엠보', en: 'Bubble Emboss',
+    no: '03', name: '버블 엠보', mix: '폴리에스터 100%', thin: 6, en: 'Bubble Emboss',
     tagline: '손끝에 닿는 포근한 질감',
     texture: '표면 전체에 오돌토돌한 엠보 — 컬렉션 중 가장 도톰한 느낌',
     mood: '포근하고 따뜻한 무드, 계절감 있는 공간',
@@ -344,12 +434,12 @@ const FABRICS = [
     colors: [
       { code: '003-8-1', name: '크림 아이보리', hex: '#f1ebdd' },
       { code: '003-8-2', name: '퓨어 화이트', hex: '#f7f7f4' },
-      { code: '003-8-3', name: '그레이지 베이지', hex: '#d6cdbf' },
+      { code: '003-8-3', name: '그레이지', hex: '#d6cdbf' },
     ],
     room: '003-8-1_room', rooms: ['003-8-1_room', '003-8-2_room', '003-8-3_room'], close: '003-8-3_close', colorsPhoto: '003-8_colors',
   },
   {
-    no: '05', name: '워싱 크링클', en: 'Washed Crinkle',
+    no: '04', name: '워싱 크링클', mix: '면 10% / 폴리에스터 90%', thin: 4, en: 'Washed Crinkle',
     tagline: '자연스러운 구김이 주는 여유',
     texture: '자연스러운 워싱 구김 가공 + 브라운 슬럽 줄무늬',
     mood: '컬렉션 중 가장 내추럴하고 빈티지한 무드, 햇살이 많이 들어옴',
@@ -359,7 +449,7 @@ const FABRICS = [
     notice: '구김은 원단 고유의 디자인입니다. 다림질로 펴지지 않는 것이 정상입니다.',
   },
   {
-    no: '06', name: '호리존 립', en: 'Horizon Rib',
+    no: '05', name: '호리존 립', mix: '면 10% / 폴리에스터 90%', thin: 3, en: 'Horizon Rib',
     tagline: '가까이 볼수록 보이는 단정한 결',
     texture: '촘촘한 가로 골(립) 조직 + 은은한 베이지 슬럽',
     mood: '멀리서는 무지, 가까이서는 결이 보이는 모던함',
@@ -368,7 +458,7 @@ const FABRICS = [
     room: '007-12-1_room', close: '007-12-1_close',
   },
   {
-    no: '07', name: '핀스트라이프', en: 'Pinstripe',
+    no: '06', name: '핀스트라이프', mix: '면 10% / 폴리에스터 90%', thin: 1, en: 'Pinstripe',
     tagline: '가장 맑고 화사한 화이트',
     texture: '아주 가는 핀스트라이프와 미세한 슬럽, 가장 매끈한 표면',
     mood: '깔끔하고 화사한, 컬렉션 중 가장 밝고 쿨한 톤',
@@ -378,12 +468,31 @@ const FABRICS = [
   },
 ];
 
+
 const RAILS = [
-  { name: '알루미늄 레일', minus: 3 },
-  { name: '25mm 커튼봉 + 링', minus: 8 },
-  { name: '32mm 커튼봉 + 링', minus: 9 },
-  { name: '전동레일', minus: 4, note: '제조사마다 다를 수 있어요' },
+  { name: '커튼레일', minus: 3, note: '스냅형으로 설치할 경우 −4cm' },
+  { name: '커튼봉 + 링', minus: 9 },
 ];
+
+const HARDWARE = [
+  { id: 'rail', name: '커튼레일', minus: 3, note: '스냅형으로 설치하면 4cm' },
+  { id: 'double', name: '이중 레일', minus: 3, todo: true },
+  { id: 'rod', name: '커튼봉 + 링', minus: 9 },
+];
+const PLEATS = [
+  { id: 'b2m', name: '2배 나비주름 + 형상기억', ratio: 2, butterfly: true, memory: true, badge: 'MD 추천' },
+  { id: 'b2', name: '2배 나비주름', ratio: 2, butterfly: true },
+  { id: 'f2m', name: '2배 평주름 + 형상기억', ratio: 2, memory: true },
+  { id: 'f2', name: '2배 평주름', ratio: 2 },
+  { id: 'f15m', name: '1.5배 평주름 + 형상기억', ratio: 1.5, memory: true, badge: 'BEST' },
+  { id: 'f15', name: '1.5배 평주름', ratio: 1.5 },
+  { id: 'f1', name: '1배 평주름', ratio: 1 },
+];
+const PRICING = {
+  sample: true,
+  perCm: { b2m: 0, b2: 0, f2m: 0, f2: 0, f15m: 0, f15: 0, f1: 0 },
+};
+const LIMIT = { maxHeight: 260, maxSingle: 240 };
 
 </script>
 </head>
@@ -398,7 +507,7 @@ const RAILS = [
 
 <section data-sec="02_메인비주얼" class="sec full hero">
   <div class="relative">
-    <img src="../images/003-1-1_room2.jpg" alt="">
+    <img src="../images/10806-1_room2.jpg" alt="">
   </div>
   <div class="copy">
     <div class="titlewrap" id="titleArea" data-gif="title">
@@ -439,19 +548,19 @@ const RAILS = [
   <div class="feats">
     <div class="feat">
       <div class="ico"><svg viewBox="0 0 80 80"><polygon points="40,4 71,22 71,58 40,76 9,58 9,22"/><path d="M24 30 Q32 24 40 30 T56 30 M24 40 Q32 34 40 40 T56 40 M24 50 Q32 44 40 50 T56 50"/></svg></div>
-      <h4>7 Textures</h4><p>결이 다른 7가지 원단</p>
+      <h4>6 Textures</h4><p>결이 다른 6가지 원단</p>
     </div>
     <div class="feat">
       <div class="ico"><svg viewBox="0 0 80 80"><polygon points="40,4 71,22 71,58 40,76 9,58 9,22"/><circle cx="33" cy="35" r="10"/><circle cx="47" cy="35" r="10"/><circle cx="40" cy="47" r="10"/></svg></div>
-      <h4>11 Colors</h4><p>화이트부터 베이지까지</p>
+      <h4>10 Colors</h4><p>화이트부터 베이지까지</p>
     </div>
     <div class="feat">
       <div class="ico"><svg viewBox="0 0 80 80"><polygon points="40,4 71,22 71,58 40,76 9,58 9,22"/><rect x="18" y="33" width="44" height="14" transform="rotate(-30 40 40)"/><path d="M27 41 l3 -5 M33 37.5 l2 -3.5 M38 34.5 l3 -5 M44 31 l2 -3.5 M49 28 l3 -5" transform="translate(-1 6)"/></svg></div>
       <h4>Custom Fit</h4><p>1cm 단위 맞춤 제작</p>
     </div>
     <div class="feat">
-      <div class="ico"><svg viewBox="0 0 80 80"><polygon points="40,4 71,22 71,58 40,76 9,58 9,22"/><circle cx="40" cy="41" r="15"/><path d="M40 32 V41 L46 45"/></svg></div>
-      <h4>5 Days</h4><p>5영업일 이내 발송</p>
+      <div class="ico"><svg viewBox="0 0 80 80"><polygon points="40,4 71,22 71,58 40,76 9,58 9,22"/><path d="M22 24 H58"/><path d="M25 24 V56 Q32 53 40 56 T55 56 V24"/><path d="M32 27 V53 M40 27 V54 M48 27 V53" stroke-dasharray="2 3"/></svg></div>
+      <h4>No Seams</h4><p>이음선 없는 한 장 원단</p>
     </div>
   </div>
 </section>
@@ -462,7 +571,7 @@ const RAILS = [
   <p class="body">공장 직영으로 직접 만들고 시공해 온 경험 그대로,<br>집에서도 편하게 고를 수 있도록 준비했습니다.</p>
   <div class="stats">
     <div class="stat"><div class="k">Factory</div><div class="v">공장 직영</div><div class="d">중간 유통 없는 가격</div></div>
-    <div class="stat" data-gif="install"><div class="k">Install</div><div class="v"><span id="cntInstall">10,000</span><span class="plus">+</span></div><div class="d">누적 시공 경험</div></div>
+    <div class="stat" data-gif="install"><div class="k">Install</div><div class="v"><span id="cntInstall">22,000</span><span class="plus">+</span></div><div class="d">누적 시공 경험</div></div>
     <div class="stat"><div class="k">Expert</div><div class="v">1:1 상담</div><div class="d">커튼 전문가가 직접 안내</div></div>
   </div>
   <div class="ph" style="margin-top:80px;height:460px;">사진 필요: 매장 · 공장 · 실제 시공 사진</div>
@@ -477,78 +586,38 @@ const RAILS = [
     </div>
     <div class="st">
       <div class="f">
-        <label>가로 (cm) 입력</label><div class="inp">400</div>
-        <label class="mt">세로 (cm) 입력</label><div class="inp">240</div>
+        <label>가로 사이즈(cm)를 입력해주세요.</label><div class="inp">320</div>
+        <label class="mt">세로 사이즈(1~260cm)를 입력해주세요.</label><div class="inp">240</div>
       </div>
       <div class="d">
-        <h4><span class="sn">1</span>가로 · 세로 길이 입력</h4>
-        <p>가로는 실측 사이즈 그대로,<br>세로는 실측에서 <b class="em">레일 높이를 뺀 길이</b>로 입력</p>
-        <span class="ex">예시) 가로 실측 400cm → 400 입력</span>
-        <span class="ex sm">세로 243cm − 레일 3cm → 240 입력</span>
-        <p class="lim">* 세로는 <b>최대 260cm</b>까지 주문 가능</p>
+        <h4><span class="sn">1</span>가로 · 세로 사이즈 입력</h4>
+        <p>가로는 실측한 사이즈 그대로,<br>세로는 실측에서 <b class="em">부자재 높이를 뺀 길이</b></p>
+        <p class="lim">* 부자재 종류별 높이와 실측 방법은 페이지 하단을 참고해 주세요.</p>
       </div>
     </div>
     <div class="st">
       <div class="f">
-        <label>원단 종류</label><div class="sel">01 린넨 베이직 / 내추럴 아이보리</div>
-        <label class="mt">주름 형태</label><div class="sel open">1.5배 평주름 + 형상기억</div>
-        <ul class="drop">
-          <li>1배 평주름</li>
-          <li>1.5배 평주름</li>
-          <li class="on">1.5배 평주름 + 형상기억</li>
-          <li>2배 평주름</li>
-          <li>2배 평주름 + 형상기억</li>
-          <li>2배 나비주름</li>
-          <li>2배 나비주름 + 형상기억</li>
-        </ul>
+        <label>원단 및 색상</label><div class="sel">01 린넨 베이직 / 내추럴 아이보리</div>
+        <label class="mt">주름 형태</label><div class="sel">2배 나비주름 + 형상기억</div>
       </div>
       <div class="d">
         <h4><span class="sn">2</span>원단 · 주름 형태 선택</h4>
-        <p class="one">7가지 원단 중 하나를 고른 뒤 주름 형태를 선택</p>
-        <dl class="terms">
-          <dt>1배 · 1.5배 · 2배</dt>
-        </dl>
-        <ul class="ratio">
-          <li><b>1배</b><span>주름 없이 평평한 가림막 형태</span></li>
-          <li><b>1.5배</b><span>자연스러운 주름, 가장 많이 선택</span></li>
-          <li><b>2배</b><span>풍성한 볼륨감, 호텔 같은 분위기</span></li>
-        </ul>
-        <dl class="terms">
-          <dt>평주름</dt><dd>일정한 간격으로 반듯하게 잡은 기본 형태</dd>
-          <dt>나비주름</dt><dd>상단 주름을 두 겹씩 모아 잡은 풍성한 형태</dd>
-          <dt>형상기억</dt><dd>열처리로 세탁 후에도 주름을 유지하는 가공</dd>
-        </dl>
-      </div>
-    </div>
-    <div class="st">
-      <div class="f">
-        <label>수량</label><div class="sel">가로사이즈만큼 추가</div>
-        <div class="picked">
-          <p>가로 400cm / 세로 240cm / 01 린넨 베이직 / 내추럴 아이보리 / 1.5배 평주름 + 형상기억</p>
-          <div class="qty"><span>−</span><b>400</b><span>+</span></div>
-        </div>
-      </div>
-      <div class="d">
-        <h4><span class="sn">3</span>가로 사이즈만큼 수량 추가</h4>
-        <p>'가로사이즈만큼 추가' 선택 후<br>가로 cm만큼 수량을 입력</p>
-        <span class="ex">예시) 가로 400cm → 400개 주문</span>
+        <p>원단과 색상을 고른 뒤 주름 형태를 선택</p>
+        <p class="lim">* 주름 형태별 차이는 아래 주름 가이드를 참고해 주세요.</p>
       </div>
     </div>
     <div class="st last">
       <div class="f">
-        <div class="ptitle sub">추가상품</div>
-        <label>양개 / 편개</label><div class="sel">양개 (기본)</div>
-        <label class="mt">레일</label><div class="sel">8자</div>
-        <label class="mt">자석타이백</label><div class="sel">선택 안 함</div>
+        <label>가로 사이즈 추가</label><div class="sel">가로 1cm 추가</div>
+        <div class="picked">
+          <p>가로 1cm 추가</p>
+          <div class="qty"><span>−</span><b>320</b><span>+</span></div>
+        </div>
       </div>
       <div class="d">
-        <h4><span class="sn">4</span>추가상품 선택 <span class="opt">(선택)</span></h4>
-        <p>필요한 경우에만 함께 담기</p>
-        <dl class="terms">
-          <dt>양개 / 편개</dt><dd>미선택 시 양개, 편개는 최대 420cm</dd>
-          <dt>레일</dt><dd>4 · 6 · 8 · 10 · 12 · 14 · 16자</dd>
-          <dt>자석타이백</dt><dd>커튼을 단정하게 묶어 두는 타이백</dd>
-        </dl>
+        <h4><span class="sn">3</span>가로 사이즈만큼 수량 입력</h4>
+        <p>'가로 1cm 추가' 선택 후<br>가로 cm만큼 수량을 입력</p>
+        <span class="ex">예시) 가로 320cm → 수량 320</span>
       </div>
     </div>
   </div>
@@ -556,20 +625,64 @@ const RAILS = [
   <div class="notebox"><svg class="chk" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12"/><path d="M6.8 12.4l3.4 3.4 7-7.2"/></svg><span>창마다 사이즈가 다르다면 <b>하나씩 따로 장바구니에 담아</b> 주문해 주세요.</span></div>
 </section>
 
-<section data-sec="05_컬렉션소개" class="sec">
-  <div class="label">The Collection</div>
-  <h2 class="h2">결이 살아있는<br><span class="light">7가지 텍스처</span></h2>
-  <p class="body">같은 자리, 같은 빛에서 촬영했습니다.<br>원단마다 다른 결을 비교해 보세요.</p>
-  <div class="lineup" id="lineup"></div>
+<section data-sec="04-2_주문가이드배너" class="gbanner-wrap">
+  <a class="gbanner" data-guide-link href="../guide/" target="_blank" rel="noopener">
+    <div class="txt">
+      <div class="k">ORDER GUIDE</div>
+      <h3>커튼 주문이<br><b>어렵게 느껴지신다면?</b></h3>
+      <p>실측부터 옵션 선택까지 한 단계씩 안내해 드려요.<br>주문할 옵션과 설치 모습까지 바로 확인하세요.</p>
+      <span class="gowrap" data-gif="cta"><span class="ring"></span><span class="ring r2"></span><span class="go"><b class="shine"></b><span class="lbl">쉽게 주문하는 방법 보기</span><i></i></span></span>
+    </div>
+    <svg class="art" viewBox="0 0 260 260" aria-hidden="true">
+      <rect x="20" y="30" width="220" height="200" fill="#3a3632"/>
+      <rect x="70" y="70" width="120" height="130" fill="#57514a"/>
+      <path d="M70 135 H190 M130 70 V200" stroke="#3a3632" stroke-width="3"/>
+      <rect x="28" y="38" width="204" height="5" rx="2" fill="#e8dcc4"/>
+      <g fill="#f4efe6" opacity=".9">
+        <path d="M34 44 h70 v176 q-9 4 -17.5 0 t-17.5 0 t-17.5 0 t-17.5 0 z"/>
+        <path d="M156 44 h70 v176 q-9 4 -17.5 0 t-17.5 0 t-17.5 0 t-17.5 0 z"/>
+      </g>
+      <g stroke="#d9cdb8" stroke-width="1.4"><path d="M51.5 46 V220 M69 46 V220 M86.5 46 V220 M173.5 46 V220 M191 46 V220 M208.5 46 V220"/></g>
+      <g transform="translate(150 150)"><rect width="96" height="74" rx="10" fill="#fff"/><text x="48" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#1f1d1a" font-family="Pretendard">320 × 240</text><text x="48" y="53" text-anchor="middle" font-size="12" fill="#a08c72" font-family="Pretendard" font-weight="600">예상 금액 ✓</text></g>
+    </svg>
+  </a>
 </section>
 
-<section data-sec="06_공통특징" class="sec dark">
+<section data-sec="05_컬렉션소개" class="sec">
+  <div class="label">The Collection</div>
+  <h2 class="h2">결이 살아있는<br><span class="light">6가지 텍스처</span></h2>
+  <p class="body">같은 자리, 같은 빛에서 촬영했습니다.<br>원단마다 다른 결을 비교해 보세요.</p>
+  <div class="lineup" id="lineup"></div>
+  <p class="mnote"></p>
+</section>
+
+<section data-sec="06_빛비침비교" class="sec stone">
+  <div class="label">Light Filtering</div>
+  <h2 class="h2">원단별<br><span class="light">빛 비침 비교</span></h2>
+  <p class="body">햇살은 부드럽게 들이고, 시선은 은은하게 가려요.<br>원단마다 다른 빛의 결을 비교해 보세요.</p>
+  <div class="lflow">
+    <div class="lhead"><span>원단 얇음 · 은은한 비침</span><i></i><b>원단 두꺼움 · 비침 적음</b></div>
+    <svg class="ltrack" id="lightTrack" viewBox="0 0 780 120"></svg>
+    <div class="lcards" id="lightRows"></div>
+  </div>
+  <p class="mnote">* 컬러가 여러 가지인 원단은 밝은 컬러일수록 빛이 더 많이 비쳐요.<br>* 빛 비침 정도는 원단 간 상대 비교이며, 설치 환경 · 채광 · 컬러에 따라 다르게 느껴질 수 있습니다.</p>
+</section>
+
+<section data-sec="07_화면색상안내" class="sec cnsec">
+  <div class="cncard">
+    <div class="gray"><i style="background:#f2f2f2"></i><i style="background:#dedede"></i><i style="background:#cacaca"></i><i style="background:#b6b6b6"></i><i style="background:#a1a1a1"></i><i style="background:#8d8d8d"></i><i style="background:#797979"></i><i style="background:#656565"></i><i style="background:#515151"></i><i style="background:#3c3c3c"></i><i style="background:#282828"></i><i style="background:#141414"></i><i style="background:#000000"></i></div>
+    <p>모니터 빛의 각도와 해상도에 따라 색상 차이가 있을 수 있습니다.<br>모니터 밝기를 조절하셔야 제품을 올바르게 확인할 수 있습니다.</p>
+  </div>
+</section>
+
+<section data-sec="08_공통특징" class="sec dark">
   <div class="label">Check Point</div>
   <h2 class="h2">커튼의 완성은<br><span class="light">디테일에서</span></h2>
   <div class="checks">
     <div class="check"><div class="n">01</div><div>
       <h4>형상기억가공으로 언제나 정돈된 주름</h4>
       <p>고온·고압으로 주름 라인을 잡아 열고 닫을 때 주름이 일정하게 모이고, 세탁 후에도 유지됩니다.</p>
+      <p class="optnote">형상기억가공은 주문 시 주름 형태에서 <b>'+ 형상기억'</b> 옵션을 선택해야 적용됩니다.</p>
       <div class="ph" style="height:340px;">사진 필요: 일반 커튼 vs 형상기억 커튼</div>
     </div></div>
     <div class="check"><div class="n">02</div><div>
@@ -596,73 +709,132 @@ const RAILS = [
 
 <div id="fabrics"></div>
 
-<section data-sec="08_주름가이드" class="sec stone">
+<section data-sec="10_주름가이드" class="sec stone">
   <div class="label">Pleats</div>
   <h2 class="h2">주름 선택 가이드</h2>
-  <p class="body">가로 길이는 똑같이 입력하세요.<br>선택한 배수만큼 원단을 넉넉히 넣어 제작합니다.</p>
-  <div class="pleat2">
-    <div>
-      <div class="pleat-art" data-ratio="1.5"></div>
-      <h4>1.5배</h4><div class="rec">RECOMMENDED</div><p>자연스럽고 가벼운 주름.<br>가장 많이 선택하는 기본 사양</p>
-    </div>
-    <div>
-      <div class="pleat-art" data-ratio="2"></div>
-      <h4>2배</h4><div class="rec" style="color:var(--sub)">VOLUME</div><p>풍성하고 고급스러운 주름.<br>호텔 같은 분위기</p>
-    </div>
+  <p class="body">가로는 실측대로 입력하세요.<br>선택한 배수만큼 원단을 넉넉히 넣어 제작합니다.</p>
+
+  <h3 class="gsub">주름 배수</h3>
+  <div class="pleat3">
+    <div><div class="pleat-art" data-ratio="1"></div>
+      <h4>1배</h4><p>주름 없는<br>평평한 가림막 형태</p></div>
+    <div><div class="pleat-art" data-ratio="1.5"></div>
+      <h4>1.5배 <i class="badge">BEST</i></h4><p>자연스러운 주름</p></div>
+    <div><div class="pleat-art" data-ratio="2"></div>
+      <h4>2배 <i class="badge md">MD 추천</i></h4><p>풍성한 볼륨감,<br>호텔 같은 분위기</p></div>
   </div>
-  <div class="ph" style="margin-top:70px;height:400px;">사진 필요: 같은 원단 1.5배 vs 2배 실물 비교</div>
+
+  <h3 class="gsub">주름 형태</h3>
+  <div class="pleat4">
+    <div><div class="ph">사진 필요: 평주름</div>
+      <h4>평주름</h4><p>기본 주름 형태</p></div>
+    <div><div class="ph">사진 필요: 나비주름</div>
+      <h4>나비주름 <i class="badge">BEST</i></h4><p>상단 주름을 두 겹씩 잡은 풍성한 형태</p></div>
+    <div><div class="ph">사진 필요: 평주름 + 형상기억</div>
+      <h4>평주름 + 형상기억</h4><p>열처리로 세탁 후에도 주름을 유지하는 가공</p></div>
+    <div><div class="ph">사진 필요: 나비주름 + 형상기억</div>
+      <h4>나비주름 + 형상기억 <i class="badge md">MD 추천</i></h4><p>나비주름의 풍성함에 형상기억 가공까지 더해, 세탁 후에도 주름이 그대로 유지돼요</p></div>
+  </div>
 </section>
 
-<section data-sec="09_실측가이드" class="sec">
+<section data-sec="11_실측가이드" class="sec" id="guide">
   <div class="label">Measuring Guide</div>
   <h2 class="h2">정확한 실측이<br><span class="light">예쁜 커튼을 만듭니다</span></h2>
+  <p class="body">설치할 위치에 따라 재는 방법이 달라요.</p>
 
-  <div class="mstep">
-    <div class="head"><span class="s">STEP 01</span><h3>가로 길이</h3></div>
-    <ol>
-      <li>커튼을 설치할 곳의 가로 길이를 재 주세요.</li>
-      <li>레일이 있다면 레일 길이 기준이 가장 정확해요.</li>
-      <li>잰 길이(cm) 그대로 <b>수량</b>에 입력합니다.</li>
-    </ol>
-    <div class="formula2">가로 300cm → 수량 300개<small>주름 배수는 옵션 선택대로 자동 반영됩니다</small></div>
-    <div class="ph" style="margin-top:34px;height:360px;">사진 필요: 벽면 가로 실측</div>
-    <p class="mnote"><b style="color:var(--ink)">편개 · 양개</b> — 2장(양개) 제작이 기본이며, 1장(편개)을 원하시면 옵션에서 선택해 주세요.</p>
-    <div class="ph" style="margin-top:20px;height:300px;">사진 필요: 편개 vs 양개</div>
+  <div class="mcase">
+    <div class="head"><span class="s">CASE 01</span><h3>벽면 전체에 설치할 때</h3></div>
+    <div class="mfig" data-fig="wall"></div>
+    <dl class="mrule">
+      <div><dt>가로 실측</dt><dd>커튼을 설치할 부분의 전체 길이 <small>(벽면 가로)</small></dd></div>
+      <div><dt>세로 실측</dt><dd>천장 끝에서 바닥까지 전체 높이</dd></div>
+    </dl>
   </div>
 
-  <div class="mstep">
-    <div class="head"><span class="s">STEP 02</span><h3>세로 길이</h3></div>
-    <ol>
-      <li>커튼을 설치할 곳의 높이를 재 주세요.</li>
-      <li>사용하는 레일에 맞게 아래 길이를 빼 주세요.</li>
-      <li>뺀 값(완성 기장)을 <b>세로 입력란</b>에 적어 주세요.</li>
+  <div class="mcase">
+    <div class="head"><span class="s">CASE 02</span><h3>창문에만 설치할 때</h3></div>
+    <div class="mfig" data-fig="window"></div>
+    <dl class="mrule">
+      <div><dt>가로 실측</dt><dd>커튼을 설치할 부분의 전체 길이 <small>(창 가로)</small> <b>+ 10cm</b></dd></div>
+      <div><dt>세로 실측</dt><dd>천장에서 창문 틀 아래까지 길이 <b>+ 10~20cm</b></dd></div>
+    </dl>
+  </div>
+
+  <div class="mcase">
+    <div class="head"><span class="s">TIP</span><h3>커튼 박스가 있는 경우</h3></div>
+    <div class="mfig" data-fig="box"></div>
+    <p class="mnote" style="color:var(--ink);font-weight:600;">커튼 박스를 포함한 가장 높은 곳까지 측정해 주세요.</p>
+  </div>
+  <p class="mnote"></p>
+</section>
+
+<section data-sec="12_사이즈계산" class="sec stone">
+  <div class="label">Size Calculation</div>
+  <h2 class="h2">가로 · 세로<br><span class="light">사이즈 계산 방법</span></h2>
+
+  <div class="calc">
+    <div class="head"><span class="s">WIDTH</span><h3>가로 사이즈</h3></div>
+    <ol class="clist">
+      <li>실측한 가로 길이를 입력해 주세요.</li>
+      <li>실측한 가로 길이는 <b>수량 옵션</b>에서 조절해 주세요.</li>
     </ol>
-    <table class="rails2" id="rails">
-      <thead><tr><th>RAIL</th><th>빼는 길이</th><th>실측 240cm일 때</th></tr></thead>
-      <tbody></tbody>
-    </table>
-    <p class="mnote">* 봉 레일은 핀 고리에서부터 원하는 길이를 재서 입력하셔도 됩니다.<br>* 바닥에서 살짝 띄우고 싶다면 1~2cm 더 빼 주세요.</p>
-    <div class="ph" style="margin-top:34px;height:360px;">사진 필요: 알루미늄 레일 / 커튼봉 + 링</div>
+    <div class="qtydemo"><span class="lb">가로 320cm</span><i class="arr"></i><div class="qty"><span>−</span><b>320</b><span>+</span></div></div>
+  </div>
+
+  <div class="calc">
+    <div class="head"><span class="s">HEIGHT</span><h3>세로 사이즈</h3></div>
+    <div class="formula2">실측한 세로 길이 − 부자재 높이 = 제작할 세로 길이<small>사용하는 부자재에 따라 아래 높이만큼 빼 주세요</small></div>
+    <div class="parts" id="rails"></div>
   </div>
 </section>
 
-<section data-sec="10-12_상품정보_배송" class="sec stone">
-  <div class="label">Product Info</div>
-  <h2 class="h2">상품 정보</h2>
-  <table class="spec-table">
-    <tr><th>제품명</th><td><span data-collection></span> 맞춤 커튼</td></tr>
-    <tr><th>소재</th><td>폴리에스터 100%<br>워싱 크링클: 린넨 10% + 폴리에스터 90%</td></tr>
-    <tr><th>제조국</th><td>대한민국</td></tr>
-    <tr><th>구성</th><td>커튼 본품 (강화플라스틱핀 장착 발송)</td></tr>
-    <tr><th>사이즈</th><td>1cm 단위 맞춤 제작 · ±1~2cm 오차 가능</td></tr>
-    <tr><th>가공</th><td>형상기억가공</td></tr>
-    <tr><th>제작 기간</th><td>주문 당일 제외 5영업일 이내 발송</td></tr>
-    <tr><th>포장</th><td>PE 투명비닐 + LDPE 택배봉투 이중 포장</td></tr>
-    <tr><th>배송비</th><td>___원 / 도서산간 추가 ___원</td></tr>
-  </table>
+<section data-sec="13_기본구성품" class="sec">
+  <div class="label">In the Box</div>
+  <h2 class="h2">기본 구성품</h2>
+  <div class="kit">
+    <div><div class="ph">사진 필요: 커튼 본품 (강화플라스틱핀 장착)</div><h4>커튼</h4><p>강화플라스틱핀이 꽂힌 상태로 발송돼요.</p></div>
+    <div><div class="ph">사진 필요: 커튼 끈</div><h4>커튼 끈</h4><p>커튼을 단정하게 묶어 둘 수 있는 끈</p></div>
+  </div>
 </section>
 
-<section data-sec="11-12_세탁_포장" class="sec">
+<section data-sec="14_추가상품" class="sec stone">
+  <div class="label">Add-on</div>
+  <h2 class="h2">추가 상품 구성</h2>
+  <p class="body">레일 · 커튼봉 · 자석 타이백은 기본 상품에 포함되어 있지 않아요.<br>필요하면 추가상품으로 함께 주문해 주세요.</p>
+  <div class="addon">
+    <div><div class="ph">사진 필요: 커튼레일</div><h4>커튼레일</h4><p>4자 ~ 16자<br><small>예) 8자 (130~240cm) · 롤러 32개</small></p></div>
+    <div><div class="ph">사진 필요: 커튼봉 + 링</div><h4>커튼봉 + 링</h4><p>핀형 · 링 포함<br><small>예) 25mm 화이트 8자 (125~240cm) · 링 28개</small></p></div>
+    <div><div class="ph">사진 필요: 자석 타이백</div><h4>자석 타이백</h4><p>자석으로 간편하게<br>커튼을 묶어 정리</p></div>
+  </div>
+  <div class="notebox"><svg class="chk" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12"/><path d="M6.8 12.4l3.4 3.4 7-7.2"/></svg><span>커튼레일 또는 커튼봉 + 링 선택 시 <b>설치 부품(피스, 스냅 등)</b>이 함께 발송돼요.</span></div>
+</section>
+
+<section data-sec="15_설치방법" class="sec">
+  <div class="label">Installation</div>
+  <h2 class="h2">설치 방법</h2>
+  <p class="mnote"></p>
+  <div class="install">
+    <div><div class="n">01</div><div class="ph">사진 필요: 브라켓(스냅) 고정</div><h4>브라켓 고정</h4><p>설치 위치에 브라켓(스냅)을 피스로 고정해요.</p></div>
+    <div><div class="n">02</div><div class="ph">사진 필요: 레일 · 커튼봉 장착</div><h4>레일 · 커튼봉 장착</h4><p>브라켓에 레일 또는 커튼봉을 끼워 고정해요.</p></div>
+    <div><div class="n">03</div><div class="ph">사진 필요: 커튼 걸기</div><h4>커튼 걸기</h4><p>커튼 핀을 레일 롤러 또는 링에 걸어 주세요.</p></div>
+  </div>
+</section>
+
+<section data-sec="16_주문제작안내" class="sec stone">
+  <div class="label">Made to Order</div>
+  <h2 class="h2">주문 후<br><span class="light">이렇게 만들어져요</span></h2>
+  <p class="body">주문 당일 제외 <b style="color:var(--ink)">5영업일 이내 발송</b> (주말 · 공휴일 제외)</p>
+  <div class="flow">
+    <div><svg viewBox="0 0 60 60"><rect x="14" y="10" width="32" height="40" rx="2"/><path d="M21 22 H39 M21 30 H39 M21 38 H32"/></svg><b>주문 접수</b></div>
+    <div><svg viewBox="0 0 60 60"><rect x="14" y="10" width="32" height="40" rx="2"/><path d="M21 31 L27 37 L39 24"/></svg><b>주문서 확인</b></div>
+    <div><svg viewBox="0 0 60 60"><circle cx="20" cy="40" r="6"/><circle cx="40" cy="40" r="6"/><path d="M24 36 L44 12 M36 36 L16 12"/></svg><b>제품 제작</b></div>
+    <div><svg viewBox="0 0 60 60"><path d="M10 22 L30 12 L50 22 V44 L30 54 L10 44 Z"/><path d="M10 22 L30 32 L50 22 M30 32 V54"/></svg><b>검수 &amp; 포장</b></div>
+    <div><svg viewBox="0 0 60 60"><rect x="6" y="20" width="30" height="22"/><path d="M36 26 H46 L54 34 V42 H36"/><circle cx="16" cy="44" r="4"/><circle cx="44" cy="44" r="4"/></svg><b>제품 출고</b></div>
+    <div><svg viewBox="0 0 60 60"><path d="M10 28 L30 12 L50 28"/><path d="M15 25 V50 H45 V25"/><path d="M24 37 L29 42 L37 33"/></svg><b>배송 완료</b></div>
+  </div>
+</section>
+
+<section data-sec="17_세탁방법" class="sec">
   <div class="label">Care</div>
   <h2 class="h2">오래 예쁘게 쓰는<br><span class="light">세탁 방법</span></h2>
   <div class="care">
@@ -677,21 +849,28 @@ const RAILS = [
     <li>강화플라스틱핀은 빼지 않고 그대로 세탁할 수 있어요.</li>
     <li>배송 중 생긴 구김은 스팀 다리미로 쉽게 펴져요.</li>
   </ul>
-  <div class="ph" style="margin-top:50px;height:300px;">사진 필요: 포장 상태</div>
 </section>
 
-<section data-sec="13_주의사항" class="sec stone">
+<section data-sec="18_안내사항" class="sec stone">
   <div class="label">Notice</div>
   <h2 class="h2">구매 전<br><span class="light">꼭 확인해 주세요</span></h2>
   <div class="notice2">
     <div><h4>원단 컬러 안내</h4><p>원단의 생산 시기에 따라 제품의 색상이 미세하게 차이가 날 수 있습니다.<br>디스플레이 환경에 따라 화면과 제품의 색상 차이가 발생할 수 있습니다.</p></div>
-    <div><h4>사이즈 오차</h4><p>패브릭 제품 특성상 ±1~2cm 오차가 발생할 수 있습니다.</p></div>
+    <div><h4>사이즈 오차</h4><p>패브릭 제품 특성상 ±1~3cm 오차가 발생할 수 있습니다.</p></div>
     <div><h4>교환 · 반품</h4><p class="warn">주문 후 제작되는 맞춤 상품으로, 단순 변심에 의한 교환·반품이 어렵습니다.</p><p>제작 하자가 있는 경우 교환해 드립니다.</p></div>
     <div><h4>워싱 크링클 원단</h4><p>자연스러운 구김은 원단 고유의 디자인이며, 다림질로 펴지지 않는 것이 정상입니다.</p></div>
+    <div><h4>제품 불량이 아닌 경우</h4><p>아래 내용은 제작 과정과 원단 특성상 생길 수 있는 부분으로, 불량에 해당하지 않습니다.</p>
+      <ul class="dots sm">
+        <li>원단 재단 · 표시 과정에서 생긴 열펜 자국</li>
+        <li>형상기억 가공 시 밑단 부분이 살짝 튀어나오는 현상</li>
+        <li>원사가 굵게 뭉쳐 보이는 슬럽 (원단 고유의 특성)</li>
+        <li>미싱실 교체 시 스티치가 끊겼다가 이어지는 부분</li>
+        <li>건조한 환경에서 정전기로 원단이 달라붙는 현상</li>
+      </ul></div>
   </div>
 </section>
 
-<section data-sec="14_CS" class="cs">
+<section data-sec="19_CS" class="cs">
   <div class="label" style="color:var(--accent)">Contact</div>
   <h2 class="h2">궁금한 점은 톡톡으로<br><span class="light">물어보세요</span></h2>
   <p>사이즈 재는 방법, 원단 고르기가 어렵다면<br>매장 상담 경험 그대로 안내해 드릴게요.</p>
@@ -730,14 +909,29 @@ const RAILS = [
     document.getElementById('wmSurface').setAttribute('opacity', level > TOP + 8 && level < BOTTOM - 8 ? 1 : 0);
     document.getElementById('wmTexture').setAttribute('opacity', opacity);
   }
-  const INSTALL = 10000;
+  const INSTALL = 22000;
   function countPose(t) {
     const p = clamp01(t / .4), v = Math.round(INSTALL * (1 - Math.pow(1 - p, 3)));
     document.getElementById('cntInstall').textContent = v.toLocaleString('ko-KR');
     document.querySelector('[data-gif="install"] .plus').style.opacity = p >= 1 ? 1 : 0;
   }
 
-  const ANIMS = { title: { loop: LOOP, pose: wmPose }, install: { loop: 5, pose: countPose } };
+  function ctaPose(t) {
+    const wrap = document.querySelector('[data-gif="cta"]'), go = wrap.querySelector('.go');
+    const press = t < .12 ? 1 - .05 * Math.sin(Math.PI * t / .12) : 1;
+    go.style.transform = `scale(${press})`;
+    wrap.querySelectorAll('.ring').forEach((r, j) => {
+      const p = clamp01((t - .08 - j * .14) / .5), e = 1 - Math.pow(1 - p, 2);
+      r.style.inset = `${-e * 10}px ${-e * 18}px`;
+      r.style.opacity = p > 0 && p < 1 ? .55 * (1 - p) : 0;
+    });
+    const n = clamp01((t - .5) / .3), x = n > 0 && n < 1 ? 5 * Math.abs(Math.sin(Math.PI * 2 * n)) : 0;
+    go.querySelector('i').style.transform = `translateX(${x}px) rotate(45deg)`;
+    const s = clamp01((t - .6) / .25);
+    go.querySelector('.shine').style.left = `${-45 + 160 * s}%`;
+  }
+
+  const ANIMS = { title: { loop: LOOP, pose: wmPose }, install: { loop: 5, pose: countPose }, cta: { loop: 2.4, pose: ctaPose } };
   if (HASH.has('frame')) {
     const [i, n] = HASH.get('frame').split('/').map(Number), only = HASH.get('anim');
     for (const [k, an] of Object.entries(ANIMS)) an.pose(!only || only === k ? i / n : 1);
@@ -748,14 +942,12 @@ const RAILS = [
       requestAnimationFrame(tick);
     })(t0);
   }
+  document.querySelectorAll('[data-guide-link]').forEach(e => e.href = GUIDE_URL);
   document.querySelectorAll('[data-brand]').forEach(e => e.textContent = BRAND.name);
   document.querySelectorAll('[data-collection]').forEach(e => e.textContent = BRAND.collection);
   document.querySelectorAll('[data-collection-ko]').forEach(e => e.textContent = BRAND.collectionKo);
 
-  const total = FABRICS.length;
   const swatch = (c, label) => `<div class="swatch" style="background-image:url(${PHOTO}${c.code}_vase.jpg);background-color:${c.hex}"><small>${label}</small></div>`;
-  const lum = h => { const n = parseInt(h.slice(1), 16); return .2126 * (n >> 16) + .7152 * (n >> 8 & 255) + .0722 * (n & 255); };
-  const tones = FABRICS.flatMap(f => f.colors).map(c => c.hex).sort((a, b) => lum(b) - lum(a));
 
   document.getElementById('lineup').innerHTML = FABRICS.map(f => `
     <div class="cell">
@@ -764,20 +956,31 @@ const RAILS = [
       <div class="cap">
         <div class="sws">${f.colors.map(c => swatch(c, c.name)).join('')}</div>
       </div>
-    </div>`).join('') + `
-    <div class="cell total">
-      <div class="big">${tones.length}</div>
-      <div class="k">COLORS</div>
-      <p>아이보리부터 화이트, 베이지까지<br>공간에 맞는 톤을 골라 보세요.</p>
-      <div class="tone" style="background:linear-gradient(to right, ${tones.join(', ')}, #b3a089)"></div>
-      <div class="tone-cap"><span>WHITE</span><span>BEIGE</span></div>
-    </div>`;
+    </div>`).join('');
+
+  {
+    const fs = [...FABRICS].sort((a, b) => a.thin - b.thin), W = 120, GAP = 12, Y = 50;
+    const t = f => (f.thin - 1) / 5;
+    const mix = (a, b, k) => '#' + [0, 2, 4].map(i => Math.round(parseInt(a.substr(i + 1, 2), 16) * (1 - k) + parseInt(b.substr(i + 1, 2), 16) * k).toString(16).padStart(2, '0')).join('');
+    let g = `<defs><linearGradient id="lwedge"><stop offset="0" stop-color="#d9d1c6" stop-opacity="0"/><stop offset=".25" stop-color="#d9d1c6"/><stop offset="1" stop-color="#9c8d7c"/></linearGradient></defs>
+      <path d="M0 ${Y - 2} L780 ${Y - 30} V${Y + 30} L0 ${Y + 2} Z" fill="url(#lwedge)"/>`;
+    fs.forEach((f, i) => {
+      const x = i * (W + GAP) + W / 2, k = t(f), r = 11 + k * 15;
+      g += `<path d="M${x} ${Y} V116" stroke="#cfc6ba" stroke-width="2.5"/><circle cx="${x}" cy="116" r="5" fill="#cfc6ba"/>
+        <circle cx="${x}" cy="${Y}" r="${r + 9}" fill="${mix('#e4ddd3', '#9c8d7c', k)}"/><circle cx="${x}" cy="${Y}" r="${r}" fill="${mix('#d8c8b2', '#7d6650', k)}"/>`;
+    });
+    document.getElementById('lightTrack').innerHTML = g;
+    document.getElementById('lightRows').innerHTML = fs.map(f => {
+      const k = t(f);
+      return `<div class="lc" style="border-color:${mix('#e2dbd1', '#8f8172', k)}"><div class="ph2" style="background-image:url(${PHOTO}${f.lightPhoto || f.close}.jpg)"></div>
+        <div class="nmb" style="background:${mix('#f7f4ef', '#8f8172', k)};color:${k > .5 ? '#fff' : 'var(--ink)'}"><small>${f.no}</small>${f.name}</div></div>`;
+    }).join('');
+  }
 
   document.getElementById('fabrics').innerHTML = FABRICS.map((f, i) => `
-    <section data-sec="07-${f.no}_${f.name.replace(/ /g, '')}" class="fab${i % 2 ? ' alt' : ''}">
+    <section data-sec="09-${f.no}_${f.name.replace(/ /g, '')}" class="fab${i % 2 ? ' alt' : ''}">
       <div class="top">
-        <div><div class="en">${f.en}</div><h2>${f.name}</h2></div>
-        <div class="count"><b>${f.no}</b> / ${String(total).padStart(2, '0')}</div>
+        <div><div class="en">${f.en}</div><h2><span class="no">${f.no}</span>${f.name}</h2></div>
       </div>
       <p class="tagline">${f.tagline}</p>
       <div class="closeup"><img src="${PHOTO}${f.close}.jpg" alt=""></div>
@@ -785,15 +988,10 @@ const RAILS = [
         <dl class="spec">
           <div><dt>TEXTURE</dt><dd>${f.texture}</dd></div>
           <div><dt>MOOD</dt><dd>${f.mood}</dd></div>
+          <div><dt>COLOR</dt><dd class="cl">${f.colors.map(c => `
+            <span><i style="background-image:url(${PHOTO}${c.code}_vase.jpg);background-color:${c.hex}"></i>${c.name}</span>`).join('')}</dd></div>
+          <div><dt>MATERIAL</dt><dd>${f.mix}</dd></div>
         </dl>
-        <div class="colors">
-          <div class="k">COLOR</div>
-          <div class="chips2">${f.colors.map((c, j) => `
-            <div class="chip2">
-              <div class="tex" style="background-image:url(${PHOTO}${c.code}_vase.jpg);background-color:${c.hex}"></div>
-              <div class="cap"><b>${c.name}</b><small>${f.no}${f.colors.length > 1 ? '-' + (j + 1) : ''}</small></div>
-            </div>`).join('')}</div>
-        </div>
       </div>
       ${f.colorsPhoto ? `<div class="colorsphoto"><img src="${PHOTO}${f.colorsPhoto}.jpg" alt="">
         <div class="cap">${f.colors.map(c => `<span>${c.name}</span>`).join('')}</div></div>` : ''}
@@ -836,9 +1034,39 @@ const RAILS = [
       <text x="150" y="282" text-anchor="middle" font-size="12" font-weight="700" fill="#1f1d1a" font-family="Pretendard">원단 ${BASE * ratio}cm 사용</text>
     </svg>`;
   });
-  document.querySelector('#rails tbody').innerHTML = RAILS.map(r => `
-    <tr><td>${r.name}${r.note ? `<small>${r.note}</small>` : ''}</td>
-    <td class="m">−${r.minus}cm</td><td>${240 - r.minus}cm 입력</td></tr>`).join('');
+  document.getElementById('rails').innerHTML = RAILS.map(r => `
+    <div class="part">
+      <div class="ph">사진 필요: ${r.name}</div>
+      <h4>${r.name}</h4>
+      <div class="eq">세로 실측 <b>− ${r.minus}cm</b> = 최종 세로 길이<small>${r.minus}cm = ${r.name} 높이</small></div>
+      <p class="exm">예) 실측 240cm → <b>${240 - r.minus}cm</b> 입력</p>
+      ${r.note ? `<p class="pnote">* ${r.note}</p>` : ''}
+    </div>`).join('');
+
+  const FIG = {
+    wall: `<rect x="40" y="20" width="520" height="300" fill="#f7f4ef"/>
+      <path d="M40 20 H560 M40 320 H560" stroke="#1f1d1a" stroke-width="2"/>
+      <rect x="150" y="70" width="300" height="200" fill="#fff" stroke="#c9bfb0"/><path d="M300 70 V270" stroke="#c9bfb0"/>
+      <rect x="44" y="24" width="512" height="292" fill="none" stroke="#a08c72" stroke-width="2" stroke-dasharray="7 6"/>
+      <path d="M44 340 H556 M44 333 V347 M556 333 V347" stroke="#1f1d1a" stroke-width="1.6"/><text x="300" y="368" text-anchor="middle">가로 = 벽면 전체 길이</text>
+      <path d="M580 24 V316 M573 24 H587 M573 316 H587" stroke="#1f1d1a" stroke-width="1.6"/><text x="592" y="174" class="v">세로 = 천장 ~ 바닥</text>
+      <text x="48" y="14" class="s">천장</text><text x="48" y="336" class="s">바닥</text>`,
+    window: `<rect x="40" y="20" width="520" height="300" fill="#f7f4ef"/>
+      <path d="M40 20 H560 M40 320 H560" stroke="#1f1d1a" stroke-width="2"/>
+      <rect x="190" y="70" width="220" height="140" fill="#fff" stroke="#c9bfb0"/><path d="M300 70 V210" stroke="#c9bfb0"/>
+      <rect x="170" y="24" width="260" height="214" fill="none" stroke="#a08c72" stroke-width="2" stroke-dasharray="7 6"/>
+      <path d="M170 262 H430 M170 255 V269 M430 255 V269" stroke="#1f1d1a" stroke-width="1.6"/><text x="300" y="290" text-anchor="middle">가로 = 창 가로 + 10cm</text>
+      <path d="M455 24 V238 M448 24 H462 M448 238 H462" stroke="#1f1d1a" stroke-width="1.6"/><text x="467" y="126" class="v">세로 = 천장 ~ 창틀 아래</text><text x="467" y="150" class="v">+ 10~20cm</text>
+      <text x="48" y="14" class="s">천장</text><text x="48" y="336" class="s">바닥</text>`,
+    box: `<rect x="40" y="20" width="520" height="300" fill="#f7f4ef"/>
+      <path d="M40 20 H560 M40 320 H560" stroke="#1f1d1a" stroke-width="2"/>
+      <path d="M40 20 V60 H560 V20" fill="#e3ddd4" stroke="#1f1d1a" stroke-width="1.4"/><text x="300" y="46" text-anchor="middle" class="s">커튼 박스</text>
+      <rect x="150" y="100" width="300" height="180" fill="#fff" stroke="#c9bfb0"/><path d="M300 100 V280" stroke="#c9bfb0"/>
+      <path d="M520 22 V316 M513 22 H527 M513 316 H527" stroke="#a08c72" stroke-width="2"/><text x="535" y="160" class="v">박스 안쪽 가장 높은 곳부터</text><text x="535" y="184" class="v">바닥까지</text>
+      <text x="48" y="336" class="s">바닥</text>`,
+  };
+  document.querySelectorAll('.mfig').forEach(el => el.innerHTML =
+    `<svg viewBox="0 0 760 380" font-family="Pretendard" font-size="17" font-weight="600" fill="#1f1d1a">${FIG[el.dataset.fig]}</svg>`);
 
   window.addEventListener('load', () => {
     document.body.dataset.height = document.documentElement.scrollHeight;

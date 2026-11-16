@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MOEL 주문 가이드</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<script>
+
+const BRAND = {
+  name: '메가창',
+  collection: 'MOEL',
+  collectionKo: '모엘',
+};
+
+const PHOTO = '../images/';
+
+const GUIDE_URL = '../guide/';
+
+const FABRICS = [
+  {
+    no: '01', name: '린넨 베이직', mix: '린넨 20% / 폴리에스터 80%', thin: 2, en: 'Linen Basic',
+    tagline: '가장 기본이라 가장 오래 사랑받는',
+    texture: '가로·세로 실이 은은하게 보이는 클래식 린넨룩 평직',
+    mood: '빛이 부드럽게 퍼지는 가장 내추럴한 기본',
+    space: '거실 · 다이닝 · 큰 창',
+    colors: [{ code: '10806-1', name: '내추럴 아이보리', hex: '#efe9dc' }],
+    room: '10806-1_room', rooms: ['10806-1_room', '10806-1_room2'], close: '10806-1_close',
+  },
+  {
+    no: '02', name: '웨이브 크링클', mix: '폴리에스터 100%', thin: 5, en: 'Wave Crinkle',
+    tagline: '잔물결이 만드는 은은한 볼륨',
+    texture: '가로 방향 잔물결 주름 가공으로 입체감 있는 표면',
+    mood: '평직보다 볼륨감 있고 구김이 덜 티 나는 고급스러움',
+    space: '호텔식 인테리어 · 컬러 선택이 필요한 공간',
+    colors: [
+      { code: '003-2-1', name: '크림 아이보리', hex: '#f0eadc' },
+      { code: '003-2-2', name: '퓨어 화이트', hex: '#f7f6f2' },
+      { code: '003-2-3', name: '샌드 베이지', hex: '#ddd0bc' },
+    ],
+    room: '003-2-1_room', rooms: ['003-2-1_room', '003-2-2_room', '003-2-3_room'], close: '003-2-2_close', colorsPhoto: '003-2_colors',
+  },
+  {
+    no: '03', name: '버블 엠보', mix: '폴리에스터 100%', thin: 6, en: 'Bubble Emboss',
+    tagline: '손끝에 닿는 포근한 질감',
+    texture: '표면 전체에 오돌토돌한 엠보 — 컬렉션 중 가장 도톰한 느낌',
+    mood: '포근하고 따뜻한 무드, 계절감 있는 공간',
+    space: '침실 · 아늑함이 필요한 공간',
+    colors: [
+      { code: '003-8-1', name: '크림 아이보리', hex: '#f1ebdd' },
+      { code: '003-8-2', name: '퓨어 화이트', hex: '#f7f7f4' },
+      { code: '003-8-3', name: '그레이지', hex: '#d6cdbf' },
+    ],
+    room: '003-8-1_room', rooms: ['003-8-1_room', '003-8-2_room', '003-8-3_room'], close: '003-8-3_close', colorsPhoto: '003-8_colors',
+  },
+  {
+    no: '04', name: '워싱 크링클', mix: '면 10% / 폴리에스터 90%', thin: 4, en: 'Washed Crinkle',
+    tagline: '자연스러운 구김이 주는 여유',
+    texture: '자연스러운 워싱 구김 가공 + 브라운 슬럽 줄무늬',
+    mood: '컬렉션 중 가장 내추럴하고 빈티지한 무드, 햇살이 많이 들어옴',
+    space: '내추럴 · 라탄 · 우드 인테리어',
+    colors: [{ code: '007-7-1', name: '내추럴 아이보리', hex: '#ece4d4' }],
+    room: '007-7-1_room', close: '007-7-1_close',
+    notice: '구김은 원단 고유의 디자인입니다. 다림질로 펴지지 않는 것이 정상입니다.',
+  },
+  {
+    no: '05', name: '호리존 립', mix: '면 10% / 폴리에스터 90%', thin: 3, en: 'Horizon Rib',
+    tagline: '가까이 볼수록 보이는 단정한 결',
+    texture: '촘촘한 가로 골(립) 조직 + 은은한 베이지 슬럽',
+    mood: '멀리서는 무지, 가까이서는 결이 보이는 모던함',
+    space: '모던 · 미니멀 · 아파트 거실',
+    colors: [{ code: '007-12-1', name: '오프화이트', hex: '#f3f0e8' }],
+    room: '007-12-1_room', close: '007-12-1_close',
+  },
+  {
+    no: '06', name: '핀스트라이프', mix: '면 10% / 폴리에스터 90%', thin: 1, en: 'Pinstripe',
+    tagline: '가장 맑고 화사한 화이트',
+    texture: '아주 가는 핀스트라이프와 미세한 슬럽, 가장 매끈한 표면',
+    mood: '깔끔하고 화사한, 컬렉션 중 가장 밝고 쿨한 톤',
+    space: '화이트 톤 공간 · 밝은 분위기',
+    colors: [{ code: '007-13-1', name: '화이트', hex: '#f8f8f6' }],
+    room: '007-13-1_room', close: '007-13-1_close',
+  },
+];
+
+
+const RAILS = [
+  { name: '커튼레일', minus: 3, note: '스냅형으로 설치할 경우 −4cm' },
+  { name: '커튼봉 + 링', minus: 9 },
+];
+
+const HARDWARE = [
+  { id: 'rail', name: '커튼레일', minus: 3, note: '스냅형으로 설치하면 4cm' },
+  { id: 'double', name: '이중 레일', minus: 3, todo: true },
+  { id: 'rod', name: '커튼봉 + 링', minus: 9 },
+];
+const PLEATS = [
+  { id: 'b2m', name: '2배 나비주름 + 형상기억', ratio: 2, butterfly: true, memory: true, badge: 'MD 추천' },
+  { id: 'b2', name: '2배 나비주름', ratio: 2, butterfly: true },
+  { id: 'f2m', name: '2배 평주름 + 형상기억', ratio: 2, memory: true },
+  { id: 'f2', name: '2배 평주름', ratio: 2 },
+  { id: 'f15m', name: '1.5배 평주름 + 형상기억', ratio: 1.5, memory: true, badge: 'BEST' },
+  { id: 'f15', name: '1.5배 평주름', ratio: 1.5 },
+  { id: 'f1', name: '1배 평주름', ratio: 1 },
+];
+const PRICING = {
+  sample: true,
+  perCm: { b2m: 0, b2: 0, f2m: 0, f2: 0, f15m: 0, f15: 0, f1: 0 },
+};
+const LIMIT = { maxHeight: 260, maxSingle: 240 };
+
+</script>
+<style>
+:root {
+  --bg: #f6f3ee; --card: #fff; --ink: #1f1d1a; --sub: #77716a; --line: #e6e0d7;
+  --dark: #2b2825; --accent: #a08c72; --soft: #efebe5; --warn: #b0503a;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { overflow-x: hidden; }
+body { background: var(--bg); color: var(--ink); font-family: 'Pretendard', -apple-system, 'Apple SD Gothic Neo', sans-serif;
+  font-size: 16px; line-height: 1.6; letter-spacing: -.02em; word-break: keep-all; }
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 140px; }
+header { padding: 44px 4px 28px; }
+header .k { font-size: 12px; font-weight: 700; letter-spacing: .24em; color: var(--accent); }
+header h1 { font-size: 28px; font-weight: 800; letter-spacing: -.04em; line-height: 1.35; margin-top: 8px; }
+header h1 span { font-weight: 300; }
+header p { color: var(--sub); margin-top: 8px; font-size: 15px; }
+
+.prog { display: flex; align-items: center; gap: 12px; margin-top: 18px; }
+.pbar { flex: 1; height: 4px; background: var(--line); border-radius: 2px; overflow: hidden; }
+.pbar i { display: block; height: 100%; background: var(--ink); transition: width .3s; }
+.prog span { font-size: 12px; font-weight: 700; color: var(--sub); white-space: nowrap; letter-spacing: .04em; }
+.step { display: none; background: var(--card); border-radius: 18px; padding: 28px 20px 26px; animation: in .25s ease; }
+.step.on { display: block; }
+@keyframes in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.step h2 { font-size: 22px; font-weight: 800; letter-spacing: -.04em; line-height: 1.35; }
+.step .lead { color: var(--sub); font-size: 14.5px; margin-top: 8px; }
+.tip { margin-top: 14px; font-size: 13px; color: var(--sub); }
+.tip b { color: var(--accent); margin-right: 6px; letter-spacing: .08em; }
+.fields.one { grid-template-columns: minmax(0, 1fr); }
+.opts.two { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.boxnote { display: flex; gap: 14px; align-items: center; margin-top: 12px; padding: 14px 16px; border: 1px dashed #cfc4b4; border-radius: 12px; }
+.boxnote svg { flex: 0 0 56px; width: 56px; height: 42px; }
+.boxnote b { font-size: 14px; }
+.boxnote p { font-size: 13px; color: var(--sub); margin-top: 2px; }
+.boxnote em { font-style: normal; color: var(--accent); font-weight: 700; }
+.howfig { margin-top: 14px; border-radius: 12px; overflow: hidden; background: #efe9e0; }
+.howfig svg { display: block; width: 100%; height: auto; }
+.calc { margin-top: 20px; border-radius: 12px; background: var(--soft); padding: 6px 16px; }
+.calc .row { display: flex; justify-content: space-between; padding: 10px 0; font-size: 14.5px; color: var(--sub); }
+.calc .row + .row { border-top: 1px solid var(--line); }
+.calc .row b { color: var(--ink); }
+.calc .row.tot { color: var(--ink); font-weight: 700; }
+.calc .row.tot b { font-size: 20px; }
+.gloss { margin-top: 14px; background: var(--soft); border-radius: 12px; padding: 10px 16px; }
+.gloss div { display: grid; grid-template-columns: 70px 1fr; padding: 4px 0; font-size: 13.5px; }
+.gloss dt { font-weight: 700; }
+.gloss dd { color: var(--sub); }
+.pv-mini, .preview { position: relative; }
+.zoom { position: absolute; right: 10px; bottom: 8px; display: flex; flex-direction: row-reverse; align-items: center; isolation: isolate; }
+.zoom i { width: 72px; height: 72px; border-radius: 50%; background-size: 360% auto; background-position: 78% 38%;
+  border: 3px solid #fff; box-shadow: 0 4px 14px rgba(31,29,26,.28); }
+.zoom span { margin-right: -12px; padding: 3px 18px 3px 8px; border-radius: 10px; background: rgba(255,255,255,.94); color: var(--ink);
+  font-size: 10.5px; line-height: 1.3; text-align: right; box-shadow: 0 2px 6px rgba(31,29,26,.12); white-space: nowrap; position: relative; z-index: -1; }
+.zoom > i, .zoom .lens { position: relative; z-index: 1; }
+.zoom span b { font-size: 11.5px; }
+.zoom.pz { top: 8px; bottom: auto; right: 14px; align-items: flex-start; }
+.zoom.pz span { margin-top: 12px; }
+
+.zoom.pz svg, .zoom.pz > i { display: block; width: 72px; height: 72px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 4px 14px rgba(31,29,26,.28); overflow: hidden; }
+.pv-mini { margin: 16px 0; border-radius: 12px; overflow: hidden; background: #e9e3da; }
+.pv-mini svg { display: block; width: 100%; height: auto; }
+#hw { margin-top: 18px; }
+#fabrics { margin-top: 4px; }
+#pleats { margin-top: 4px; }
+.nav { position: fixed; left: 0; right: 0; bottom: 0; background: rgba(246,243,238,.96); border-top: 1px solid var(--line); padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); }
+.nav .in { max-width: 640px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr; gap: 10px; }
+.nav button { font: inherit; font-size: 16px; font-weight: 700; padding: 15px; border-radius: 12px; cursor: pointer; border: 1.5px solid var(--line); background: #fff; color: var(--ink); }
+.nav .next { background: var(--ink); color: #fff; border-color: var(--ink); }
+.nav .next:disabled { background: #bdb6ac; border-color: #bdb6ac; cursor: not-allowed; }
+.nav .prev:disabled { visibility: hidden; }
+
+.howto { margin-top: 10px; background: var(--soft); border-radius: 12px; padding: 14px 16px; font-size: 14px; }
+.howto div { display: grid; grid-template-columns: 64px 1fr; padding: 4px 0; }
+.howto b { font-weight: 700; }
+.howto em { font-style: normal; color: var(--accent); font-weight: 700; }
+
+.fields { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; margin-top: 18px; }
+.field label { display: block; font-size: 13px; font-weight: 600; color: var(--sub); margin-bottom: 6px; }
+.inp { display: flex; align-items: center; border: 1.5px solid #cfc8bd; border-radius: 10px; background: #fff; padding: 0 14px; }
+.inp:focus-within { border-color: var(--ink); }
+.inp input { flex: 1; width: 100%; min-width: 0; border: none; outline: none; font: inherit; font-size: 20px; font-weight: 700; padding: 12px 0; background: none; }
+.inp span { color: var(--sub); font-weight: 600; }
+.inp.ro { background: var(--soft); border-color: transparent; }
+.err { color: var(--warn); font-size: 13px; font-weight: 600; margin-top: 6px; min-height: 0; }
+
+.opts { display: grid; gap: 8px; }
+.opts.c3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.opt { position: relative; display: block; border: 1.5px solid var(--line); border-radius: 12px; padding: 12px 14px; cursor: pointer; background: #fff; }
+.opt input { position: absolute; opacity: 0; pointer-events: none; }
+.opt:has(input:checked) { border-color: var(--ink); background: var(--soft); box-shadow: inset 0 0 0 1px var(--ink); }
+.opt:has(input:disabled) { opacity: .4; cursor: not-allowed; }
+.opt .t { font-weight: 700; font-size: 15px; }
+.opt .s { display: block; font-size: 12.5px; color: var(--sub); margin-top: 2px; }
+.opts.c3 .opt { text-align: center; padding: 12px 6px; }
+.opts.c3 svg { width: 54px; height: 30px; display: block; margin: 0 auto 6px; }
+.badge { font-style: normal; display: inline-block; margin-left: 6px; padding: 1px 7px; border-radius: 4px; background: var(--ink); color: #fff; font-size: 11px; font-weight: 700; vertical-align: 1px; letter-spacing: 0; }
+.badge.best { background: var(--accent); }
+
+.fabric { padding: 14px 0; border-top: 1px solid var(--line); }
+.fabric:first-of-type { border-top: none; }
+.fabric .fh { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.fabric .fh b { font-size: 15px; }
+.fabric .fh b i { font-style: normal; color: var(--accent); margin-right: 6px; }
+.fabric .fh small { font-size: 12px; color: var(--sub); text-align: right; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.chip { position: relative; width: 84px; cursor: pointer; }
+.chip input { position: absolute; opacity: 0; pointer-events: none; }
+.chip .tex { height: 64px; border-radius: 10px; background-size: 360% auto; background-position: 78% 38%; border: 2px solid transparent; box-shadow: 0 0 0 1px var(--line); }
+.chip:has(input:checked) .tex { border-color: var(--ink); box-shadow: none; }
+.chip:has(input:checked) .tex::after { content: '✓'; position: absolute; top: 6px; right: 8px; width: 20px; height: 20px; border-radius: 50%; background: var(--ink); color: #fff; font-size: 12px; display: grid; place-items: center; }
+.chip span { display: block; font-size: 12px; font-weight: 600; text-align: center; margin-top: 5px; line-height: 1.3; }
+
+.result { background: var(--dark); color: #f4f1ec; }
+.result h2 { color: #fff; }
+.result .foot { color: rgba(244,241,236,.55); }
+.preview { margin-top: 16px; border-radius: 12px; overflow: hidden; background: #e9e3da; }
+.preview svg { display: block; width: 100%; height: auto; }
+.pv-cap { font-size: 12px; color: rgba(244,241,236,.55); margin-top: 8px; }
+.nv-h { margin-top: 22px; font-size: 15px; color: rgba(244,241,236,.75); }
+.nv-h b { color: #fff; }
+.nv { margin-top: 12px; background: #fff; color: var(--ink); border-radius: 14px; padding: 20px 18px 18px; }
+.nv .pt { font-size: 16px; font-weight: 700; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+.nv .pt.sub { font-size: 14.5px; margin-top: 18px; }
+.nv .fd { position: relative; margin-top: 14px; padding-left: 30px; }
+.nv .fd .no { position: absolute; left: 0; top: 0; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 12px; font-weight: 700; display: grid; place-items: center; }
+.nv label { display: block; font-size: 12.5px; font-weight: 600; color: var(--sub); margin-bottom: 5px; }
+.nv .box { border: 1.5px solid var(--ink); border-radius: 4px; padding: 10px 12px; font-size: 14.5px; font-weight: 700; background: #fffdf8; }
+.nv .box.sel { position: relative; padding-right: 34px; }
+.nv .box.sel::after { content: ''; position: absolute; right: 13px; top: 50%; width: 7px; height: 7px; margin-top: -5px; border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: rotate(45deg); }
+.nv .box.off { border-color: #d6cfc4; color: var(--sub); font-weight: 500; background: #fff; }
+.nv .hint { font-size: 12px; color: var(--accent); font-weight: 600; margin-top: 4px; }
+.nv .picked { margin-top: 16px; background: var(--soft); border-radius: 6px; padding: 12px 12px 14px; }
+.nv .picked p { font-size: 12.5px; line-height: 1.5; }
+.nv .picked .row { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
+.nv .qty { display: inline-flex; border: 2px solid var(--accent); background: #fff; }
+.nv .qty span { width: 32px; text-align: center; line-height: 32px; color: var(--sub); }
+.nv .qty b { width: 60px; text-align: center; line-height: 32px; border-left: 1px solid var(--line); border-right: 1px solid var(--line); }
+.nv .picked .pr { font-size: 14px; font-weight: 700; }
+.nv .total { display: flex; justify-content: space-between; align-items: baseline; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); }
+.nv .total span { font-size: 13.5px; color: var(--sub); }
+.nv .total b { font-size: 22px; font-weight: 800; letter-spacing: -.03em; }
+.nv .total small { display: block; font-size: 11.5px; color: var(--sub); font-weight: 500; text-align: right; }
+.todo { display: inline-block; background: #fff3c4; color: #7a5b00; border: 1px dashed #d9a400; font-size: 12px; font-weight: 600; padding: 1px 8px; margin-top: 8px; }
+body.final .todo { display: none; }
+.foot { text-align: center; color: var(--sub); font-size: 12.5px; margin-top: 26px; }
+
+
+.opt { padding-right: 44px; border-color: #e3dcd2; box-shadow: 0 2px 8px rgba(31,29,26,.06); transition: transform .15s, box-shadow .15s, border-color .15s, background .15s; -webkit-tap-highlight-color: transparent; }
+.opt::after { content: ''; position: absolute; top: 50%; right: 14px; width: 20px; height: 20px; margin-top: -10px; border-radius: 50%; border: 1.5px solid #cfc6ba; background: #fff; transition: all .15s; }
+.opt:hover:not(:has(input:disabled)) { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(31,29,26,.12); border-color: var(--accent); }
+.opt:active:not(:has(input:disabled)) { transform: scale(.98); box-shadow: 0 1px 4px rgba(31,29,26,.1); }
+.opt:has(input:checked) { border-color: var(--ink); background: #faf8f4; box-shadow: inset 0 0 0 1px var(--ink), 0 8px 20px rgba(31,29,26,.12); animation: pop .28s ease; }
+.opt:has(input:checked)::after { border-color: var(--ink); background: var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.2l3 3 6-6.4' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% no-repeat; }
+.opt:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
+.opt:has(input:disabled) { box-shadow: none; }
+.opts.c3 .opt { padding: 14px 6px 12px; }
+.opts.c3 .opt::after { top: 8px; right: 8px; margin-top: 0; width: 18px; height: 18px; }
+@keyframes pop { 0% { transform: scale(.97); } 60% { transform: scale(1.02); } 100% { transform: none; } }
+.chip { transition: transform .15s; }
+.chip .tex { transition: box-shadow .15s, border-color .15s; }
+.chip:hover { transform: translateY(-2px); }
+.chip:hover .tex { box-shadow: 0 0 0 1px var(--accent), 0 8px 16px rgba(31,29,26,.14); }
+.chip:active { transform: scale(.96); }
+.chip:has(input:checked) .tex { box-shadow: 0 6px 14px rgba(31,29,26,.16); animation: pop .28s ease; }
+
+.lead .em { color: var(--ink); font-weight: 700; }
+.pick-h { display: flex; align-items: center; gap: 8px; margin-top: 20px; font-size: 15px; font-weight: 700; }
+.pick-h span { padding: 2px 8px; border-radius: 20px; background: var(--accent); color: #fff; font-size: 11.5px; letter-spacing: .04em; }
+.locs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+.loc { position: relative; display: flex; flex-direction: column; align-items: center; padding: 14px 10px 16px; border: 1.5px solid #e3dcd2; border-radius: 14px; background: #fff; font: inherit; color: var(--ink); cursor: pointer;
+  box-shadow: 0 3px 10px rgba(31,29,26,.07); transition: transform .15s, box-shadow .15s, border-color .15s; -webkit-tap-highlight-color: transparent; }
+.loc svg { width: 100%; max-width: 150px; height: auto; display: block; }
+.loc b { font-size: 16.5px; margin-top: 10px; }
+.loc small { font-size: 12.5px; color: var(--sub); line-height: 1.45; margin-top: 3px; text-align: center; }
+.loc::after { content: ''; position: absolute; top: 10px; right: 10px; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid #cfc6ba; background: #fff; }
+.loc:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(31,29,26,.12); border-color: var(--accent); }
+.loc:active { transform: scale(.98); }
+.loc.on { border-color: var(--ink); background: #faf8f4; box-shadow: inset 0 0 0 1px var(--ink), 0 8px 20px rgba(31,29,26,.12); animation: pop .28s ease; }
+.loc.on::after { border-color: var(--ink); background: var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.2l3 3 6-6.4' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% no-repeat; }
+.locs:not(.picked) .loc { animation: call 1.8s ease-in-out infinite; }
+.locs:not(.picked) .loc + .loc { animation-delay: .25s; }
+@keyframes call { 0%, 100% { border-color: #e3dcd2; box-shadow: 0 3px 10px rgba(31,29,26,.07); } 50% { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(160,140,114,.18), 0 3px 10px rgba(31,29,26,.07); } }
+#howWrap { animation: in .3s ease; }
+#howWrap .howfig { margin-top: 18px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="k">ORDER GUIDE</div>
+    <h1><span data-collection></span> 커튼 <span>주문 가이드</span></h1>
+    <div class="prog"><div class="pbar"><i id="pfill"></i></div><span id="pnum"></span></div>
+  </header>
+
+    <section class="step" data-title="실측 방법">
+    <h2>어디에 설치하시나요?</h2>
+    <p class="lead">설치할 위치에 따라 재는 방법이 달라요.<br>아래에서 <b class="em">설치 위치를 선택</b>하면 실측 방법을 알려 드릴게요.</p>
+    <div class="pick-h"><span>선택</span>커튼을 달 위치를 골라 주세요</div>
+    <div class="locs" id="tabs">
+      <button type="button" class="loc" data-t="wall"><svg viewBox="0 0 120 80" aria-hidden="true"><rect width="120" height="80" rx="6" fill="#efe9e0"/><rect x="40" y="18" width="40" height="34" fill="#dfe8ea" stroke="#cfc4b4" stroke-width="2"/><path d="M8 8 H112" stroke="#1f1d1a" stroke-width="2.5"/><g fill="#f6f1e8" stroke="#cdbfa9" stroke-width="1"><path d="M10 9 H58 V72 H10 Z"/><path d="M62 9 H110 V72 H62 Z"/></g><path d="M18 9 V72 M26 9 V72 M34 9 V72 M42 9 V72 M50 9 V72 M70 9 V72 M78 9 V72 M86 9 V72 M94 9 V72 M102 9 V72" stroke="#e3d8c6" stroke-width="1"/><path d="M4 74 H116" stroke="#1f1d1a" stroke-width="1.5"/></svg><b>벽면 전체</b><small>천장부터 바닥까지<br>벽 전체를 덮어요</small></button>
+      <button type="button" class="loc" data-t="window"><svg viewBox="0 0 120 80" aria-hidden="true"><rect width="120" height="80" rx="6" fill="#efe9e0"/><rect x="40" y="18" width="40" height="34" fill="#dfe8ea" stroke="#cfc4b4" stroke-width="2"/><path d="M30 12 H90" stroke="#1f1d1a" stroke-width="2.5"/><g fill="#f6f1e8" stroke="#cdbfa9" stroke-width="1"><path d="M32 13 H52 V60 H32 Z"/><path d="M68 13 H88 V60 H68 Z"/></g><path d="M38 13 V60 M45 13 V60 M74 13 V60 M81 13 V60" stroke="#e3d8c6" stroke-width="1"/><path d="M4 74 H116" stroke="#1f1d1a" stroke-width="1.5"/></svg><b>창문에만</b><small>창문 주변만<br>가려요</small></button>
+    </div>
+    <div id="howWrap" hidden>
+    <div class="howfig" id="howfig"></div>
+    <div class="howto" id="howto"></div>
+    <div class="boxnote">
+      <svg viewBox="0 0 64 48" aria-hidden="true"><path d="M2 4 H62 V16 H2 Z" fill="#e3ddd4" stroke="#1f1d1a" stroke-width="1.4"/><rect x="18" y="22" width="28" height="18" fill="#dfe8ea" stroke="#cfc4b4" stroke-width="2"/><path d="M56 5 V46 M52 5 H60 M52 46 H60" stroke="#a08c72" stroke-width="2"/></svg>
+      <div><b>커튼 박스가 있다면?</b><p>세로는 커튼 박스를 포함한 <em>가장 높은 곳</em>부터 측정해 주세요.</p></div>
+    </div>
+    <p class="tip"><b>TIP</b> 줄자를 수평 · 수직으로 맞춰 2~3번 재고, 가장 긴 값을 기준으로 해 주세요.</p>
+    </div>
+  </section>
+
+    <section class="step" data-title="실측 사이즈">
+    <h2>실측한 사이즈를 입력해 주세요</h2>
+    <p class="lead">앞에서 잰 가로 · 세로 길이를 cm 단위로 입력해 주세요.<br>세로는 다음 단계에서 부자재 높이를 빼고 계산해 드려요.</p>
+    <div class="fields">
+      <div class="field"><label for="w">실측 가로</label><div class="inp"><input id="w" type="number" inputmode="numeric" min="1" placeholder="예) 320"><span>cm</span></div></div>
+      <div class="field"><label for="h">실측 세로</label><div class="inp"><input id="h" type="number" inputmode="numeric" min="1" placeholder="예) 240"><span>cm</span></div></div>
+    </div>
+    <p class="err" id="inErr"></p>
+  </section>
+
+    <section class="step" data-title="부자재 · 제작 사이즈">
+    <h2>어떤 부자재에 설치하나요?</h2>
+    <p class="lead">커튼은 레일이나 봉 아래에 걸리기 때문에<br>부자재 높이만큼 세로를 빼서 제작해요.</p>
+    <div class="opts c3" id="hw"></div>
+    <p class="err" id="hwNote"></p>
+    <div class="calc">
+      <div class="row"><span>실측 세로</span><b id="cMeas"></b></div>
+      <div class="row"><span id="cHwName"></span><b id="cMinus"></b></div>
+      <div class="row tot"><span>제작 세로</span><b id="cH"></b></div>
+      <div class="row"><span>제작 가로</span><b id="cW"></b></div>
+    </div>
+    <p class="err" id="sizeErr"></p>
+  </section>
+
+    <section class="step" data-title="원단 · 컬러">
+    <h2>원단과 컬러를 골라 주세요</h2>
+    <p class="lead">6가지 원단, 10가지 컬러 중에서 고를 수 있어요.<br>고른 컬러가 아래 예시 그림에 바로 반영돼요.</p>
+    <div class="pv-mini" data-pv></div>
+    <div id="fabrics"></div>
+  </section>
+
+    <section class="step" data-title="주름 형태">
+    <h2>주름 형태를 골라 주세요</h2>
+    <p class="lead">배수가 클수록 원단이 많이 들어가 주름이 풍성해요.</p>
+    <dl class="gloss">
+      <div><dt>나비주름</dt><dd>상단 주름을 두 겹씩 잡아 더 풍성한 형태</dd></div>
+      <div><dt>형상기억</dt><dd>열처리로 세탁 후에도 주름이 유지되는 가공</dd></div>
+    </dl>
+    <div class="pv-mini" data-pv></div>
+    <div class="opts" id="pleats"></div>
+  </section>
+
+    <section class="step" data-title="양개 · 편개">
+    <h2>커튼이 열리는 방향을 선택해 주세요</h2>
+    <p class="lead">가로 240cm까지는 편개도 가능해요.</p>
+    <div class="opts two">
+      <label class="opt"><input type="radio" name="open" value="double" checked><span class="t">양개</span><span class="s">가운데서 양쪽으로 열림 (기본)</span></label>
+      <label class="opt"><input type="radio" name="open" value="single" id="single"><span class="t">편개</span><span class="s" id="singleNote">한쪽으로 열림 · 최대 240cm</span></label>
+    </div>
+    <div class="pv-mini" data-pv></div>
+  </section>
+
+    <section class="step result" data-title="주문 옵션 확인">
+    <h2>이렇게 주문하시면 돼요</h2>
+    <div class="preview" data-pv></div>
+    <p class="pv-cap">* 선택한 사이즈 · 주름 · 색상 · 부자재로 그린 예시 이미지예요. 실제 설치 모습과 다를 수 있어요.</p>
+    <div class="nv-h">상세페이지 주문 옵션에 <b>아래처럼 입력 · 선택</b>해 주세요</div>
+    <div class="nv" id="nv"></div>
+    <div id="priceTodo"></div>
+    <p class="foot">레일 · 커튼봉 · 자석 타이백은 기본 상품에 포함되지 않아요.<br>필요하면 상세페이지에서 추가상품으로 함께 담아 주세요.</p>
+  </section>
+</div>
+
+<nav class="nav"><div class="in">
+  <button type="button" class="prev" id="prev">이전</button>
+  <button type="button" class="next" id="next">다음</button>
+</div></nav>
+
+<script>
+  if (new URLSearchParams(location.hash.slice(1)).has('final')) document.body.classList.add('final');
+  document.querySelectorAll('[data-collection]').forEach(e => e.textContent = BRAND.collection);
+  const $ = id => document.getElementById(id);
+  const won = n => n.toLocaleString('ko-KR') + '원';
+
+  const HOWTO = {
+    wall:   [['가로', '커튼을 설치할 부분의 전체 길이 (벽면 가로)'], ['세로', '천장 끝에서 바닥까지 전체 높이']],
+    window: [['가로', '창 가로 길이 <em>+ 10cm</em>'], ['세로', '천장에서 창문 틀 아래까지 <em>+ 10~20cm</em>']],
+  };
+  const HOWFIG = {
+    wall: `<rect x="20" y="18" width="560" height="10" fill="#f6f2ec"/><path d="M20 28 H580 M20 212 H580" stroke="#1f1d1a" stroke-width="2"/>
+      <rect x="170" y="62" width="260" height="110" fill="#dfe8ea" stroke="#cfc4b4" stroke-width="3"/>
+      <rect x="40" y="31" width="520" height="178" fill="none" stroke="#a08c72" stroke-width="2.5" stroke-dasharray="8 6"/>
+      <path d="M40 232 H560 M40 226 V238 M560 226 V238" stroke="#1f1d1a" stroke-width="1.6"/><text x="300" y="256" text-anchor="middle">가로 = 벽면 전체 길이</text>
+      <path d="M574 31 V209 M568 31 H580 M568 209 H580" stroke="#1f1d1a" stroke-width="1.6"/><text x="562" y="124" text-anchor="end">세로 = 천장 ~ 바닥</text>`,
+    window: `<rect x="20" y="18" width="560" height="10" fill="#f6f2ec"/><path d="M20 28 H580 M20 196 H580" stroke="#1f1d1a" stroke-width="2"/>
+      <rect x="200" y="62" width="200" height="100" fill="#dfe8ea" stroke="#cfc4b4" stroke-width="3"/>
+      <rect x="180" y="31" width="240" height="152" fill="none" stroke="#a08c72" stroke-width="2.5" stroke-dasharray="8 6"/>
+      <path d="M180 216 H420 M180 210 V222 M420 210 V222" stroke="#1f1d1a" stroke-width="1.6"/><text x="300" y="240" text-anchor="middle">가로 = 창 가로 + 10cm</text>
+      <path d="M440 31 V183 M434 31 H446 M434 183 H446" stroke="#1f1d1a" stroke-width="1.6"/><text x="452" y="100">세로 = 천장 ~ 창틀 아래</text><text x="452" y="122">+ 10~20cm</text>`,
+  };
+  let loc = null;
+  const setTab = t => {
+    loc = t;
+    document.querySelectorAll('#tabs button').forEach(b => b.classList.toggle('on', b.dataset.t === t));
+    $('tabs').classList.add('picked'); $('howWrap').hidden = false;
+    $('howto').innerHTML = HOWTO[t].map(([k, v]) => `<div><b>${k}</b><span>${v}</span></div>`).join('');
+    $('howfig').innerHTML = `<svg viewBox="0 0 600 270" font-family="Pretendard" font-size="15" font-weight="700" fill="#1f1d1a"><rect width="600" height="270" fill="#efe9e0"/>${HOWFIG[t]}</svg>`;
+  };
+  $('tabs').onclick = e => { const b = e.target.closest('[data-t]'); if (b) { setTab(b.dataset.t); update(); } };
+
+  const HW_ICON = {
+    rail: '<rect x="4" y="8" width="46" height="6" rx="2" fill="#1f1d1a"/><g fill="#a08c72"><circle cx="12" cy="18" r="2.5"/><circle cx="22" cy="18" r="2.5"/><circle cx="32" cy="18" r="2.5"/><circle cx="42" cy="18" r="2.5"/></g>',
+    double: '<rect x="4" y="5" width="46" height="5" rx="2" fill="#1f1d1a"/><rect x="4" y="14" width="46" height="5" rx="2" fill="#1f1d1a"/><g fill="#a08c72"><circle cx="14" cy="23" r="2.2"/><circle cx="27" cy="23" r="2.2"/><circle cx="40" cy="23" r="2.2"/></g>',
+    rod: '<path d="M6 12 H48" stroke="#1f1d1a" stroke-width="3.5" stroke-linecap="round"/><circle cx="4" cy="12" r="3.5" fill="#1f1d1a"/><circle cx="50" cy="12" r="3.5" fill="#1f1d1a"/><g fill="none" stroke="#a08c72" stroke-width="2"><circle cx="14" cy="13" r="4.5"/><circle cx="24" cy="13" r="4.5"/><circle cx="34" cy="13" r="4.5"/><circle cx="44" cy="13" r="4.5"/></g>',
+  };
+  $('hw').innerHTML = HARDWARE.map((h, i) => `<label class="opt"><input type="radio" name="hw" value="${h.id}"${i ? '' : ' checked'}>
+    <svg viewBox="0 0 54 28">${HW_ICON[h.id]}</svg><span class="t">${h.name}</span><span class="s">세로 −${h.minus}cm</span></label>`).join('');
+
+  $('fabrics').innerHTML = FABRICS.map(f => `<div class="fabric">
+      <div class="fh"><b><i>${f.no}</i>${f.name}</b><small>${f.mix}</small></div>
+      <div class="chips">${f.colors.map(c => `<label class="chip"><input type="radio" name="color" value="${c.code}"${c.code === FABRICS[0].colors[0].code ? ' checked' : ''}>
+        <div class="tex" style="background-image:url(${PHOTO}${c.code}_vase.jpg);background-color:${c.hex}"></div><span>${c.name}</span></label>`).join('')}</div>
+    </div>`).join('');
+
+  const PLEAT_DESC = { 1: '주름 없는 평평한 가림막 형태', 1.5: '자연스러운 주름', 2: '풍성한 볼륨감, 호텔 같은 분위기' };
+  $('pleats').innerHTML = PLEATS.map((p, i) => `<label class="opt"><input type="radio" name="pleat" value="${p.id}"${i ? '' : ' checked'}>
+    <span class="t">${p.name}${p.badge ? `<i class="badge${p.badge === 'BEST' ? ' best' : ''}">${p.badge}</i>` : ''}</span>
+    <span class="s">${PLEAT_DESC[p.ratio]}${p.butterfly ? ' · 상단 주름을 두 겹씩 잡은 나비주름' : ''}${p.memory ? ' · 세탁 후에도 주름 유지' : ''}</span></label>`).join('');
+
+  function draw(W, H, measH, hw, color, pleat, open, loc) {
+    const win = loc === 'window', VW = 600, VH = win ? 246 : 270;
+    const ceil = 28, fl = win ? 196 : 212;
+    const [x0, x1, y1] = win ? [180, 420, 183] : [40, 560, 209];
+    const cw = x1 - x0, s = cw / W;
+    const hwY = ceil + 5, curTop = hwY + (hw.id === 'rod' ? 9 : 5), curBot = y1, ch = curBot - curTop;
+    let g = '';
+    g += `<rect width="${VW}" height="${VH}" fill="#efe9e0"/><rect x="20" y="18" width="560" height="10" fill="#f6f2ec"/>
+      <path d="M20 ${ceil} H580 M20 ${fl} H580" stroke="#1f1d1a" stroke-width="2"/><rect x="20" y="${fl + 1}" width="560" height="8" fill="#e3ddd4"/>`;
+    g += win
+      ? `<rect x="200" y="62" width="200" height="100" fill="url(#sky)" stroke="#cfc4b4" stroke-width="3"/><path d="M300 62 V162" stroke="#cfc4b4" stroke-width="3"/>
+         <rect x="194" y="162" width="212" height="5" fill="#d8cfc2"/>`
+      : `<rect x="140" y="52" width="320" height="157" fill="url(#sky)" stroke="#cfc4b4" stroke-width="3"/><path d="M300 52 V209" stroke="#cfc4b4" stroke-width="3"/>`;
+    const panels = open === 'single' ? [[x0, x1]] : [[x0, x0 + cw * .44], [x1 - cw * .44, x1]];
+    const depth = (pleat.ratio - 1) * 2;
+    panels.forEach(([a, b]) => {
+      const pw = b - a, n = Math.max(3, Math.min(Math.floor(pw / 5), Math.round(pw / s / (pleat.ratio === 1 ? 30 : 10) * (pleat.ratio === 1 ? 1 : pleat.ratio / 1.5))));
+      const fw = pw / n;
+      g += `<rect x="${a}" y="${curTop}" width="${pw}" height="${ch}" fill="${color.hex}" opacity=".92" stroke="rgba(0,0,0,.14)" stroke-width="1"/>`;
+      if (!depth) g += `<rect x="${a}" y="${curTop}" width="${pw}" height="${ch}" fill="url(#flat)"/>`;
+      for (let k = 0; k < n; k++) {
+        const fx = a + k * fw;
+        if (depth) g += `<rect x="${fx}" y="${curTop}" width="${fw}" height="${ch}" fill="url(#fold${depth})"/>`;
+        if (pleat.butterfly && k % 2 === 0) {
+          const cx = fx + fw;
+          g += `<path d="M${cx - 3.2} ${curTop} q-2 7 0 13 M${cx} ${curTop} v15 M${cx + 3.2} ${curTop} q2 7 0 13" stroke="rgba(0,0,0,.24)" fill="none" stroke-width="1.1"/>
+            <path d="M${cx - 3} ${curTop + 15} h6" stroke="rgba(0,0,0,.28)" stroke-width="1.4"/>`;
+        }
+      }
+      let hem = `M${a} ${curBot}`;
+      for (let k = 0; k < n; k++) {
+        const amp = depth ? (pleat.memory ? 3 : 2 + (k * 37 % 5) * .6) : .8;
+        hem += ` q${fw / 2} ${k % 2 ? amp : -amp} ${fw} 0`;
+      }
+      g += `<path d="${hem} V${curBot + 6} H${a} Z" fill="${color.hex}"/><path d="${hem}" stroke="rgba(0,0,0,.12)" fill="none"/>`;
+    });
+    if (hw.id === 'rod') {
+      g += `<path d="M${x0 - 10} ${hwY + 4} H${x1 + 10}" stroke="#2b2825" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="${x0 - 14}" cy="${hwY + 4}" r="6" fill="#2b2825"/><circle cx="${x1 + 14}" cy="${hwY + 4}" r="6" fill="#2b2825"/>`;
+      panels.forEach(([a, b]) => { for (let x = a + 6; x < b; x += 14) g += `<circle cx="${x}" cy="${hwY + 6}" r="4.5" fill="none" stroke="#7a6d5c" stroke-width="1.6"/>`; });
+    } else {
+      g += `<rect x="${x0 - 4}" y="${hwY - 2}" width="${cw + 8}" height="6" rx="2" fill="#2b2825"/>`;
+      if (hw.id === 'double') g += `<rect x="${x0 - 4}" y="${hwY - 9}" width="${cw + 8}" height="5" rx="2" fill="#57514a"/>`;
+    }
+    const vx = win ? 160 : 26;
+    g += `<g font-family="Pretendard" font-size="15" font-weight="700" fill="#1f1d1a">
+      <path d="M${x0} ${fl + 20} H${x1} M${x0} ${fl + 14} V${fl + 26} M${x1} ${fl + 14} V${fl + 26}" stroke="#1f1d1a" stroke-width="1.6"/>
+      <text x="${(x0 + x1) / 2}" y="${fl + 44}" text-anchor="middle">가로 ${W}cm</text>
+      <path d="M${vx} ${curTop} V${curBot} M${vx - 6} ${curTop} H${vx + 6} M${vx - 6} ${curBot} H${vx + 6}" stroke="#a08c72" stroke-width="1.6"/>
+      ${win ? `<text x="150" y="${(curTop + curBot) / 2}" text-anchor="end" fill="#7a6d5c">세로</text><text x="150" y="${(curTop + curBot) / 2 + 20}" text-anchor="end" fill="#7a6d5c">${H}cm</text>`
+            : `<text transform="translate(14 ${(curTop + curBot) / 2}) rotate(-90)" text-anchor="middle" fill="#7a6d5c">세로 ${H}cm</text>`}</g>`;
+    return `<svg viewBox="0 0 ${VW} ${VH}" xmlns="http://www.w3.org/2000/svg"><defs>
+      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dfe8ea"/><stop offset="1" stop-color="#cfdccf"/></linearGradient>
+      <linearGradient id="flat" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".07"/><stop offset=".35" stop-color="#fff" stop-opacity=".25"/><stop offset=".7" stop-color="#000" stop-opacity=".03"/><stop offset="1" stop-color="#000" stop-opacity=".09"/></linearGradient>
+      <linearGradient id="fold1" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".06"/><stop offset=".45" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#000" stop-opacity=".1"/></linearGradient>
+      <linearGradient id="fold2" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".1"/><stop offset=".4" stop-color="#fff" stop-opacity=".3"/><stop offset="1" stop-color="#000" stop-opacity=".18"/></linearGradient>
+      </defs>${g}</svg>`;
+  }
+
+  function pleatZoom(pleat, color) {
+    if (pleat.photo) return `<i style="background-image:url(${PHOTO}${pleat.photo});background-size:cover;background-position:center"></i>`;
+    let g = `<rect width="100" height="100" fill="${color.hex}"/>`;
+    if (pleat.ratio === 1) {
+      g += `<rect width="100" height="100" fill="url(#zflat)"/>`;
+    } else if (pleat.butterfly) {
+      for (let x = -6; x < 100; x += 12) g += `<rect x="${x}" y="10" width="12" height="90" fill="url(#zfold)"/>`;
+      [26, 74].forEach(cx => {
+        g += `<path d="M${cx - 13} 10 C${cx - 13} 26 ${cx - 4} 30 ${cx - 4} 40 L${cx + 4} 40 C${cx + 4} 30 ${cx + 13} 26 ${cx + 13} 10 Z" fill="${color.hex}" stroke="rgba(0,0,0,.25)" stroke-width="1"/>
+          <path d="M${cx - 6} 10 C${cx - 6} 24 ${cx - 2} 30 ${cx - 2} 40 M${cx + 6} 10 C${cx + 6} 24 ${cx + 2} 30 ${cx + 2} 40" stroke="rgba(0,0,0,.28)" stroke-width="1.1" fill="none"/>
+          <path d="M${cx - 5} 40 h10" stroke="rgba(0,0,0,.45)" stroke-width="1.8"/>
+          <path d="M${cx - 4} 40 L${cx - 11} 100 M${cx + 4} 40 L${cx + 11} 100" stroke="rgba(0,0,0,.16)" stroke-width="1.2"/>`;
+      });
+    } else {
+      for (let x = 0; x < 100; x += 20) g += `<rect x="${x}" y="10" width="20" height="90" fill="url(#zfold)"/>`;
+      g += `<path d="M0 14 q5 -3 10 0 t10 0 t10 0 t10 0 t10 0 t10 0 t10 0 t10 0 t10 0 t10 0" stroke="rgba(0,0,0,.18)" fill="none"/>`;
+    }
+    g += `<rect width="100" height="10" fill="#2b2825"/>`;
+    return `<svg viewBox="0 0 100 100"><defs>
+      <linearGradient id="zfold" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".12"/><stop offset=".45" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#000" stop-opacity=".16"/></linearGradient>
+      <linearGradient id="zflat" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".05"/><stop offset=".5" stop-color="#fff" stop-opacity=".2"/><stop offset="1" stop-color="#000" stop-opacity=".06"/></linearGradient>
+      </defs>${g}</svg>`;
+  }
+
+  const steps = [...document.querySelectorAll('.step')], LAST = steps.length - 1;
+  let cur = 0;
+
+  function update() {
+    const W = Math.round(+$('w').value || 0), measH = Math.round(+$('h').value || 0);
+    const hw = HARDWARE.find(h => h.id === document.querySelector('[name=hw]:checked').value);
+    const code = document.querySelector('[name=color]:checked').value;
+    const fabric = FABRICS.find(f => f.colors.some(c => c.code === code)), color = fabric.colors.find(c => c.code === code);
+    const pleat = PLEATS.find(p => p.id === document.querySelector('[name=pleat]:checked').value);
+    const H = measH - hw.minus;
+
+    const single = $('single');
+    single.disabled = W > LIMIT.maxSingle;
+    if (single.disabled && single.checked) document.querySelector('[name=open][value=double]').checked = true;
+    $('singleNote').textContent = single.disabled ? `가로 ${LIMIT.maxSingle}cm 초과 — 선택 불가` : `한쪽으로 열림 · 최대 ${LIMIT.maxSingle}cm`;
+    const open = document.querySelector('[name=open]:checked').value;
+
+    const inErr = !W ? '가로 사이즈를 입력해 주세요.' : !measH ? '세로 사이즈를 입력해 주세요.' : '';
+    const sizeErr = inErr ? '' : H < 1 ? '세로가 너무 짧아요. 실측 세로를 다시 확인해 주세요.'
+      : H > LIMIT.maxHeight ? `제작 세로는 최대 ${LIMIT.maxHeight}cm까지 가능해요. (현재 ${H}cm)` : '';
+    $('inErr').textContent = inErr && cur === 1 && ($('w').value || $('h').value) ? inErr : '';
+    $('hwNote').textContent = hw.note ? `* ${hw.note}` : '';
+    $('cMeas').textContent = measH ? `${measH}cm` : '—';
+    $('cHwName').textContent = `− ${hw.name} 높이`;
+    $('cMinus').textContent = `${hw.minus}cm`;
+    $('cH').textContent = H > 0 && measH ? `${H}cm` : '—';
+    $('cW').textContent = W ? `${W}cm` : '—';
+    $('sizeErr').textContent = sizeErr;
+
+    const unit = PRICING.perCm[pleat.id] || 0, total = unit ? won(W * unit) : '단가 확인 중';
+    $('priceTodo').innerHTML = PRICING.sample ? '' : '';
+    const fd = (no, label, val, opt = {}) => `<div class="fd"><span class="no">${no}</span><label>${label}</label>
+      <div class="box${opt.sel ? ' sel' : ''}${opt.off ? ' off' : ''}">${val}</div>${opt.hint ? `<div class="hint">${opt.hint}</div>` : ''}</div>`;
+    const optText = `${W} / ${H} / ${fabric.no} ${fabric.name} / ${color.name} / ${pleat.name}`;
+    const needHw = hw.id === 'rod' ? '커튼봉 (핀형 + 링 포함)' : '커튼레일';
+    $('nv').innerHTML = `<div class="pt">옵션 선택</div>
+      ${fd(1, '가로 사이즈(cm)를 입력해주세요.', W, { hint: '실측 가로 그대로' })}
+      ${fd(2, `세로 사이즈(1~${LIMIT.maxHeight}cm)를 입력해주세요.`, H, { hint: `실측 ${measH} − ${hw.name} ${hw.minus}` })}
+      ${fd(3, '원단 및 색상', `${fabric.no} ${fabric.name} / ${color.name}`, { sel: 1 })}
+      ${fd(4, '주름 형태', pleat.name, { sel: 1 })}
+      ${fd(5, '가로 사이즈 추가', '가로 1cm 추가', { sel: 1 })}
+      <div class="picked"><p>${optText}</p>
+        <div class="row"><div class="qty"><span>−</span><b>${W}</b><span>+</span></div><span class="pr">${unit ? won(W * unit) : ''}</span></div>
+        <div class="hint">수량 = 가로 ${W}cm → ${W}개</div></div>
+      <div class="pt sub">추가상품 <small style="font-weight:500;color:var(--sub)">(선택)</small></div>
+      ${fd(6, '양개 / 편개', open === 'single' ? '편개' : '양개 (기본 — 선택 안 해도 됨)', { sel: 1, off: open !== 'single' })}
+      ${fd('+', needHw, '필요한 경우만 선택', { sel: 1, off: 1, hint: `아직 설치된 ${hw.name}이 없다면 함께 담아 주세요` })}
+      <div class="total"><span>총 상품금액 (커튼)</span><div><b>${total}</b>${unit ? `<small>${won(unit)} × ${W}cm</small>` : ''}</div></div>`;
+
+    document.querySelectorAll('[data-pv]').forEach(el => el.innerHTML = '');
+    const pv = steps[cur].querySelector('[data-pv]');
+    if (pv && !inErr && !sizeErr) pv.innerHTML = draw(W, H, measH, hw, color, pleat, open, loc) +
+      `<div class="zoom"><i style="background-image:url(${PHOTO}${color.code}_vase.jpg);background-color:${color.hex}"></i><span>${fabric.name}<br><b>${color.name}</b></span></div>` +
+      (cur >= 4 ? `<div class="zoom pz"><div class="lens">${pleatZoom(pleat, color)}</div><span>주름 확대<br><b>${pleat.ratio === 1 ? '1배 평주름' : pleat.butterfly ? '나비주름' : '평주름'}</b></span></div>` : '');
+
+    const err = [ loc ? '' : 'loc', inErr, inErr || sizeErr ][cur] || '';
+    $('next').disabled = !!err;
+  }
+
+  function go(i) {
+    cur = Math.max(0, Math.min(LAST, i));
+    steps.forEach((el, k) => el.classList.toggle('on', k === cur));
+    $('pfill').style.width = `${cur / LAST * 100}%`;
+    $('pnum').textContent = cur < LAST ? `STEP ${cur + 1} / ${LAST} · ${steps[cur].dataset.title}` : '완료';
+    $('prev').disabled = cur === 0;
+    $('next').textContent = cur === LAST - 1 ? '주문 옵션 확인' : cur === LAST ? '처음부터 다시' : '다음';
+    if (cur === 0 && !loc) $('next').textContent = '설치 위치를 선택해 주세요';
+    update();
+    scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  $('prev').onclick = () => go(cur - 1);
+  $('next').onclick = () => go(cur === LAST ? 0 : cur + 1);
+  $('tabs').addEventListener('click', () => { if (cur === 0) $('next').textContent = '다음'; });
+  document.addEventListener('input', update);
+  document.addEventListener('change', update);
+  const Q = new URLSearchParams(location.hash.slice(1));
+  if (Q.has('w')) $('w').value = Q.get('w');
+  if (Q.has('h')) $('h').value = Q.get('h');
+  if (Q.get('loc') === 'window') setTab('window'); else if (Q.has('loc') || Q.has('step')) setTab('wall');
+  if (Q.get('open') === 'single') document.querySelector('[name=open][value=single]').checked = true;
+  if (Q.has('pleat')) document.querySelector(`[name=pleat][value=${Q.get('pleat')}]`).checked = true;
+  go(Q.has('step') ? +Q.get('step') - 1 : 0);
+</script>
+<script>document.body.classList.add('final')</script>
+</body>
+</html>
