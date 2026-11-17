@@ -143,9 +143,11 @@ header p { color: var(--sub); margin-top: 8px; font-size: 15px; }
 .boxnote svg { flex: 0 0 56px; width: 56px; height: 42px; }
 .boxnote b { font-size: 14px; }
 .boxnote p { font-size: 13px; color: var(--sub); margin-top: 2px; }
-.boxnote em { font-style: normal; color: var(--accent); font-weight: 700; }
+.boxnote em { font-style: normal; color: var(--warn); font-weight: 800; }
 .howfig { margin-top: 14px; border-radius: 12px; overflow: hidden; background: #efe9e0; }
-.howfig svg { display: block; width: 100%; height: auto; }
+.howfig { position: relative; }
+.howfig img { display: block; width: 100%; }
+.howfig svg { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
 .calc { margin-top: 20px; border-radius: 12px; background: var(--soft); padding: 6px 16px; }
 .calc .row { display: flex; justify-content: space-between; padding: 10px 0; font-size: 14.5px; color: var(--sub); }
 .calc .row + .row { border-top: 1px solid var(--line); }
@@ -183,7 +185,7 @@ header p { color: var(--sub); margin-top: 8px; font-size: 15px; }
 .howto { margin-top: 10px; background: var(--soft); border-radius: 12px; padding: 14px 16px; font-size: 14px; }
 .howto div { display: grid; grid-template-columns: 64px 1fr; padding: 4px 0; }
 .howto b { font-weight: 700; }
-.howto em { font-style: normal; color: var(--accent); font-weight: 700; }
+.howto em { font-style: normal; color: var(--warn); font-weight: 800; }
 
 .fields { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; margin-top: 18px; }
 .field label { display: block; font-size: 13px; font-weight: 600; color: var(--sub); margin-bottom: 6px; }
@@ -400,17 +402,32 @@ body.final .todo { display: none; }
     wall:   [['가로', '커튼을 설치할 부분의 전체 길이 (벽면 가로)'], ['세로', '천장 끝에서 바닥까지 전체 높이']],
     window: [['가로', '창 가로 길이 <em>+ 10cm</em>'], ['세로', '천장에서 창문 틀 아래까지 <em>+ 10~20cm</em>']],
   };
-  const HOWFIG = {
-    wall: `<rect x="20" y="18" width="560" height="10" fill="#f6f2ec"/><path d="M20 28 H580 M20 212 H580" stroke="#1f1d1a" stroke-width="2"/>
-      <rect x="170" y="62" width="260" height="110" fill="#dfe8ea" stroke="#cfc4b4" stroke-width="3"/>
-      <rect x="40" y="31" width="520" height="178" fill="none" stroke="#a08c72" stroke-width="2.5" stroke-dasharray="8 6"/>
-      <path d="M40 232 H560 M40 226 V238 M560 226 V238" stroke="#1f1d1a" stroke-width="1.6"/><text x="300" y="256" text-anchor="middle">가로 = 벽면 전체 길이</text>
-      <path d="M574 31 V209 M568 31 H580 M568 209 H580" stroke="#1f1d1a" stroke-width="1.6"/><text x="562" y="124" text-anchor="end">세로 = 천장 ~ 바닥</text>`,
-    window: `<rect x="20" y="18" width="560" height="10" fill="#f6f2ec"/><path d="M20 28 H580 M20 196 H580" stroke="#1f1d1a" stroke-width="2"/>
-      <rect x="200" y="62" width="200" height="100" fill="#dfe8ea" stroke="#cfc4b4" stroke-width="3"/>
-      <rect x="180" y="31" width="240" height="152" fill="none" stroke="#a08c72" stroke-width="2.5" stroke-dasharray="8 6"/>
-      <path d="M180 216 H420 M180 210 V222 M420 210 V222" stroke="#1f1d1a" stroke-width="1.6"/><text x="300" y="240" text-anchor="middle">가로 = 창 가로 + 10cm</text>
-      <path d="M440 31 V183 M434 31 H446 M434 183 H446" stroke="#1f1d1a" stroke-width="1.6"/><text x="452" y="100">세로 = 천장 ~ 창틀 아래</text><text x="452" y="122">+ 10~20cm</text>`,
+  const HOWPHOTO = {
+    wall:   { lines: [ { h: 1, x1: 112, x2: 1135, y: 186, t: '가로', s: ['벽 끝에서 끝까지'] }, { x: 955, y1: 154, y2: 664, t: '세로', s: ['천장 ~ 바닥'] } ] },
+    window: { area: [325, 154, 965, 582],
+              lines: [ { h: 1, x1: 325, x2: 965, y: 618, t: '가로', s: ['창 가로 + 10cm'] }, { x: 298, y1: 154, y2: 582, t: '세로', s: ['천장 ~ 창틀 아래', '+ 10~20cm'] } ] },
+  };
+  const MRED = '#b0503a';
+  const mpill = (cx, cy, t, subs = []) => {
+    const w = t.length * 40 + 48, h = 62, sw = Math.max(0, ...subs.map(x => x.length * 25)) + 36, sh = subs.length * 34 + 18, sy = cy + h / 2 + 8;
+    return `<rect x="${cx - w / 2}" y="${cy - h / 2}" width="${w}" height="${h}" rx="31" fill="${MRED}" filter="url(#msh)"/>
+      <text x="${cx}" y="${cy + 14}" text-anchor="middle" font-size="38" font-weight="800" fill="#fff">${t}</text>` +
+      (subs.length ? `<rect x="${cx - sw / 2}" y="${sy}" width="${sw}" height="${sh}" rx="14" fill="#fff" fill-opacity=".94" filter="url(#msh)"/>` +
+        subs.map((x, i) => `<text x="${cx}" y="${sy + 37 + i * 34}" text-anchor="middle" font-size="27" font-weight="700" fill="#1f1d1a">${x}</text>`).join('') : '');
+  };
+  const mline = (x1, y1, x2, y2, horiz) => {
+    const p = `M${x1} ${y1} L${x2} ${y2} ` + (horiz ? `M${x1} ${y1 - 22} V${y1 + 22} M${x2} ${y2 - 22} V${y2 + 22}` : `M${x1 - 22} ${y1} H${x1 + 22} M${x2 - 22} ${y2} H${x2 + 22}`);
+    return `<path d="${p}" stroke="#fff" stroke-width="13" stroke-linecap="round" opacity=".9"/><path d="${p}" stroke="${MRED}" stroke-width="5.5" stroke-linecap="round"/>`;
+  };
+  const howPhoto = t => {
+    const m = HOWPHOTO[t];
+    let g = `<defs><filter id="msh" x="-20%" y="-30%" width="140%" height="170%"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity=".25"/></filter></defs>`;
+    if (m.area) { const [x1, y1, x2, y2] = m.area;
+      g += `<rect x="${x1}" y="${y1}" width="${x2 - x1}" height="${y2 - y1}" fill="${MRED}" fill-opacity=".08" stroke="#fff" stroke-width="10" opacity=".9"/>
+        <rect x="${x1}" y="${y1}" width="${x2 - x1}" height="${y2 - y1}" fill="none" stroke="${MRED}" stroke-width="4.5" stroke-dasharray="20 14"/>`; }
+    m.lines.forEach(d => g += d.h ? mline(d.x1, d.y, d.x2, d.y, 1) + mpill((d.x1 + d.x2) / 2, d.y, d.t, d.s)
+                                  : mline(d.x, d.y1, d.x, d.y2, 0) + mpill(d.x, (d.y1 + d.y2) / 2, d.t, d.s));
+    return `<img src="${PHOTO}guide_${t}_before.jpg" alt=""><svg viewBox="0 0 1248 832" font-family="Pretendard" fill="none">${g}</svg>`;
   };
   let loc = null;
   const setTab = t => {
@@ -418,7 +435,7 @@ body.final .todo { display: none; }
     document.querySelectorAll('#tabs button').forEach(b => b.classList.toggle('on', b.dataset.t === t));
     $('tabs').classList.add('picked'); $('howWrap').hidden = false;
     $('howto').innerHTML = HOWTO[t].map(([k, v]) => `<div><b>${k}</b><span>${v}</span></div>`).join('');
-    $('howfig').innerHTML = `<svg viewBox="0 0 600 270" font-family="Pretendard" font-size="15" font-weight="700" fill="#1f1d1a"><rect width="600" height="270" fill="#efe9e0"/>${HOWFIG[t]}</svg>`;
+    $('howfig').innerHTML = howPhoto(t);
   };
   $('tabs').onclick = e => { const b = e.target.closest('[data-t]'); if (b) { setTab(b.dataset.t); update(); } };
 
