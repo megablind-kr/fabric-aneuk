@@ -256,20 +256,26 @@ b, strong { font-weight: 700; }
 .pleat2 h4 { font-size: 36px; font-weight: 800; margin-top: 18px; }
 .pleat2 p { font-size: 22px; color: var(--sub); line-height: 1.55; }
 
-.gsub { font-size: 30px; font-weight: 800; margin-top: 90px; padding-bottom: 20px; border-bottom: 1px solid var(--ink); }
+.gsub { font-size: 30px; font-weight: 800; margin-top: 90px; }
+.pgroup { margin: 70px -40px 0; padding: 30px 40px 40px; background: #f8f5f0; border-radius: 12px; }
+.pgroup + .pgroup { margin-top: 24px; }
+.pgroup .gsub { margin-top: 0; display: flex; align-items: center; gap: 12px; }
 .badge { display: inline-block; font-style: normal; vertical-align: middle; margin-left: 6px; padding: 3px 9px; border-radius: 3px; background: var(--accent); color: #fff; font-size: 14px; font-weight: 700; letter-spacing: .04em; line-height: 1.3; }
 .badge.md { background: var(--ink); }
-.pleat3 { display: grid; grid-template-columns: repeat(3, 1fr); }
-.pleat3 > div { padding: 36px 20px 0; }
-.pleat3 > div:first-child { padding-left: 0; }
-.pleat3 > div:last-child { padding-right: 0; }
-.pleat3 > div + div { border-left: 1px solid #d8d1c7; }
-.pleat3 .pleat-art { height: 220px; }
-.pleat3 .pleat-art svg { display: block; width: 100%; height: 100%; }
+[data-sec="10_주름가이드"] .body { line-height: 1.5; }
+.pleat3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding-top: 22px; }
+.pleat3 > div, .pleat4 > div { position: relative; padding: 14px 14px 22px; border: 2px solid transparent; border-radius: 6px; background: #e6e0d6; }
+.pleat3 > .pick, .pleat4 > .pick { border-color: var(--ink); background: #fff; box-shadow: 0 10px 24px rgba(31,29,26,.10); }
+.pleat3 .pick-tag, .pleat4 .pick-tag { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); padding: 5px 16px; border-radius: 99px; background: var(--ink); color: #fff; font-size: 15px; font-weight: 800; letter-spacing: .04em; white-space: nowrap; z-index: 1; }
+.pleat3 > .pick h4, .pleat4 > .pick h4 { color: var(--ink); }
+.pleat3 .pleat-art { aspect-ratio: 1 / 1; overflow: hidden; border-radius: 6px; background: #eee; }
+.pleat3 .pleat-art img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; }
 .pleat3 h4, .pleat4 h4 { font-size: 27px; font-weight: 800; margin-top: 16px; white-space: nowrap; }
 .pleat3 p, .pleat4 p { font-size: 19px; color: var(--sub); line-height: 1.5; margin-top: 4px; }
-.pleat4 { display: grid; grid-template-columns: 1fr 1fr; gap: 44px 24px; margin-top: 36px; }
-.pleat4 .ph { height: 260px; font-size: 18px; }
+.pleat3 > div p { font-size: 16px; letter-spacing: -.02em; white-space: nowrap; }
+.pleat4 > div p { font-size: 16px; letter-spacing: -.02em; }
+.pleat4 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px 14px; margin-top: 22px; }
+.pleat4 .ph { height: auto; aspect-ratio: 4 / 3; border-radius: 6px; font-size: 16px; }
 
 .mstep { margin-top: 90px; }
 .mstep .head { display: flex; align-items: baseline; gap: 22px; padding-bottom: 26px; border-bottom: 1px solid var(--ink); }
@@ -302,7 +308,7 @@ b, strong { font-weight: 700; }
 .mcase.card .mphoto { margin: 26px 0 10px; }
 .mcase.card .mrule div { border-color: #ddd5ca; }
 .mcase.card .mrule div:last-child { border-bottom: 0; }
-.mcase .head .ck { flex: none; width: 36px; height: 36px; border-radius: 50%; background: var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.3l3 3 6-6.6' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% no-repeat; }
+.mcase .head .ck, .pgroup .gsub .ck { flex: none; width: 36px; height: 36px; border-radius: 50%; background: var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.3l3 3 6-6.6' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% no-repeat; }
 .mphoto { margin: 30px -40px 10px; }
 .mphoto .pic { position: relative; border-radius: 10px; overflow: hidden; }
 .mphoto .pic img { display: block; width: 100%; }
@@ -726,28 +732,32 @@ const LIMIT = { maxHeight: 260, maxSingle: 240 };
 <section data-sec="10_주름가이드" class="sec stone">
   <div class="label">Pleats</div>
   <h2 class="h2">주름 선택 가이드</h2>
-  <p class="body">가로는 실측대로 입력하세요.<br>선택한 배수만큼 원단을 넉넉히 넣어 제작합니다.</p>
+  <p class="body">주름의 배수와 형태에 따라 커튼의 분위기가 달라져요.<br>원하는 느낌의 주름을 사진으로 비교해 보세요.</p>
 
-  <h3 class="gsub">주름 배수</h3>
+  <div class="pgroup">
+  <h3 class="gsub"><span class="ck"></span>주름 배수</h3>
   <div class="pleat3">
-    <div><div class="pleat-art" data-ratio="1"></div>
-      <h4>1배</h4><p>주름 없는<br>평평한 가림막 형태</p></div>
-    <div><div class="pleat-art" data-ratio="1.5"></div>
-      <h4>1.5배 <i class="badge">BEST</i></h4><p>자연스러운 주름</p></div>
-    <div><div class="pleat-art" data-ratio="2"></div>
-      <h4>2배 <i class="badge md">MD 추천</i></h4><p>풍성한 볼륨감,<br>호텔 같은 분위기</p></div>
+    <div><div class="pleat-art"><img src="../images/pleat_1x.jpg" alt="주름 1배"></div>
+      <h4>1배 주름</h4><p>주름 없는 평평한 가림막 형태</p></div>
+    <div><div class="pleat-art"><img src="../images/pleat_15x.jpg" alt="주름 1.5배"></div>
+      <h4>1.5배 주름</h4><p>자연스러운 주름</p></div>
+    <div class="pick"><span class="pick-tag">추천</span><div class="pleat-art"><img src="../images/pleat_2x.jpg" alt="주름 2배"></div>
+      <h4>2배 주름</h4><p>호텔같은 분위기의 풍성한 주름</p></div>
+  </div>
   </div>
 
-  <h3 class="gsub">주름 형태</h3>
+  <div class="pgroup">
+  <h3 class="gsub"><span class="ck"></span>주름 형태</h3>
   <div class="pleat4">
     <div><div class="ph">사진 필요: 평주름</div>
       <h4>평주름</h4><p>기본 주름 형태</p></div>
     <div><div class="ph">사진 필요: 나비주름</div>
-      <h4>나비주름 <i class="badge">BEST</i></h4><p>상단 주름을 두 겹씩 잡은 풍성한 형태</p></div>
+      <h4>나비주름</h4><p>상단 주름을 두 겹씩 잡은 풍성한 형태</p></div>
     <div><div class="ph">사진 필요: 평주름 + 형상기억</div>
       <h4>평주름 + 형상기억</h4><p>열처리로 세탁 후에도 주름을 유지하는 가공</p></div>
-    <div><div class="ph">사진 필요: 나비주름 + 형상기억</div>
-      <h4>나비주름 + 형상기억 <i class="badge md">MD 추천</i></h4><p>나비주름의 풍성함에 형상기억 가공까지 더해, 세탁 후에도 주름이 그대로 유지돼요</p></div>
+    <div class="pick"><span class="pick-tag">추천</span><div class="ph">사진 필요: 나비주름 + 형상기억</div>
+      <h4>나비주름 + 형상기억</h4><p>나비주름의 풍성함에 형상기억 가공까지 더해,<br>세탁 후에도 주름이 그대로 유지돼요</p></div>
+  </div>
   </div>
 </section>
 
@@ -1080,37 +1090,6 @@ const LIMIT = { maxHeight: 260, maxSingle: 240 };
     </section>`).join('');
 
 
-  document.querySelectorAll('.pleat-art').forEach((el, idx) => {
-    const ratio = +el.dataset.ratio, W = 300, BASE = 300;
-    const folds = Math.round(4 + (ratio - 1) * 12);
-    const fw = (W - 20) / folds, depth = (ratio - 1) * 1.0;
-    const g = `pg${idx}`;
-    let panels = '', hooks = '', hem = `M 10 168`;
-    for (let k = 0; k < folds; k++) {
-      const x = 10 + k * fw;
-      panels += `<rect x="${x.toFixed(1)}" y="16" width="${(fw + .6).toFixed(1)}" height="${(150 + (k % 2 ? 4 : 0))}" fill="url(#${g})"/>`;
-      hooks += `<circle cx="${(x + fw / 2).toFixed(1)}" cy="12" r="2.2" fill="#1f1d1a"/>`;
-      hem += ` Q ${(x + fw / 2).toFixed(1)} ${(166 + 9 * depth).toFixed(1)} ${(x + fw).toFixed(1)} 168`;
-    }
-    const amp = 6 + (ratio - 1) * 22; let top = `M 10 ${232}`;
-    for (let k = 0; k < folds; k++) { const x = 10 + k * fw; top += ` q ${(fw / 2).toFixed(1)} ${(k % 2 ? amp : -amp).toFixed(1)} ${fw.toFixed(1)} 0`; }
-    el.innerHTML = `<svg viewBox="0 0 300 290" preserveAspectRatio="xMidYMin meet">
-      <defs><linearGradient id="${g}" x1="0" x2="1">
-        <stop offset="0" stop-color="#ece6dc"/><stop offset=".4" stop-color="#ffffff"/>
-        <stop offset=".78" stop-color="${depth > .7 ? '#d2c8b9' : '#ddd5c8'}"/><stop offset="1" stop-color="${depth > .7 ? '#b9ad9b' : '#cbc1b2'}"/>
-      </linearGradient></defs>
-      <rect x="4" y="7" width="292" height="6" rx="3" fill="#1f1d1a"/>
-      ${hooks}
-      <g>${panels}</g>
-      <path d="${hem} L 290 180 L 10 180 Z" fill="#efebe5"/>
-      <path d="${hem}" fill="none" stroke="#d6cdbf" stroke-width="1"/>
-      <line x1="10" y1="200" x2="290" y2="200" stroke="#a08c72" stroke-width="1"/>
-      <path d="M10 195 V205 M290 195 V205" stroke="#a08c72" stroke-width="1"/>
-      <text x="150" y="194" text-anchor="middle" font-size="11" font-weight="600" fill="#a08c72" font-family="Pretendard">가로 ${BASE}cm</text>
-      <path d="${top}" fill="none" stroke="#1f1d1a" stroke-width="1.6" stroke-linejoin="round"/>
-      <text x="150" y="282" text-anchor="middle" font-size="12" font-weight="700" fill="#1f1d1a" font-family="Pretendard">원단 ${BASE * ratio}cm 사용</text>
-    </svg>`;
-  });
   document.getElementById('rails').innerHTML = RAILS.map(r => `
     <div class="part">
       <div class="ph">사진 필요: ${r.name}</div>
