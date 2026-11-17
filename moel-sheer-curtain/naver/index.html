@@ -296,17 +296,16 @@ b, strong { font-weight: 700; }
 .mcase .head .s, .calc .head .s { font-size: 18px; font-weight: 700; letter-spacing: .25em; color: var(--accent); }
 .mcase .head h3, .calc .head h3 { font-size: 34px; font-weight: 800; }
 .mcase .head:has(.ck) { align-items: center; gap: 14px; }
-.mcase.card { background: var(--stone); margin-left: -80px; margin-right: -80px; padding: 44px 16px 16px; }   .mcase .head .s.hand { font-family: 'Dancing Script', cursive; font-size: 44px; font-weight: 700; font-style: italic; letter-spacing: 0; color: var(--accent); transform: rotate(-8deg) translateY(4px); display: inline-block; line-height: 1; }
+.mcase.card { background: linear-gradient(180deg, #fff 0%, var(--stone) 45%); margin-left: -80px; margin-right: -80px; padding: 44px 16px 16px; }   .mcase .head .s.hand { font-family: 'Dancing Script', cursive; font-size: 44px; font-weight: 700; font-style: italic; letter-spacing: 0; color: var(--accent); transform: rotate(-8deg) translateY(4px); display: inline-block; line-height: 1; }
 .mcase.card .head, .mcase.card .mrule, .mcase.card .mnote { padding-left: 64px; padding-right: 64px; }
-.mcase.card .bx { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; padding-bottom: 20px; }   .mcase.card .bx .mphoto { margin: 26px 0 0 48px; }
+.mcase.card .bx { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; padding-bottom: 20px; padding-right: 64px; }   .mcase.card .bx .mphoto { margin: 26px 0 0 64px; }
 .mcase.card .bx .pic { aspect-ratio: 16 / 10; }   .mcase.card .bx .pic img { height: 100%; object-fit: cover; object-position: center bottom; }
 .mcase.card .bxt { margin-top: 26px; font-size: 21px; line-height: 1.6; color: var(--sub); white-space: nowrap; letter-spacing: -.03em; }
 .mcase.card .bxt b { color: var(--warn); font-weight: 800; }
 .mcase.card { margin-top: 40px; }
 .mcase.card + .mcase.card { margin-top: 15px; }
 .mcase.card .head { border-bottom: 0; padding-bottom: 0; }
-.mcase.card .mphoto { margin: 26px 0 10px; }
-.mcase.card .mrule div { border-color: #ddd5ca; }
+.mcase.card .mphoto { margin: 26px 64px 10px; }   .mcase.card .mrule div { border-color: #ddd5ca; }
 .mcase.card .mrule div:last-child { border-bottom: 0; }
 .mcase .head .ck, .pgroup .gsub .ck { flex: none; width: 36px; height: 36px; border-radius: 50%; background: var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.3l3 3 6-6.6' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% no-repeat; }
 .mphoto { margin: 30px -40px 10px; }
