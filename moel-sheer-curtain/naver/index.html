@@ -206,6 +206,56 @@ b, strong { font-weight: 700; }
 .cncard .gray i { flex: 1; }
 .cncard p { margin-top: 44px; font-size: 22px; color: #444; line-height: 1.75; }
 
+.cp-top { padding-bottom: 60px; }
+.cp-rest { padding-top: 60px; }
+.cp-head { margin-top: 90px; }
+.cp-head .pt, .cp-proc .pt, .cp-duo .pt { display: inline-block; font-size: 17px; font-weight: 800; letter-spacing: .2em; color: var(--accent); }
+.cp-head h4 { font-size: 40px; font-weight: 800; line-height: 1.35; letter-spacing: -.03em; }
+.cp-tt { display: flex; align-items: flex-start; gap: 22px; }
+.cp-tt { align-items: center; }
+.cp-tt .pt { flex: none; display: flex; flex-direction: column; align-items: center; font-size: 72px; font-weight: 800; letter-spacing: 0; line-height: 1; }
+.cp-tt .pt small { font-size: 15px; font-weight: 800; letter-spacing: .2em; margin: 0 -.2em 8px 0; }
+.cp-head p { font-size: 23px; line-height: 1.6; color: rgba(244,241,236,.7); margin-top: 16px; }
+.cp-vs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
+.cp-card { position: relative; padding: 16px 16px 24px; border-radius: 10px; background: rgba(255,255,255,.05); border: 2px solid transparent; }
+.cp-card .tag { position: absolute; top: 28px; left: 28px; z-index: 1; padding: 6px 14px; border-radius: 99px; font-size: 16px; font-weight: 800; background: rgba(31,29,26,.75); color: #f4f1ec; }
+.cp-card.us { border-color: var(--accent); background: rgba(160,140,114,.12); }
+.cp-card.us .tag { background: var(--accent); color: #fff; }
+.cp-card .pic { aspect-ratio: 4 / 5; border-radius: 6px; overflow: hidden; }
+.cp-card .pic img { width: 100%; height: 100%; object-fit: cover; object-position: center bottom; display: block; }
+.cp-card ul { list-style: none; margin-top: 18px; padding: 0 4px; }
+.cp-card li { position: relative; padding-left: 28px; font-size: 19px; line-height: 1.5; margin-top: 8px; color: rgba(244,241,236,.55); letter-spacing: -.02em; }
+.cp-card li::before { position: absolute; left: 0; top: 0; font-weight: 800; }
+.cp-card ul.nat li { color: rgba(244,241,236,.8); }
+.cp-card ul.nat li::before { content: '·'; font-size: 28px; line-height: 27px; color: rgba(244,241,236,.6); }
+.cp-card ul.ok li { color: #fff; font-weight: 600; }
+.cp-card ul.ok li::before { content: '✓'; color: #e3d3b8; }
+.cp-card ul.no li::before { content: '✕'; color: rgba(244,241,236,.4); }
+.cp-head p b.hl { color: #e3d3b8; font-weight: 700; }
+.cp-vs.pin { margin-top: 50px; }
+.cp-vs.pin .pic { position: relative; aspect-ratio: 3 / 4; overflow: visible; }
+.cp-vs.pin .pic > img { border-radius: 6px; object-position: center; }
+.cp-vs.pin .zoom { position: absolute; right: 14px; bottom: 14px; width: 132px; height: 132px; border-radius: 50%; overflow: hidden; background: #fff; box-shadow: 0 8px 22px rgba(0,0,0,.35); }
+.cp-vs.pin .zoom img { position: absolute; left: 50%; top: 50%; width: 158%; height: auto; transform: translate(-50%, -50%); }
+.cp-card .pic .ph { height: 100%; margin: 0; padding: 0 30px; text-align: center; font-size: 16px; line-height: 1.5; }
+.cp-head + .cp-vs { margin-top: 50px; }
+.cp-vs + .cp-head { margin-top: 110px; }
+.cp-head.has-tape { position: relative; }
+.cp-tapeimg { position: absolute; right: -20px; top: 13px; width: 230px; pointer-events: none; filter: drop-shadow(0 10px 24px rgba(0,0,0,.45)); }
+.cp-proc { margin-top: 70px; text-align: center; }
+.cp-proc h5 { font-size: 26px; font-weight: 700; margin-top: 10px; letter-spacing: -.02em; }
+.cp-gif { background: var(--dark); }
+.cp-gif img { display: block; width: 100%; }
+.cp-cta { display: flex; align-items: center; gap: 16px; padding: 22px 26px; border-radius: 10px; background: rgba(160,140,114,.16); border: 1px solid rgba(160,140,114,.5); }
+.cp-cta .ck { flex: none; width: 34px; height: 34px; border-radius: 50%; background: var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.3l3 3 6-6.6' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% no-repeat; }
+.cp-cta p { font-size: 22px; line-height: 1.5; color: #f4f1ec; }
+.cp-cta b { color: #e3d3b8; font-weight: 800; }
+.cp-cta small { font-size: 17px; color: rgba(244,241,236,.6); }
+.cp-rest .cp-head:first-of-type { margin-top: 100px; }
+.cp-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 90px; }
+.cp-duo > div { padding: 34px 30px 36px; border-radius: 10px; background: rgba(255,255,255,.05); }
+.cp-duo h4 { font-size: 32px; font-weight: 800; line-height: 1.35; margin-top: 12px; letter-spacing: -.03em; }
+.cp-duo p { font-size: 20px; line-height: 1.6; color: rgba(244,241,236,.7); margin-top: 14px; }
 .checks { margin-top: 70px; }
 .check { display: grid; grid-template-columns: 90px 1fr; padding: 40px 0; border-top: 1px solid rgba(255,255,255,.14); }
 .check .n { font-size: 26px; font-weight: 600; letter-spacing: .1em; color: var(--accent); padding-top: 6px; }
@@ -694,35 +744,79 @@ const LIMIT = { maxHeight: 260, maxSingle: 240 };
   </div>
 </section>
 
-<section data-sec="08_공통특징" class="sec dark">
+<section data-sec="08-1_공통특징" class="sec dark cp-top">
   <div class="label">Check Point</div>
   <h2 class="h2">커튼의 완성은<br><span class="light">디테일에서</span></h2>
-  <div class="checks">
-    <div class="check"><div class="n">01</div><div>
-      <h4>형상기억가공으로 언제나 정돈된 주름</h4>
-      <p>고온·고압으로 주름 라인을 잡아 열고 닫을 때 주름이 일정하게 모이고, 세탁 후에도 유지됩니다.</p>
-      <p class="optnote">형상기억가공은 주문 시 주름 형태에서 <b>'+ 형상기억'</b> 옵션을 선택해야 적용됩니다.</p>
-      <div class="ph" style="height:340px;">사진 필요: 일반 커튼 vs 형상기억 커튼</div>
-    </div></div>
-    <div class="check"><div class="n">02</div><div>
-      <h4>강화플라스틱핀 사용</h4>
-      <p>일반 쇠핀보다 관리가 쉽고 원단을 상하게 하지 않아요.</p>
-      <table class="vs">
-        <tr><th></th><th>일반 커튼핀</th><th style="color:#fff">강화플라스틱핀</th></tr>
-        <tr><th>세탁</th><td>핀을 모두 빼야 함</td><td class="us">빼지 않고 세탁</td></tr>
-        <tr><th>높이 조절</th><td>어려움</td><td class="us">쉽고 일정하게</td></tr>
-        <tr><th>원단</th><td>손상 가능</td><td class="us">손상 없음</td></tr>
-      </table>
-      <div class="ph" style="height:320px;margin-top:26px;">사진 필요: 일반 쇠핀 vs 강화플라스틱핀 클로즈업 (커튼에 꽂힌 모습)</div>
-    </div></div>
-    <div class="check"><div class="n">03</div><div>
-      <h4>1cm 단위 맞춤 제작</h4>
-      <p>기성 사이즈에 창을 맞추지 마세요. 우리 집 창에 딱 맞게 제작합니다.</p>
-    </div></div>
-    <div class="check"><div class="n">04</div><div>
-      <h4>이음선 없이 한 장으로</h4>
-      <p>원단을 이어 붙이지 않고 한 장으로 제작해, 넓은 창에 달아도 중간에 끊기는 선 없이 매끈하게 떨어집니다.</p>
-    </div></div>
+
+  <div class="cp-head">
+    <div class="cp-tt"><span class="pt"><small>POINT</small>01</span>
+    <h4>형상기억가공</h4></div>
+    <p>고온·고압으로 주름 라인을 잡아, 열고 닫을 때 주름이 일정하게 모이고<br>세탁 후에도 그대로 유지됩니다.</p>
+  </div>
+  <div class="cp-vs">
+    <div class="cp-card">
+      <span class="tag">일반 커튼</span>
+      <div class="pic"><img src="../images/shape_normal.jpg" alt="일반 커튼"></div>
+      <ul class="nat"><li>자연스럽게 흐르는 주름</li><li>내추럴하고 편안한 무드</li><li>밑단이 부드럽게 퍼지는 실루엣</li></ul>
+    </div>
+    <div class="cp-card us">
+      <span class="tag">형상기억 커튼</span>
+      <div class="pic"><img src="../images/shape_memory.jpg" alt="형상기억 커튼"></div>
+      <ul class="ok"><li>일정한 간격의 곧은 주름</li><li>세탁 후에도 주름 유지</li><li>밑단까지 가지런하게</li></ul>
+    </div>
+  </div>
+  <div class="cp-proc"><span class="pt">PROCESS</span><h5>주름 하나하나를 잡아 고온·고압으로 고정해요</h5></div>
+</section>
+<section data-sec="08-2_형상기억가공" class="cp-gif">
+  <img src="../images/shape_process.gif" data-poster="../images/shape_process_poster.jpg" alt="형상기억 가공 과정">
+</section>
+<section data-sec="08-3_공통특징" class="sec dark cp-rest">
+  <div class="cp-cta">
+    <span class="ck"></span>
+    <p>주문 시 주름 형태에서 <b>'+ 형상기억'</b>을 선택해 주세요.<br><small>선택한 경우에만 형상기억가공이 적용됩니다.</small></p>
+  </div>
+
+  <div class="cp-head">
+    <div class="cp-tt"><span class="pt"><small>POINT</small>02</span>
+    <h4>강화플라스틱핀 사용</h4></div>
+    <p><b class="hl">모든 커튼에 강화플라스틱핀을 사용해요.</b><br>일반 쇠핀보다 관리가 쉽고 원단을 상하게 하지 않아요.</p>
+  </div>
+  <div class="cp-vs pin">
+    <div class="cp-card">
+      <span class="tag">일반 쇠핀</span>
+      <div class="pic"><img src="../images/pin_metal_on.jpg" alt="커튼에 꽂은 일반 쇠핀"><span class="zoom"><img src="../images/pin_metal.jpg" alt="일반 쇠핀"></span></div>
+      <ul class="no"><li>세탁할 때 핀을 모두 빼야 해요</li><li>높이를 맞추기 어려워요</li><li>원단이 상할 수 있어요</li></ul>
+    </div>
+    <div class="cp-card us">
+      <span class="tag">강화플라스틱핀</span>
+      <div class="pic"><img src="../images/pin_plastic_on.jpg" alt="커튼에 꽂은 강화플라스틱핀"><span class="zoom"><img src="../images/pin_plastic.jpg" alt="강화플라스틱핀"></span></div>
+      <ul class="ok"><li>핀을 꽂은 채로 세탁 OK</li><li>높이를 쉽고 일정하게 조절</li><li>원단 손상 걱정 없음</li></ul>
+    </div>
+  </div>
+
+  <div class="cp-head has-tape">
+    <img class="cp-tapeimg" src="../images/tape.png" alt="">
+    <div class="cp-tt"><span class="pt"><small>POINT</small>03</span>
+    <h4>1cm 단위 맞춤 제작</h4></div>
+    <p>기성 사이즈에 창을 맞추지 마세요.<br>실측한 사이즈 그대로, 우리 집 창에 딱 맞게 제작합니다.</p>
+  </div>
+
+  <div class="cp-head">
+    <div class="cp-tt"><span class="pt"><small>POINT</small>04</span>
+    <h4>이음선 없이 한 장으로</h4></div>
+    <p>폭이 넓은 대폭 원단을 써서 이어 붙이지 않아요.<br>넓은 창에 달아도 끊기는 선 없이 매끈하게 떨어집니다.</p>
+  </div>
+  <div class="cp-vs">
+    <div class="cp-card">
+      <span class="tag">소폭 원단</span>
+      <div class="pic"><div class="ph">사진 필요: 이음선이 보이는 소폭 커튼</div></div>
+      <ul class="no"><li>원단을 이어 붙여 이음선이 생겨요</li><li>빛이 들면 이음선이 더 도드라져요</li></ul>
+    </div>
+    <div class="cp-card us">
+      <span class="tag">대폭 원단</span>
+      <div class="pic"><div class="ph">사진 필요: 이음선 없는 대폭 커튼 (같은 넓은 창)</div></div>
+      <ul class="ok"><li>이음선 없이 한 장으로 매끈하게</li><li>넓은 창에서도 깔끔한 실루엣</li></ul>
+    </div>
   </div>
 </section>
 
@@ -903,6 +997,7 @@ const LIMIT = { maxHeight: 260, maxSingle: 240 };
 
 <script>
   const HASH = new URLSearchParams(location.hash.slice(1));
+  if (HASH.has('still')) document.querySelectorAll('img[data-poster]').forEach(i => i.src = i.dataset.poster);
   if (HASH.has('final')) document.body.classList.add('final');
 
   const LOOP = 8;
@@ -960,6 +1055,8 @@ const LIMIT = { maxHeight: 260, maxSingle: 240 };
       lines: [ { h: 1, x1: 112, x2: 1135, y: 186, t: '가로' }, { x: 955, y1: 154, y2: 664, t: '세로' } ] },
     window: { area: [325, 154, 965, 582],
       lines: [ { h: 1, x1: 325, x2: 965, y: 618, t: '가로', s: ['창 가로 + 10cm'] }, { x: 298, y1: 154, y2: 582, t: '세로', s: ['천장 ~ 창틀 아래', '+ 10~20cm'] } ] },
+    fit: { img: 'guide_wall_after',
+      lines: [ { h: 1, x1: 112, x2: 1135, y: 186, t: '가로 327cm' }, { x: 955, y1: 154, y2: 664, t: '세로 243cm' } ] },
     box: { img: 'guide_box_zoom', vb: [1000, 750], z: 1.35, sz: .92, tags: [{ x: 650, y: 240, t: '커튼 박스' }],
       lines: [ { x: 520, y1: 342, y2: 728, ly: 465, t: '세로', s: ['박스 안쪽 가장 높은 곳 ~ 바닥까지'], arrow: 1 } ] },
   };
@@ -1003,7 +1100,7 @@ const LIMIT = { maxHeight: 260, maxSingle: 240 };
       img.style.webkitMaskImage = img.style.maskImage = `linear-gradient(to bottom, #000 ${pos - 40}%, transparent ${pos}%)`;
       img.style.opacity = Math.min(1, r * 1.3);
     });
-    document.querySelectorAll('.mphoto:not([data-photo=box]) svg').forEach(svg => {
+    document.querySelectorAll('.mphoto:not([data-photo=box]):not([data-photo=fit]) svg').forEach(svg => {
       const area = svg.querySelector('.marea');
       if (area) area.style.opacity = clamp01(t / .05) * lineOut;
       svg.querySelectorAll('.mline').forEach((g, i) => {
