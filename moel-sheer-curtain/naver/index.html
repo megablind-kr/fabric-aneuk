@@ -458,6 +458,9 @@ body.final .todo { display: none; }
   border-radius: 50%; background: currentColor; }
 
 .lineup .cell .swatch[data-code="007-12-1"], .lineup .cell .swatch[data-code="007-13-1"] { background-size: 250% auto; }
+.calc .head .ctag { margin-left: auto; align-self: center; font-style: normal; font-size: 18px; font-weight: 700; padding: 7px 16px; border-radius: 999px; border: 1.5px solid var(--line); color: var(--sub); background: #fff; }
+.calc .head .ctag.on { border-color: var(--accent); background: var(--accent); color: #fff; }
+.cdesc { margin-top: 26px; font-size: 23px; line-height: 1.6; }
 
 </style>
 <script>
@@ -888,20 +891,18 @@ const LIMIT = { maxHeight: 260, maxSingle: 240 };
 
 <section data-sec="12_사이즈계산" class="sec stone">
   <div class="label">Size Calculation</div>
-  <h2 class="h2">가로 · 세로<br><span class="light">사이즈 계산 방법</span></h2>
+  <h2 class="h2">가로는 그대로,<br><span class="light">세로만 계산해 주세요</span></h2>
 
   <div class="calc">
-    <div class="head"><span class="s">WIDTH</span><h3>가로 사이즈</h3></div>
-    <ol class="clist">
-      <li>실측한 가로 길이를 입력해 주세요.</li>
-      <li>실측한 가로 길이는 <b>수량 옵션</b>에서 조절해 주세요.</li>
-    </ol>
-    <div class="qtydemo"><span class="lb">가로 320cm</span><i class="arr"></i><div class="qty"><span>−</span><b>320</b><span>+</span></div></div>
+    <div class="head"><span class="s">WIDTH</span><h3>가로 사이즈</h3><em class="ctag">계산 없이 그대로</em></div>
+    <p class="cdesc">실측한 가로 길이를 <b>그대로 수량 옵션</b>에 입력해 주세요.</p>
+    <div class="qtydemo"><span class="lb">실측 가로 320cm</span><i class="arr"></i><div class="qty"><span>−</span><b>320</b><span>+</span></div></div>
   </div>
 
   <div class="calc">
-    <div class="head"><span class="s">HEIGHT</span><h3>세로 사이즈</h3></div>
-    <div class="formula2">실측한 세로 길이 − 부자재 높이 = 제작할 세로 길이<small>사용하는 부자재에 따라 아래 높이만큼 빼 주세요</small></div>
+    <div class="head"><span class="s">HEIGHT</span><h3>세로 사이즈</h3><em class="ctag on">부자재 높이만큼 빼기</em></div>
+    <p class="cdesc">커튼을 레일·커튼봉에 걸면 그 높이만큼 아래로 내려가기 때문에<br>설치할 <b>부자재에 따라 빼는 길이</b>가 달라요.</p>
+    <div class="formula2">실측한 세로 길이 − 부자재 높이 = 입력할 세로 길이</div>
     <div class="parts" id="rails"></div>
   </div>
 </section>
@@ -927,18 +928,7 @@ const LIMIT = { maxHeight: 260, maxSingle: 240 };
   <div class="notebox"><svg class="chk" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12"/><path d="M6.8 12.4l3.4 3.4 7-7.2"/></svg><span>커튼레일 또는 커튼봉 + 링 선택 시 <b>설치 부품(피스, 스냅 등)</b>이 함께 발송돼요.</span></div>
 </section>
 
-<section data-sec="15_설치방법" class="sec">
-  <div class="label">Installation</div>
-  <h2 class="h2">설치 방법</h2>
-  <p class="mnote"></p>
-  <div class="install">
-    <div><div class="n">01</div><div class="ph">사진 필요: 브라켓(스냅) 고정</div><h4>브라켓 고정</h4><p>설치 위치에 브라켓(스냅)을 피스로 고정해요.</p></div>
-    <div><div class="n">02</div><div class="ph">사진 필요: 레일 · 커튼봉 장착</div><h4>레일 · 커튼봉 장착</h4><p>브라켓에 레일 또는 커튼봉을 끼워 고정해요.</p></div>
-    <div><div class="n">03</div><div class="ph">사진 필요: 커튼 걸기</div><h4>커튼 걸기</h4><p>커튼 핀을 레일 롤러 또는 링에 걸어 주세요.</p></div>
-  </div>
-</section>
-
-<section data-sec="16_주문제작안내" class="sec stone">
+<section data-sec="16_주문제작안내" class="sec">
   <div class="label">Made to Order</div>
   <h2 class="h2">주문 후<br><span class="light">이렇게 만들어져요</span></h2>
   <p class="body">주문 당일 제외 <b style="color:var(--ink)">5영업일 이내 발송</b> (주말 · 공휴일 제외)</p>
@@ -952,7 +942,7 @@ const LIMIT = { maxHeight: 260, maxSingle: 240 };
   </div>
 </section>
 
-<section data-sec="17_세탁방법" class="sec">
+<section data-sec="17_세탁방법" class="sec stone">
   <div class="label">Care</div>
   <h2 class="h2">오래 예쁘게 쓰는<br><span class="light">세탁 방법</span></h2>
   <div class="care">
@@ -969,7 +959,7 @@ const LIMIT = { maxHeight: 260, maxSingle: 240 };
   </ul>
 </section>
 
-<section data-sec="18_안내사항" class="sec stone">
+<section data-sec="18_안내사항" class="sec">
   <div class="label">Notice</div>
   <h2 class="h2">구매 전<br><span class="light">꼭 확인해 주세요</span></h2>
   <div class="notice2">
