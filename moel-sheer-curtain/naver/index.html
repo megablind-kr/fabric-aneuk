@@ -467,6 +467,11 @@ body.final .todo { display: none; }
 .fab .colorsphoto .trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
 .fab .colorsphoto .trio > div { overflow: hidden; }
 .fab .colorsphoto .trio img { aspect-ratio: 840 / 1190; object-fit: cover; object-position: center; transform: scale(1.05); }   .fab .room.pair { display: flex; gap: 0; }   .fab .room.pair img { width: 100%; aspect-ratio: auto; }
+.part .pimg, .addon .pimg { width: 100%; height: 200px; object-fit: cover; object-position: 85% center; display: block; }   .part .pfig { position: relative; }
+.part .pfig img { width: 100%; aspect-ratio: 1448 / 1086; display: block; }
+.part .pfig .pdim { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.part .ph { height: auto; aspect-ratio: 1448 / 1086; }
+.fdesc { margin-top: 14px; font-size: 18px; color: var(--sub); }
 
 </style>
 <script>
@@ -560,7 +565,7 @@ const FABRICS = [
 
 
 const RAILS = [
-  { name: '커튼레일', minus: 3, note: '스냅형으로 설치할 경우 −4cm' },
+  { name: '커튼레일', minus: 3, note: '스냅형으로 설치할 경우 −4cm', photo: 'rail', dim: [402, 702] },
   { name: '커튼봉 + 링', minus: 9 },
 ];
 
@@ -920,6 +925,7 @@ const LIMIT = { maxHeight: 260, maxSingle: 240 };
     <div class="head"><span class="s">HEIGHT</span><h3>세로 사이즈</h3><em class="ctag on">부자재 높이만큼 빼기</em></div>
     <p class="cdesc">커튼을 레일·커튼봉에 걸면 그 높이만큼 아래로 내려가기 때문에<br>설치할 <b>부자재에 따라 빼는 길이</b>가 달라요.</p>
     <div class="formula2">실측한 세로 길이 − 부자재 높이 = 입력할 세로 길이</div>
+    <p class="fdesc">* 부자재는 커튼을 거는 커튼레일, 커튼봉 + 링 등을 말해요.</p>
     <div class="parts" id="rails"></div>
   </div>
 </section>
@@ -938,7 +944,7 @@ const LIMIT = { maxHeight: 260, maxSingle: 240 };
   <h2 class="h2">추가 상품 구성</h2>
   <p class="body">레일 · 커튼봉 · 자석 타이백은 기본 상품에 포함되어 있지 않아요.<br>필요하면 추가상품으로 함께 주문해 주세요.</p>
   <div class="addon">
-    <div><div class="ph">사진 필요: 커튼레일</div><h4>커튼레일</h4><p>4자 ~ 16자<br><small>예) 8자 (130~240cm) · 롤러 32개</small></p></div>
+    <div><img class="pimg" src="../images/rail.jpg" alt="커튼레일"><h4>커튼레일</h4><p>4자 ~ 16자<br><small>예) 8자 (130~240cm) · 롤러 32개</small></p></div>
     <div><div class="ph">사진 필요: 커튼봉 + 링</div><h4>커튼봉 + 링</h4><p>핀형 · 링 포함<br><small>예) 25mm 화이트 8자 (125~240cm) · 링 28개</small></p></div>
     <div><div class="ph">사진 필요: 자석 타이백</div><h4>자석 타이백</h4><p>자석으로 간편하게<br>커튼을 묶어 정리</p></div>
   </div>
@@ -1199,9 +1205,16 @@ const LIMIT = { maxHeight: 260, maxSingle: 240 };
     </section>`).join('');
 
 
+  const dimSvg = ([t, b], cm) => { const x = 1385, m = (t + b) / 2;
+    return `<svg class="pdim" viewBox="0 0 1448 1086" aria-hidden="true">
+      <path d="M0 ${t}H${x + 24}M0 ${b}H${x + 24}" stroke="#a08a72" stroke-width="5" stroke-dasharray="16 12"/>
+      <path d="M${x} ${t + 4}V${b - 4}" stroke="#a08a72" stroke-width="7"/>
+      <path d="M${x - 22} ${t + 34}L${x} ${t + 4}L${x + 22} ${t + 34}M${x - 22} ${b - 34}L${x} ${b - 4}L${x + 22} ${b - 34}" fill="none" stroke="#a08a72" stroke-width="7"/>
+      <rect x="${x - 100}" y="${m - 52}" width="200" height="104" rx="52" fill="#a08a72"/>
+      <text x="${x}" y="${m + 26}" text-anchor="middle" font-size="74" font-weight="800" fill="#fff">${cm}cm</text></svg>`; };
   document.getElementById('rails').innerHTML = RAILS.map(r => `
     <div class="part">
-      <div class="ph">사진 필요: ${r.name}</div>
+      ${r.photo ? `<div class="pfig"><img src="${PHOTO}${r.photo}.jpg" alt="${r.name}">${r.dim ? dimSvg(r.dim, r.minus) : ''}</div>` : `<div class="ph">사진 필요: ${r.name}</div>`}
       <h4>${r.name}</h4>
       <div class="eq">세로 실측 <b>− ${r.minus}cm</b> = 최종 세로 길이<small>${r.minus}cm = ${r.name} 높이</small></div>
       <p class="exm">예) 실측 240cm → <b>${240 - r.minus}cm</b> 입력</p>
