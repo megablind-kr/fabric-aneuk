@@ -291,7 +291,7 @@ b, strong { font-weight: 700; }
 .fab .fnote { margin: 50px 80px 0; padding: 26px 0 0; border-top: 1px solid var(--warn); color: var(--warn); font-size: 22px; font-weight: 500; }
 .fab .room { margin-top: 70px; }
 .fab .room img { aspect-ratio: 860 / 1050; object-fit: cover; }
-.fab .room + .room { margin-top: 6px; }
+.fab .room.full img { aspect-ratio: auto; }   .fab .room + .room { margin-top: 6px; }
 .fab .room-cap { position: absolute; left: 30px; bottom: 26px; background: rgba(255,255,255,.88); color: var(--ink);
   font-size: 18px; font-weight: 600; padding: 8px 16px; letter-spacing: -0.01em; }
 .fab.alt { background: var(--stone); }
@@ -461,6 +461,12 @@ body.final .todo { display: none; }
 .calc .head .ctag { margin-left: auto; align-self: center; font-style: normal; font-size: 18px; font-weight: 700; padding: 7px 16px; border-radius: 999px; border: 1.5px solid var(--line); color: var(--sub); background: #fff; }
 .calc .head .ctag.on { border-color: var(--accent); background: var(--accent); color: #fff; }
 .cdesc { margin-top: 26px; font-size: 23px; line-height: 1.6; }
+.fab .pcap { position: absolute; right: 26px; bottom: 22px; color: #fff; text-align: right; font-size: 17px; font-weight: 700; line-height: 1.35;
+  text-shadow: 0 1px 3px rgba(0,0,0,.45), 0 2px 12px rgba(0,0,0,.35); pointer-events: none; }
+.fab .pcap small { display: block; font-size: 14px; font-weight: 500; }
+.fab .colorsphoto .trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.fab .colorsphoto .trio > div { overflow: hidden; }
+.fab .colorsphoto .trio img { aspect-ratio: 840 / 1190; object-fit: cover; object-position: center; transform: scale(1.05); }   .fab .room.pair { display: flex; gap: 0; }   .fab .room.pair img { width: 100%; aspect-ratio: auto; }
 
 </style>
 <script>
@@ -484,6 +490,8 @@ const FABRICS = [
     space: '거실 · 다이닝 · 큰 창',
     colors: [{ code: '10806-1', name: '내추럴 아이보리', hex: '#efe9dc' }],
     room: '10806-1_room', rooms: ['10806-1_room', '10806-1_room2'], close: '10806-1_close',
+    roomFull: true,
+    photoCap: true,
   },
   {
     no: '02', name: '웨이브 크링클', mix: '폴리에스터 100%', thin: 5, en: 'Wave Crinkle',
@@ -496,7 +504,11 @@ const FABRICS = [
       { code: '003-2-2', name: '퓨어 화이트', hex: '#f7f6f2' },
       { code: '003-2-3', name: '샌드 베이지', hex: '#ddd0bc' },
     ],
-    room: '003-2-1_room', rooms: ['003-2-1_room', '003-2-2_room', '003-2-3_room'], close: '003-2-2_close', colorsPhoto: '003-2_colors',
+    lineupPhoto: '003-2-2_vase',
+    roomFull: true,
+    photoCap: true,
+    room: '003-2-1_room', rooms: ['003-2-1_room', '003-2-2_room', { pair: ['003-2-3_room2', '003-2-3_room'], ratio: [1, 1284 / 1720] }], close: '003-2-2_close',
+    colorsPhoto: ['003-2-1_tone', '003-2-2_tone', '003-2-3_tone'],
   },
   {
     no: '03', name: '버블 엠보', mix: '폴리에스터 100%', thin: 6, en: 'Bubble Emboss',
@@ -509,7 +521,9 @@ const FABRICS = [
       { code: '003-8-2', name: '퓨어 화이트', hex: '#f7f7f4' },
       { code: '003-8-3', name: '그레이지', hex: '#d6cdbf' },
     ],
-    room: '003-8-1_room', rooms: ['003-8-1_room', '003-8-2_room', '003-8-3_room'], close: '003-8-3_close', colorsPhoto: '003-8_colors',
+    photoCap: true, roomFull: true,
+    room: '003-8-1_room', rooms: [{ pair: ['003-8-1_room2', '003-8-1_room3'], ratio: [1585 / 2362, 1] }, '003-8-2_room', { pair: ['003-8-3_room', '003-8-3_room2'], ratio: [1284 / 1720, 1720 / 1290] }], close: '003-8-3_close',
+    colorsPhoto: ['003-8-1_tone', '003-8-2_tone', '003-8-3_tone'],
   },
   {
     no: '04', name: '워싱 크링클', mix: '면 10% / 폴리에스터 90%', thin: 4, en: 'Washed Crinkle',
@@ -518,7 +532,8 @@ const FABRICS = [
     mood: '컬렉션 중 가장 내추럴하고 빈티지한 무드, 햇살이 많이 들어옴',
     space: '내추럴 · 라탄 · 우드 인테리어',
     colors: [{ code: '007-7-1', name: '내추럴 아이보리', hex: '#ece4d4' }],
-    room: '007-7-1_room', close: '007-7-1_close',
+    photoCap: true, roomFull: true,
+    room: '007-7-1_room', rooms: ['007-7-1_room', '007-7-1_room2'], close: '007-7-1_close',
     notice: '구김은 원단 고유의 디자인입니다. 다림질로 펴지지 않는 것이 정상입니다.',
   },
   {
@@ -528,6 +543,7 @@ const FABRICS = [
     mood: '멀리서는 무지, 가까이서는 결이 보이는 모던함',
     space: '모던 · 미니멀 · 아파트 거실',
     colors: [{ code: '007-12-1', name: '오프화이트', hex: '#f3f0e8' }],
+    photoCap: true,
     room: '007-12-1_room', close: '007-12-1_close',
   },
   {
@@ -537,6 +553,7 @@ const FABRICS = [
     mood: '깔끔하고 화사한, 컬렉션 중 가장 밝고 쿨한 톤',
     space: '화이트 톤 공간 · 밝은 분위기',
     colors: [{ code: '007-13-1', name: '화이트', hex: '#f8f8f6' }],
+    photoCap: true,
     room: '007-13-1_room', close: '007-13-1_close',
   },
 ];
@@ -1124,7 +1141,7 @@ const LIMIT = { maxHeight: 260, maxSingle: 240 };
 
   document.getElementById('lineup').innerHTML = FABRICS.map(f => `
     <div class="cell">
-      <img src="${PHOTO}${f.colors[0].code}_vase.jpg" alt="">
+      <img src="${PHOTO}${f.lineupPhoto || f.colors[0].code + '_vase'}.jpg" alt="">
       <div class="ttl"><h4>${f.no}. ${f.name}</h4><p>${f.tagline}</p></div>
       <div class="cap">
         <div class="sws">${f.colors.map(c => swatch(c, c.name)).join('')}</div>
@@ -1150,13 +1167,18 @@ const LIMIT = { maxHeight: 260, maxSingle: 240 };
     }).join('');
   }
 
+  const pcap = (f, photo) => {
+    if (!f.photoCap) return '';
+    const c = f.colors.find(c => photo.startsWith(c.code + '_')) || f.colors[0];
+    return `<span class="pcap">${f.no} ${f.name}<small>${c.name}</small></span>`;
+  };
   document.getElementById('fabrics').innerHTML = FABRICS.map((f, i) => `
     <section data-sec="09-${f.no}_${f.name.replace(/ /g, '')}" class="fab${i % 2 ? ' alt' : ''}">
       <div class="top">
         <div><div class="en">${f.en}</div><h2><span class="no">${f.no}</span>${f.name}</h2></div>
       </div>
       <p class="tagline">${f.tagline}</p>
-      <div class="closeup"><img src="${PHOTO}${f.close}.jpg" alt=""></div>
+      <div class="closeup relative"><img src="${PHOTO}${f.close}.jpg" alt="">${pcap(f, f.close)}</div>
       <div class="info">
         <dl class="spec">
           <div><dt>TEXTURE</dt><dd>${f.texture}</dd></div>
@@ -1166,12 +1188,13 @@ const LIMIT = { maxHeight: 260, maxSingle: 240 };
           <div><dt>MATERIAL</dt><dd>${f.mix}</dd></div>
         </dl>
       </div>
-      ${f.colorsPhoto ? `<div class="colorsphoto"><img src="${PHOTO}${f.colorsPhoto}.jpg" alt="">
+      ${f.colorsPhoto ? `<div class="colorsphoto">${Array.isArray(f.colorsPhoto) ? `<div class="trio">${f.colorsPhoto.map(p => `<div><img src="${PHOTO}${p}.jpg" alt=""></div>`).join('')}</div>` : `<img src="${PHOTO}${f.colorsPhoto}.jpg" alt="">`}
         <div class="cap">${f.colors.map(c => `<span>${c.name}</span>`).join('')}</div></div>` : ''}
       ${f.notice ? `<div class="fnote">${f.notice}</div>` : ''}
       ${(f.rooms || [f.room]).map(r => {
+        if (r.pair) return `<div class="room pair relative${f.roomFull ? ' full' : ''}">${r.pair.map((p, k) => `<div style="flex:${r.ratio[k]} 1 0"><img src="${PHOTO}${p}.jpg" alt=""></div>`).join('')}${f.photoCap ? pcap(f, r.pair[0]) : ''}</div>`;
         const c = f.colors.length > 1 && f.colors.find(c => r.startsWith(c.code + '_'));
-        return `<div class="room relative"><img src="${PHOTO}${r}.jpg" alt="">${c ? `<span class="room-cap">${c.name}</span>` : ''}</div>`;
+        return `<div class="room relative${f.roomFull ? ' full' : ''}"><img src="${PHOTO}${r}.jpg" alt="">${f.photoCap ? pcap(f, r) : c ? `<span class="room-cap">${c.name}</span>` : ''}</div>`;
       }).join('')}
     </section>`).join('');
 

@@ -26,6 +26,8 @@ const FABRICS = [
     space: '거실 · 다이닝 · 큰 창',
     colors: [{ code: '10806-1', name: '내추럴 아이보리', hex: '#efe9dc' }],
     room: '10806-1_room', rooms: ['10806-1_room', '10806-1_room2'], close: '10806-1_close',
+    roomFull: true,
+    photoCap: true,
   },
   {
     no: '02', name: '웨이브 크링클', mix: '폴리에스터 100%', thin: 5, en: 'Wave Crinkle',
@@ -38,7 +40,11 @@ const FABRICS = [
       { code: '003-2-2', name: '퓨어 화이트', hex: '#f7f6f2' },
       { code: '003-2-3', name: '샌드 베이지', hex: '#ddd0bc' },
     ],
-    room: '003-2-1_room', rooms: ['003-2-1_room', '003-2-2_room', '003-2-3_room'], close: '003-2-2_close', colorsPhoto: '003-2_colors',
+    lineupPhoto: '003-2-2_vase',
+    roomFull: true,
+    photoCap: true,
+    room: '003-2-1_room', rooms: ['003-2-1_room', '003-2-2_room', { pair: ['003-2-3_room2', '003-2-3_room'], ratio: [1, 1284 / 1720] }], close: '003-2-2_close',
+    colorsPhoto: ['003-2-1_tone', '003-2-2_tone', '003-2-3_tone'],
   },
   {
     no: '03', name: '버블 엠보', mix: '폴리에스터 100%', thin: 6, en: 'Bubble Emboss',
@@ -51,7 +57,9 @@ const FABRICS = [
       { code: '003-8-2', name: '퓨어 화이트', hex: '#f7f7f4' },
       { code: '003-8-3', name: '그레이지', hex: '#d6cdbf' },
     ],
-    room: '003-8-1_room', rooms: ['003-8-1_room', '003-8-2_room', '003-8-3_room'], close: '003-8-3_close', colorsPhoto: '003-8_colors',
+    photoCap: true, roomFull: true,
+    room: '003-8-1_room', rooms: [{ pair: ['003-8-1_room2', '003-8-1_room3'], ratio: [1585 / 2362, 1] }, '003-8-2_room', { pair: ['003-8-3_room', '003-8-3_room2'], ratio: [1284 / 1720, 1720 / 1290] }], close: '003-8-3_close',
+    colorsPhoto: ['003-8-1_tone', '003-8-2_tone', '003-8-3_tone'],
   },
   {
     no: '04', name: '워싱 크링클', mix: '면 10% / 폴리에스터 90%', thin: 4, en: 'Washed Crinkle',
@@ -60,7 +68,8 @@ const FABRICS = [
     mood: '컬렉션 중 가장 내추럴하고 빈티지한 무드, 햇살이 많이 들어옴',
     space: '내추럴 · 라탄 · 우드 인테리어',
     colors: [{ code: '007-7-1', name: '내추럴 아이보리', hex: '#ece4d4' }],
-    room: '007-7-1_room', close: '007-7-1_close',
+    photoCap: true, roomFull: true,
+    room: '007-7-1_room', rooms: ['007-7-1_room', '007-7-1_room2'], close: '007-7-1_close',
     notice: '구김은 원단 고유의 디자인입니다. 다림질로 펴지지 않는 것이 정상입니다.',
   },
   {
@@ -70,6 +79,7 @@ const FABRICS = [
     mood: '멀리서는 무지, 가까이서는 결이 보이는 모던함',
     space: '모던 · 미니멀 · 아파트 거실',
     colors: [{ code: '007-12-1', name: '오프화이트', hex: '#f3f0e8' }],
+    photoCap: true,
     room: '007-12-1_room', close: '007-12-1_close',
   },
   {
@@ -79,6 +89,7 @@ const FABRICS = [
     mood: '깔끔하고 화사한, 컬렉션 중 가장 밝고 쿨한 톤',
     space: '화이트 톤 공간 · 밝은 분위기',
     colors: [{ code: '007-13-1', name: '화이트', hex: '#f8f8f6' }],
+    photoCap: true,
     room: '007-13-1_room', close: '007-13-1_close',
   },
 ];
