@@ -195,7 +195,7 @@ b, strong { font-weight: 700; }
 .lineup .cell .sws { display: flex; justify-content: flex-end; gap: 10px; align-self: stretch; }   .lineup .cell .swatch { position: relative; }
 .lineup .cell .swatch small { position: absolute; left: 0; right: 0; bottom: 0; padding: 4px 3px 5px; background: rgba(255,255,255,.82);
   color: var(--ink); font-size: 11px; font-weight: 600; letter-spacing: -.04em; line-height: 1.25; text-align: center; white-space: nowrap; }
-.lineup .cell .swatch { flex: 0 0 calc((100% - 20px) / 3); height: 82px; background-size: 360% auto; background-position: 78% 38%;      border: 2px solid rgba(255,255,255,.9); border-radius: 8px 8px 0 0; box-shadow: 0 2px 4px rgba(0,0,0,.14), 0 10px 24px rgba(0,0,0,.26); }
+.lineup .cell .swatch { flex: 0 0 calc((100% - 20px) / 3); height: 82px; background-size: cover; background-position: center;      border: 2px solid rgba(255,255,255,.9); border-radius: 8px 8px 0 0; box-shadow: 0 2px 4px rgba(0,0,0,.14), 0 10px 24px rgba(0,0,0,.26); }
 .lineup .cell p { font-size: 21px; color: var(--sub); line-height: 1.5; margin-top: 4px; }
 .sw { width: 30px; height: 30px; border: 1px solid rgba(0,0,0,.12); }
 
@@ -457,6 +457,7 @@ body.final .todo { display: none; }
 .dot-em .d::before { content: ''; position: absolute; left: 50%; top: 0; width: 7px; height: 7px; margin-left: -3.5px;
   border-radius: 50%; background: currentColor; }
 
+.lineup .cell .swatch[data-code="007-12-1"], .lineup .cell .swatch[data-code="007-13-1"] { background-size: 250% auto; }
 
 </style>
 <script>
@@ -722,7 +723,6 @@ const LIMIT = { maxHeight: 260, maxSingle: 240 };
   <h2 class="h2">결이 살아있는<br><span class="light">6가지 텍스처</span></h2>
   <p class="body">같은 자리, 같은 빛에서 촬영했습니다.<br>원단마다 다른 결을 비교해 보세요.</p>
   <div class="lineup" id="lineup"></div>
-  <p class="mnote"></p>
 </section>
 
 <section data-sec="06_빛비침비교" class="sec stone">
@@ -1130,7 +1130,7 @@ const LIMIT = { maxHeight: 260, maxSingle: 240 };
   document.querySelectorAll('[data-collection]').forEach(e => e.textContent = BRAND.collection);
   document.querySelectorAll('[data-collection-ko]').forEach(e => e.textContent = BRAND.collectionKo);
 
-  const swatch = (c, label) => `<div class="swatch" style="background-image:url(${PHOTO}${c.code}_vase.jpg);background-color:${c.hex}"><small>${label}</small></div>`;
+  const swatch = (c, label) => `<div class="swatch" data-code="${c.code}" style="background-image:url(${PHOTO}${c.code}_swatch.jpg);background-color:${c.hex}"><small>${label}</small></div>`;
 
   document.getElementById('lineup').innerHTML = FABRICS.map(f => `
     <div class="cell">
